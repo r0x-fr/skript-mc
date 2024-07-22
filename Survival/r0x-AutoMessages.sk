@@ -1,0 +1,114 @@
+# # # # # # # # # # # # # # # # # # # # # #
+#    _____   _____   __  ______ _____     #
+#   |  __ \ / _ \ \ / / |  ____|  __ \    #
+#   | |__) | | | \ V /  | |__  | |__) |   #
+#   |  _  /| | | |> <   |  __| |  _  /    #
+#   | | \ \| |_| / . \ _| |    | | \ \    #
+#   |_|  \_\\___/_/ \_(_|_|    |_|  \_\   #
+#                                         #
+#       BOSSBAR-AUTOMESSAGES SKRIPT       #
+# # # # # # # # # # # # # # # # # # # # # #
+# OPTIONS SECTION - SKRIPT CUSTOMIZATION  #
+# # # # # # # # # # # # # # # # # # # # # #
+options:
+	SkriptVersion: 2.1 # DO NOT CHANGE 
+	TotalMinutes: 30 # VERY IMPORTANT --> Just calculate five minutes per message and add 5 then. You have the total !
+	TimeBetweenMessage: 5 # in minutes
+	SoundPlayed: block.note_block.bell # Choose wanted sound at : https://www.digminecraft.com/lists/sound_list_pc.php
+	SoundVolume: 1.0 # Distance to hear the sound (must be at least 0.0). 1.0 is default and refers to 16 blocks
+	SoundPitch: 1.0 # Sound speed. 1.0 is default. Pitch must be included between 0.0 and 2.0.
+	ChatBroadcast: 60 # Time between vote broadcast
+# The messages content. Do not use quotation marks but you can use Minecraft color codes "&".
+	Message1: &aCréez votre équipe en vous rendant sur Discord &a: &9https://discord.r0x.fr/
+	Message2: &aVenez discuter à l'écrit ou à l'oral sur &cDiscord &a: &9https://discord.r0x.fr/
+	Message3: &aVous pouvez aider r0x.fr avec un &cdon &a: &9https://r0x.fr/forum/dons
+	Message4: &aNotre site : &9https://r0x.fr&a.
+	PartnerBroadcast: &4[&6Rappel&4] &2Ce serveur est hébergé par notre partenaire &cMineStrator&2 ! Profitez d'offres abordables et de qualité : &9https://minestrator.r0x.fr
+# Colors of each bossbar message. Colors available : blue, green, pink, purple, red, white, yellow
+	ColorMessage1: green
+	ColorMessage2: blue
+	ColorMessage3: red
+	ColorMessage4: yellow
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+# BEGINNING OF THE SKRIPT - EDIT AT YOUR OWN RISK #
+# If you want to add a message, copy the content  #
+# between "Message X" and "End of Message X" and  #
+# just change number in the content your pasted.  #
+# Also add "MessageX" and "ColorMessageX" to the  #
+# options section and fill the message you want ! #
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+command /ambossbar:
+	trigger:
+		# Message 1
+		create bossbar title "{@Message1}" and id "%player%" for player with value 100 with colors {@ColorMessage1}
+		loop all players:
+			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
+			add bossbar "%player%" for loop-player
+		wait 5 seconds
+		set bossbar "%player%" value to 75
+		wait 5 seconds
+		set bossbar "%player%" value to 50
+		wait 4 seconds
+		set bossbar "%player%" value to 25
+		wait 2 seconds
+		hide bossbar "%player%"
+		wait {@TimeBetweenMessage} minutes
+		# End of Message 1
+		# Message 2
+		create bossbar title "{@Message2}" and id "%player%" for player with value 100 with colors {@ColorMessage2}
+		loop all players:
+			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
+			add bossbar "%player%" for loop-player
+		wait 5 seconds
+		set bossbar "%player%" value to 75
+		wait 5 seconds
+		set bossbar "%player%" value to 50
+		wait 4 seconds
+		set bossbar "%player%" value to 25
+		wait 2 seconds
+		hide bossbar "%player%"
+		wait {@TimeBetweenMessage} minutes
+		# End of Message 2
+		# Message 3
+		create bossbar title "{@Message3}" and id "%player%" for player with value 100 with colors {@ColorMessage3}
+		loop all players:
+			play sound "block.note_block.bell" with volume 10 and pitch 1 for loop-player
+			add bossbar "%player%" for loop-player
+		wait 5 seconds
+		set bossbar "%player%" value to 75
+		wait 5 seconds
+		set bossbar "%player%" value to 50
+		wait 4 seconds
+		set bossbar "%player%" value to 25
+		wait 2 seconds
+		hide bossbar "%player%"
+		wait {@TimeBetweenMessage} minutes
+		# End of Message 3
+		# Message 4
+		create bossbar title "{@Message4}" and id "%player%" for player with value 100 with colors {@ColorMessage4}
+		loop all players:
+			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
+			add bossbar "%player%" for loop-player
+		wait 5 seconds
+		set bossbar "%player%" value to 75
+		wait 5 seconds
+		set bossbar "%player%" value to 50
+		wait 4 seconds
+		set bossbar "%player%" value to 25
+		wait 2 seconds
+		hide bossbar "%player%"
+		wait {@TimeBetweenMessage} minutes
+		# End of Message 4
+on skript load:
+	wait 2 ticks
+	send "[BossBarAM] BossBar-AutoMessages version {@SkriptVersion} est chargé !" to console
+	make console execute command "/ambossbar"
+	make console execute command "/chatbroadcast"
+every {@TotalMinutes} minutes:
+	make console execute command "/ambossbar"
+# Auto Message in chat for vote & partner broadcast
+every {@ChatBroadcast} minutes:
+	make console execute command "/chatbroadcast"
+command /chatbroadcast:
+	trigger:
+		broadcast "{@PartnerBroadcast}"

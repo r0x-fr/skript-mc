@@ -1,0 +1,31 @@
+command /clearoffline <offline player>:
+	permission: r0x.clearoffline
+	permission message: &cVous n'avez pas la permission d'utiliser cette commande.
+	usage: &4[&6r0x.fr&4] &c/clearoffline <joueur>
+	trigger:
+		if arg 1 is not set:
+			message "&4[&6r0x.fr&4] &2Cette commande sert à nettoyer l'inventaire d'un joueur à sa reconnexion."
+			message "&4[&6r0x.fr&4] &2Veuillez préciser le joueur à punir : &c/clearoffline <joueur>"
+			stop
+		if arg 1 is executor:
+			message "&4[&6r0x.fr&4] &2On ne se clear pas soi-même de cette manière !" to executor
+			stop
+		if arg 1 is op:
+			message "&4[&6r0x.fr&4] &2Ce joueur ne peut pas être clear, il est OP !" to executor
+			stop
+		else if arg 1 is set:
+			if {flag.clearoffline.%arg-1%} is true:
+				clear {flag.clearoffline.%arg-1%}
+				message "&2La sanction de nettoyage d'inventaire a été annulée pour le joueur &c%arg-1%&2." to executor
+				stop
+			else:
+				set {flag.clearoffline.%arg-1%} to true
+				message "&2Le joueur &c%arg-1%&2 verra son inventaire nettoyé à sa prochaine connexion." to executor
+				message "&2Pour annuler la sanction, tapez de nouveau la même commande." to executor
+
+on join:
+	if {flag.clearoffline.%player%} is true:
+		clear player's inventory
+		message "&cVous avez effectué une deconnexion en plein combat, votre inventaire a été supprimé par un modérateur." to player
+		message "&cMerci de lire attentivement les règles du serveur : http://reglessurvival.r0x.fr/" to player
+		clear {flag.clearoffline.%player%}

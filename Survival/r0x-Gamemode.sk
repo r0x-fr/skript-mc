@@ -1,0 +1,46 @@
+command /gm <number>:
+	permission: r0x.staff
+	permission message: &cVous n'avez pas la permission d'utiliser cette commande.
+	executable by: player
+	trigger:
+		if arg is 0:
+			make player execute command "/gamemode survival"
+			stop
+		if arg is 1:
+			make player execute command "/gamemode creative"
+			stop
+		if arg is 2:
+			make player execute command "/gamemode adventure"
+			stop
+		if arg is 3:
+			make player execute command "/gamemode spectator"
+			stop
+command /spectatormode:
+	permission: r0x.staff
+	permission message: &cVous n'avez pas la permission d'utiliser cette commande.
+	executable by: player
+	aliases: /spec
+	trigger:
+		make player execute command "/gamemode spectator"
+		stop
+command /creativemode:
+	permission: r0x.staff
+	permission message: &cVous n'avez pas la permission d'utiliser cette commande.
+	executable by: player
+	trigger:
+		make player execute command "/gamemode creative"
+		stop
+command /survivalmode:
+	permission: r0x.staff
+	permission message: &cVous n'avez pas la permission d'utiliser cette commande.
+	executable by: player
+	trigger:
+		make player execute command "/gamemode survival"
+		stop
+command /adventuremode:
+	permission: r0x.staff
+	permission message: &cVous n'avez pas la permission d'utiliser cette commande.
+	executable by: player
+	trigger:
+		make player execute command "/gamemode adventure"
+		stop

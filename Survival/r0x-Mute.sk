@@ -1,0 +1,95 @@
+command /mute <offline player> <text> <timespan>:
+	permission: r0x.mute
+	permission message: &cVous n'avez pas la permission d'utiliser cette commande.
+	usage: &4[&6r0x.fr&4] &c/mute <joueur> <raison> <temps : 1 second|minute|hour|day>
+	trigger:
+		if arg 1 is not set:
+			message "&4[&6r0x.fr&4] &2Veuillez préciser le joueur à mute : &c/mute <joueur> <raison> <temps>"
+			stop
+		if arg 1 is player:
+			message "&4[&6r0x.fr&4] &2On ne se mute pas soi même !"
+			stop
+		if arg 1 is op:
+			message "&4[&6r0x.fr&4] &2Ce joueur ne peut pas être mute !"
+			stop
+		else if arg 1 is set:
+			if arg 2 is not set:
+				message "&4[&6r0x.fr&4] &2Veuillez préciser une raison à ce mute : &c/mute <joueur> <raison> <temps>"
+				stop
+			else if arg 2 is set:
+				if arg 3 is not set:
+					message "&4[&6r0x.fr&4] &2Veuillez préciser une durée pour ce mute : &c/mute <joueur> <raison> <temps>"
+					stop
+				else if arg 3 is set:
+					set {muteplayer.%arg-1%} to true
+					set {mutereason.%arg-1%} to arg 2
+					set {mutetime.%arg-1%} to arg 3
+					set {mutedate.%arg-1%} to now
+					set {mutestaff.%arg-1%} to player
+					message "&4[&6r0x.fr&4] &c%arg 1% &2a été mute pour &c%arg 3% &2pour &c%arg 2%&2."
+					message "&4[&6r0x.fr&4] &2Vous avez été mute pendant &c%arg 3% &2pour &c%arg 2%&2." to arg 1
+					log "%arg-1% a été mute par %{mutestaff.%arg-1%}% le %{mutedate.%arg-1%}% pour une durée de %{mutetime.%arg-1%}% pour la raison %{mutereason.%arg-1%}%" to "mutes.log"
+					wait 1 tick
+					loop all players:
+						if loop-player is op:
+							send "&4[&6r0x.fr&4] &2Le joueur &c%arg 1% &2a été mute pendant &c%arg 3% &2pour &c%arg 2% &2par &c%player%&2." to loop-player
+on chat:
+	if {mutetime.%player%} is set:
+		set {_muted} to difference between now and {mutedate.%player%}
+		reduce {_muted} by {mutetime.%player%}
+		if difference between now and {mutedate.%player%} is bigger than {mutetime.%player%}:
+			clear {mutedate.%player%}
+			clear {mutetime.%player%}
+			clear {muteplayer.%player%}
+		if difference between now and {mutedate.%player%} is smaller than {mutetime.%player%}:
+			set {_donemuted} to {mutedate.%player%}
+			add {mutetime.%player%} to {_donemuted}
+			set {mute_timecheck} to difference between now and {_donemuted}
+			cancel event
+			message "&4[&6r0x.fr&4] &2Vous êtes mute pour &c%{mutereason.%player%}%&2. Cela expire dans &c%{mute_timecheck}%&2."
+command /unmute <offline player>:
+	permission: r0x.unmute
+	permission message: &cVous n'avez pas la permission d'utiliser cette commande.
+	usage: &4[&6r0x.fr&4] &c/unmute <player>
+	trigger:
+		if {muteplayer.%arg 1%} is true:
+			clear {muteplayer.%arg 1%}
+			clear {mutetime.%arg 1%}
+			clear {mutedate.%arg 1%}
+			message "&4[&6r0x.fr&4] &c%arg 1%&2 n'est plus mute."
+			message "&4[&6r0x.fr&4] &2Vous n'êtes plus mute." to arg 1
+			stop
+		if {chat.%arg 1%} is not set:
+			message "&4[&6r0x.fr&4] &2Ce joueur n'est pas mute."
+			stop
+		if arg 1 is not set:
+			message "&4[&6r0x.fr&4] &2Donnez le pseudo du joueur : &c/unmute <player>&2."
+			stop
+on command "/me":
+	if {mutetime.%player%} is set:
+		set {_muted} to difference between now and {mutedate.%player%}
+		reduce {_muted} by {mutetime.%player%}
+		if difference between now and {mutedate.%player%} is bigger than {mutetime.%player%}:
+			clear {mutedate.%player%}
+			clear {mutetime.%player%}
+			clear {muteplayer.%player%}
+		if difference between now and {mutedate.%player%} is smaller than {mutetime.%player%}:
+			set {_donemuted} to {mutedate.%player%}
+			add {mutetime.%player%} to {_donemuted}
+			set {mute_timecheck} to difference between now and {_donemuted}
+			cancel event
+			message "&4[&6r0x.fr&4] &2Vous êtes &cMUTE&2 et ne pouvez pas utiliser cette commande" to player
+			log "%player% a tenté d'utiliser la commande /me ou /tell pour parler alors qu'il/elle est mute." to "mute-warnings.log"
+command /muteinfo <offline player>:
+	permission: r0x.muteinfo
+	permission message: &cVous n'avez pas la permission d'utiliser cette commande.
+	usage: &4[&6r0x.fr&4] &c/muteinfo <player>
+	trigger:
+		if {muteplayer.%arg 1%} is not set:
+			message "&4[&6r0x.fr&4] &c%arg 1% &2n'est pas mute..."
+		else if {muteplayer.%arg 1%} is true:
+			message "&4[&6r0x.fr&4] &c%arg 1% &2est mute !"
+			message "&7- &2Mute par : &c%{mutestaff.%arg 1%}%"
+			message "&7- &2Raison : &c%{mutereason.%arg 1%}%"
+			message "&7- &2Date : &c%{mutedate.%arg 1%}%"
+			message "&7- &2Durée : &c%{mutetime.%arg 1%}%"

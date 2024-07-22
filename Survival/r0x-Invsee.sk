@@ -1,0 +1,23 @@
+command /invsee [<player>]:
+	permission: r0x.staff
+	trigger:
+		if arg 1 is not set:
+			message "&4[&6InvSee&4] &2Merci de préciser un joueur : &c/invsee <joueur>"
+		else:
+			if arg 1 is online:
+				set {_slot} to 0
+				set {_slotstart} to 9
+				open chest with 5 rows named "&2Inventaire de &6%arg 1%" to player
+				loop 36 times:
+					set {_item.%arg 1%.%{_slot}%} to slot {_slot} of arg 1's inventory
+					format slot {_slotstart} of player with {_item.%arg 1%.%{_slot}%} to close
+					add 1 to {_slot}
+					add 1 to {_slotstart}
+				wait 1 tick
+				format slot 0 of player with arg 1's helmet to close
+				format slot 1 of player with arg 1's chestplate to close
+				format slot 2 of player with arg 1's leggings to close
+				format slot 3 of player with arg 1's boots to close
+				format slot 4 of player with arg 1's offhand to close
+			else:
+				send "&4[&6InvSee&4] &2Ce joueur est hors ligne" to executor

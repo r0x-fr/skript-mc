@@ -1,0 +1,3 @@
+on death:
+	victim is a player:
+		drop victim's skull named "&c%victim%" at victim's location

@@ -1,0 +1,39 @@
+on chat:
+	if {antispam.status} is true:
+		if player has permission "r0x.antispam":
+			stop
+		else:
+			add 1 to {spam.%player%}
+
+every 2 seconds:
+	loop all players:
+		if {spam.%loop-player%} > 2:
+			if {spam.tempban.%loop-player%} is true:
+				set {spam.tempban.%loop-player%} to false
+				make console execute command "/spartan tempban %loop-player% 2h Tu n'as pas fait attention au spam, te voilà banni 2 heures !"
+				clear {spam.%loop-player%}
+				stop
+			if {spam.kick.%loop-player%} is true:
+				set {spam.kick.%loop-player%} to false
+				make console execute command "/spartan tempban %loop-player% 10m Tu n'as pas fait attention au spam, te voilà banni 10 minutes !"
+				set {spam.tempban.%loop-player%} to true
+				clear {spam.%loop-player%}
+				stop
+			make console execute command "/kick %loop-player% Attention au spam !"
+			set {spam.kick.%loop-player%} to true
+			clear {spam.%loop-player%}
+			stop
+		clear {spam.%loop-player%}
+
+command /antispam:
+	description: Active ou désactive l'antispam.
+	permission: r0x.antispam
+	permission message: &c&lVous n'avez pas la permission d'utiliser cette commande
+	trigger:
+		if {antispam.status} is true:
+			message "&8[&ar0x.fr&8] &eAntiSpam Désactivé"
+			set {antispam.status} to false
+			stop
+		else:
+			message "&8[&ar0x.fr&8] &eAntiSpam Activé"
+			set {antispam.status} to true
