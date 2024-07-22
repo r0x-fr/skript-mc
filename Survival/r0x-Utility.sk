@@ -1,0 +1,81 @@
+# Info Player
+command /player [<offline player>]:
+ executable by: the console and player
+ description: Nombre de blocs minés d'un joueur.
+ usage: /player [player]
+ aliases: /pi
+ trigger:
+  if argument is not set:
+   set {_deaths} to deaths stat of player
+   set {_pKills} to player_kills stat of player
+   set {_mKills} to mob_kills stat of player
+   set {_nbTrade} to traded_with_villager stat of player
+   set {_ratio} to ({_pKills}/{_deaths})
+   send "&f[&6Player Info&f]%nl%&nInformations de vous-même :%nl%%nl%&rNombre de morts : &e&l%{_deaths}%&f%nl%Nombre de joueurs tués : &e&l%{_pKills}%&f%nl%Ratio K/D : &e&l%{_ratio}%&f%nl%Nombre de monstres tués : &e&l%{_mKills}%&f%nl%Nombre d'échanges villageois effectué(s) : &e&l%{_nbTrade}%&f%nl%&f[&6Player Info - Fin&f]"
+   stop
+  else:
+   set {_deaths} to deaths stat of argument
+   set {_pKills} to player_kills stat of argument
+   set {_mKills} to mob_kills stat of argument
+   set {_nbTrade} to traded_with_villager stat of argument
+   set {_ratio} to ({_pKills}/{_deaths})
+   send "&f[&6Player Info&f]%nl%&nInformations de &d&n%argument%&f&n &f:%nl%%nl%Nombre de morts : &e&l%{_deaths}%&f%nl%Nombre de joueurs tués : &e&l%{_pKills}%&f%nl%Ratio K/D : &e&l%{_ratio}%&f%nl%Nombre de monstres tués : &e&l%{_mKills}%&f%nl%Nombre d'échanges villageois effectué(s) : &e&l%{_nbTrade}%&f%nl%&f[&6Player Info - Fin&f]"
+   stop
+
+# Death Counter (nb de mort d'un joueur)
+command /dc [<offline player>]:
+ executable by: the console and player
+ description: Nombre de mort(s) d'un joueur.
+ usage: /dc [player]
+ trigger:
+  if argument is not set:
+   set {theStat} to deaths stat of player
+   send "&f[&cDeaths Count&f] Votre nombre de mort(s) est de : &c%{theStat}% &fmorts."
+   stop
+  else:
+   set {theStat} to deaths stat of argument
+   send "&f[&cDeaths Count&f] Le nombre de mort(s) de &e%argument%&f est de : &c%{theStat}% &fmorts."
+   stop
+
+# Easy Team
+command /easyteam '<text>' <text> <text> <text>:
+ executable by: the console and player
+ description: Creation facile des teams.
+ usage: "&f[&bEasy Team&f] &e/easyteam &c'&7Team Name&c' &cTAG &c#&7ColorCode &7FriendlyFire:&ctrue&7/&cfalse
+ permission: admin.r0x
+ trigger:
+  if executor is not operator:
+   send "&f[&bEasy Team&f] &cVous devez être opérateur !" to player
+   stop
+  else:
+   if length of arg 2 is more than 3:
+    send "&f[&bEasy Team&f] &cLe TAG doit faire max &l3 caractères&r&c.%nl%&f[&bEasy Team&f] Valeur fournie : &e%arg-2%"
+    stop
+   if length of arg 3 is not 7:
+    send "&f[&bEasy Team&f] &cLe # couleur doit faire &l7 caractères en tout&r&c.%nl%&f[&bEasy Team&f] Valeur fournie : &e%arg-3%"
+    stop
+   if arg-4 is not "true" or "false":
+    send "&f[&bEasy Team&f] &cLe Friendly Fire doit être en &ltrue&r&c ou &lfalse&r&c."
+    stop
+   else:
+    make console execute command "/team add %arg-2% [{""text"":""%arg-1%"",""color"":""%arg-3%""}]"
+    make console execute command "/team modify %arg-2% prefix [{""text"":""[""},{""text"":""%arg-2%"",""color"":""%arg-3%"",""hoverEvent"":{""action"":""show_text"",""contents"":{""text"":""%arg-1%"",""color"":""%arg-3%""}}},{""text"":""] ""},{""text"":""-"",""color"":""%arg-3%""}]"
+    make console execute command "/team modify %arg-2% suffix [{""text"":""-"",""color"":""%arg-3%""}]"
+    make console execute command "/team modify %arg-2% friendlyFire %arg-4%"
+    send "&f[&bEasy Team&f] La team &e%arg-1% &fà été crée !" to player
+    stop
+    
+#Fast Prefix
+command /fastprefix '<text>' <text> <text>:
+ executable by: the console and player
+ description: Changement de prefix rapide.
+ usage: "&f[&bEasy Team - Fast Prefix&f] &e/fastprefix &c&7TeamName&c  &cTAG &c#&7ColorCode
+ permission: admin.r0x
+ trigger:
+  if executor is not operator:
+   send "&f[&bEasy Team&f] &cVous devez être opérateur !" to player
+   stop
+  else:
+   make console execute command "/team modify %arg-2% prefix [{""text"":""[""},{""text"":""%arg-2%"",""color"":""%arg-3%"",""hoverEvent"":{""action"":""show_text"",""contents"":{""text"":""%arg-1%"",""color"":""%arg-3%""}}},{""text"":""] ""},{""text"":""-"",""color"":""%arg-3%""}]"
+   send "&f[&bEasy Team - Fast Prefix&f] La team &e%arg-1% &fà bien changer de prefix !" to player
+   stop

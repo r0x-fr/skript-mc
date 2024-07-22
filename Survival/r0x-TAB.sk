@@ -1,0 +1,47 @@
+options:                           
+   tabHeader: "&2&lr0x.fr &r- &c&lSurvival%nl%"
+   tabFooter: "%nl%&2Vous êtes &e&l%number of all players%&r&e/%max player%&r&2 en ligne%nl%&r&2TPS actuel : &a&l%tps from last minute%&r&a/20"
+
+# Commandes
+# Actualisation du TAB (console only)
+command /tablist refresh:
+   executable by: console
+   trigger:
+      loop all players:
+         set tab header to {@tabHeader} and footer to {@tabFooter} for loop-player
+
+# Commande de refresh du prefix/suffix du tab
+command /tabteam [<player>]:
+   executable by: the console and player
+   description: Refresh le nom d'un joueur dans le tab.
+   usage: /tabteam [player]
+   trigger:
+      execute console command "/tablist refresh"
+      if "%team of player%" is "<none>":
+         set the player's tablist name to player's name
+         stop
+      else:
+         set {_teamPrefix} to team prefix of team of player
+         set {_teamSuffix} to team suffix of team of player
+         set the player's tablist name to "%{_teamPrefix}%&f%name of player%%{_teamSuffix}%"
+         stop
+
+# Events
+on join:
+   execute console command "/tablist refresh"
+   if "%team of player%" is "<none>":
+      set the player's tablist name to player's name
+      stop
+   else:
+      set {_teamPrefix} to team prefix of team of player
+      set {_teamSuffix} to team suffix of team of player
+      set the player's tablist name to "%{_teamPrefix}%&f%name of player%%{_teamSuffix}%"
+      stop
+
+on quit:
+   execute console command "/tablist refresh"
+   stop
+
+every 5 seconds:
+   make console execute command "/tablist refresh"
+   stop

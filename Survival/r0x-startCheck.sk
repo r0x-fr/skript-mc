@@ -1,0 +1,62 @@
+on Skript start:
+	if difficulty of "world" is not hard:
+		send "&f[&6Server - &4Check&6 - Difficulty&f] &cDifficulty &4is not in HARD &c!"
+		execute console command "/difficulty hard"
+		send "&f[&6Server - &cCheck&6 - Difficulty&f] &cThe difficulty has been &4automatically set to HARD&c."
+	else:
+		send "[&6Server - &aCheck&6 - Difficulty&r] Difficulty already set to HARD."
+	#Checkup KeepInv world, world_nether, world_the_end
+	if gamerule keepInventory of "world" is not false:
+		send "&f[&6Server - &4Check&6 - KeepInv&f] &cKeepInv &4is true for world &c!"
+		set gamerule keepInventory of world "world" to false
+		send "&f[&6Server - &cCheck&6 - KeepInv&f] &cKeepInv &4is now set to false for world &c!"
+	else:
+		send "[&6Server - &aCheck&6 - KeepInv&r] KeepInv is already false for world."
+	if gamerule keepInventory of "world_nether" is not false:
+		send "&f[&6Server - &4Check&6 - KeepInv&f] &cKeepInv &4is true for world_nether &c!"
+		set gamerule keepInventory of world "world_nether" to false
+		send "&f[&6Server - &cCheck&6 - KeepInv&f] &cKeepInv &4is now set to false for world_nether &c!"
+	else:
+		send "[&6Server - &aCheck&6 - KeepInv&r] KeepInv is already false for world_nether."
+	if gamerule keepInventory of "world_the_end" is not false:
+		send "&f[&6Server - &4Check&6 - KeepInv&f] &cKeepInv &4is true for world_the_end &c!"
+		set gamerule keepInventory of world "world_the_end" to false
+		send "&f[&6Server - &cCheck&6 - KeepInv&f] &cKeepInv &4is now set to false for world_the_end &c!"
+		stop
+	else:
+		send "[&6Server - &aCheck&6 - KeepInv&r] KeepInv is already false for world_the_end."
+		stop
+
+command /checkup:
+	executable by: the console and player
+	permission: admin.r0x
+	description: Commande de checkup de paramètres serveur.
+	trigger:
+		if difficulty of "world" is not hard:
+			send "&f[&6Server - &4Check&6 - Difficulty&f] &cDifficulty &4is not in HARD &c!"
+			execute console command "/difficulty hard"
+			send "&f[&6Server - &cCheck&6 - Difficulty&f] &cThe difficulty has been &4automatically set to HARD&c."
+		else:
+			send "[&6Server - &aCheck&6 - Difficulty&r] Difficulty already set to HARD."
+		#Checkup KeepInv world, world_nether, world_the_end
+		if gamerule keepInventory of "world" is not false:
+			send "&f[&6Server - &4Check&6 - KeepInv&f] &cKeepInv &4is true for world &c!"
+			set gamerule keepInventory of world "world" to false
+			send "&f[&6Server - &cCheck&6 - KeepInv&f] &cKeepInv &4is now set to false for world &c!"
+		else:
+			send "[&6Server - &aCheck&6 - KeepInv&r] KeepInv is already false for world."
+		if gamerule keepInventory of "world_nether" is not false:
+			send "&f[&6Server - &4Check&6 - KeepInv&f] &cKeepInv &4is true for world_nether &c!"
+			set gamerule keepInventory of world "world_nether" to false
+			send "&f[&6Server - &cCheck&6 - KeepInv&f] &cKeepInv &4is now set to false for world_nether &c!"
+		else:
+			send "[&6Server - &aCheck&6 - KeepInv&r] KeepInv is already false for world_nether."
+		if gamerule keepInventory of "world_the_end" is not false:
+			send "&f[&6Server - &4Check&6 - KeepInv&f] &cKeepInv &4is true for world_the_end &c!"
+			set gamerule keepInventory of world "world_the_end" to false
+			send "&f[&6Server - &cCheck&6 - KeepInv&f] &cKeepInv &4is now set to false for world_the_end &c!"
+			stop
+		else:
+			send "[&6Server - &aCheck&6 - KeepInv&r] KeepInv is already false for world_the_end."
+			stop
+            
