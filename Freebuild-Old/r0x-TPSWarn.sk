@@ -1,0 +1,11 @@
+# Avertir ceux ayant la permission r0x.warntps d'une chute de tps
+
+every 30 seconds:
+	if tps is less than 17:
+		loop all players:
+			if loop-player has permission "r0x.warntps":
+				send "&dTPS Serveur en dessous de 17 &c/!\" to loop-player
+				send "&dTPS actuels : &c%tps%" to loop-player
+		send "&dTPS Serveur en dessous de 17 &c/!\" to console
+		send "&dTPS actuels : &c%tps%" to console
+		make console execute command "/list"

@@ -1,0 +1,6 @@
+on death:
+	if player is in world "Jeux":
+		cancel event
+		make player execute command "/clear"
+	else:
+		drop skull of player named "&e%player's name%'s Head" at location of victim

@@ -1,0 +1,4 @@
+command /terresnobles:
+	permission: r0x.mondenobles
+	trigger:
+		execute console command "mv tp %player% Freebuild_nobles"

@@ -1,0 +1,15 @@
+command /helpeurkit <player>:
+	permission: r0x.helpeurkit
+	trigger:
+		if arg-1 has permission "r0x.ranks.Vagabonds" and "r0x.grades.Aventuriers":
+			if distance between player's location and arg-1's location is less than 10:
+				if arg 1 has permission "r0x.helpeurkit.received":
+					send "&4[&6Helpeur Kit&4] &c%arg 1%&2 a déjà reçu le kit..."
+				else:
+					make console execute command "/kit Helpeur %arg 1%"
+					make console execute command "/lp user %arg 1% permission set r0x.helpeurkit.received true"
+					send "&4[&6Helpeur Kit&4] &2Tu as reçu le &cKit Helpeur&2 de la part du Résident &c%player% &2!" to arg-1
+			else:
+				send "&4[&6Helpeur Kit&4] &2Vous êtes trop loin pour donner ce kit à &c%arg 1%&2."
+		else:
+			send "&4[&6Helpeur Kit&4] &c%arg 1% &2est trop ancien pour recevoir le kit."

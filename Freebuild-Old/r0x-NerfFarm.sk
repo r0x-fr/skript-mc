@@ -1,0 +1,8 @@
+on death of monster:
+	if display name of victim is set:
+		loop all blocks in radius 3 around the victim:
+			if loop-block is a hopper or rail or activator rail or detector rail or powered rail:
+				clear drops
+	if attacker is not a player:
+		if display name of victim is set:
+			clear drops

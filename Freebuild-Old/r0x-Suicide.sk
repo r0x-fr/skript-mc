@@ -1,0 +1,7 @@
+# Suicide qui remplace celui de Essentials
+
+command /suicide:
+	trigger:
+		broadcast "&c%player% &as'est suicidé(e)..."
+		set {suicide.state.%player%} to true
+		kill the player

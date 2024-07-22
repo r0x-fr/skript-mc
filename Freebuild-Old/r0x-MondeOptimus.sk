@@ -1,0 +1,164 @@
+command /terraformeur [<text>] [<text>] [<text>]:
+	permission: r0x.ranks.optimus
+	trigger:
+		# COMMANDE SANS ARGUMENTS
+		if arg-1 is not set:
+			# OPTIONS QUAND LE JOUEUR N'A PAS ENCORE DE MONDE
+			create a gui with virtual chest inventory with 2 rows named "&lTerraformeur &4&lOptimus":
+				if {mondecree.%uuid of player%} is not set:
+					set {mondecree.%uuid of player%} to false
+					wait 1 tick
+				if {mondecree.%uuid of player%} is false:
+					make gui slot 1 with grass named "&fCréer un monde &7NORMAL" with lore "&7Taille: 1000x1000":
+						make player execute command "/terraformeur normal"
+					make gui slot 3 with netherrack named "&fCréer un monde &cNETHER" with lore "&7Taille: 1000x1000":
+						make player execute command "/terraformeur nether"
+					make gui slot 5 with endstone named "&fCréer un monde &eEND" with lore "&7Taille: 1000x1000":
+						make player execute command "/terraformeur end"
+					make gui slot 7 with bedrock named "&fCréer un monde &8VIDE" with lore "&7Taille: 1000x1000":
+						make player execute command "/terraformeur void"
+					make gui slot 13 with red glass named "&cFermer le menu":
+						make player execute command "/menu"
+				else:
+					# OPTIONS QUAND LE JOUEUR A DEJA UN MONDE
+					set {_monde} to {mondecree.nom.%uuid of player%} parsed as world
+					#   SUPPRESSION
+					make gui slot 7 with tnt named "&4&lSUPPRIMER LE MONDE" with lore "&cAction irréversible":
+						if player is not in world {_monde}:
+							make player execute command "/deleteworld"
+						else:
+							close player's inventory
+							message "&4[&6Terraformeur&4] &4Attention &c: Vous devez être hors du monde avant de le supprimer !" to player
+					#   MODIFIE SPAWN
+					make gui slot 3 with respawn anchor named "&eChanger le Spawn du monde":
+						set {_locx} to the player's x-coordinate
+						set {_locy} to the player's y-coordinate
+						set {_locz} to the player's z-coordinate
+						execute console command "mv set spawn %{mondecree.nom.%uuid of player%}% %{_locx}% %{_locy}% %{_locz}%"
+						close player's inventory
+						message "&4[&6Terraformeur&4] &2Le Spawn de votre monde a été défini ici :  &aX: &6%{_locx}% &aY: &6%{_locy}% &aZ: &6%{_locz}%!" to player
+					#   TELEPORTATION
+					make gui slot 1 with compass named "&eSe téléporter au monde":
+						execute console command "mv tp %player% %{mondecree.nom.%uuid of player%}%"
+					#   GESTION
+					make gui slot 5 with command block named "&dGérer les règles" with lore "&7Modifie les propriétés du monde":
+						if player is in world {_monde}:
+							close player's inventory
+							make player execute command "/region flags __Global__"
+						else:
+							close player's inventory
+							message "&4[&6Terraformeur&4] &4Attention &c: Vous devez être dans votre monde pour modifier ses règles !" to player
+					make gui slot 13 with red glass named "&cFermer le menu":
+						make player execute command "/menu"
+
+
+		# SI ARG-1 EST INDIQUE, ALORS
+		else:
+			# SI ARG-3 EXISTE, ON PASSE D'ABORD PAR LA
+			# PROCESS DE CREATION DU MONDE ET DES PARAMETRES DE BASE
+			if arg-3 is set:
+				close player's inventory
+				# VERIF ARG-1 ET ARG-2 REDONDANTES MAIS PLUS SECURE
+				if arg-1 is "normal" or "nether" or "end" or "void":
+					# Vérification du temps de 10 minutes entre chaque création
+					if {mondecree.datecreation.%uuid of player%} is set:
+						if difference between {mondecree.datecreation.%uuid of player%} and now is less than 600 seconds:
+							set {_tempsattente} to difference between {mondecree.datecreation.%uuid of player%} and now
+							set {_tempsattente} to difference between {_tempsattente} and 10 minutes
+							message "&4[&6Terraformeur&4] &cVous ne pouvez créer un monde que toutes les 10 minutes ! Vous pourrez à nouveau en créer un dans :"
+							message "&4[&6Terraformeur&4] &4%{_tempsattente}%"
+							stop
+					if arg-2 is "classique" or "plat":
+						message "&4[&6Terraformeur&4] &aCréation du monde en cours... Veuillez patienter, vous allez être téléporté dans quelques secondes..."
+						# Variable utilisant l'uuid du joueur pour les autres process, en cas de changement de pseudo après création
+						set {mondecree.nom.%uuid of player%} to "%player%"
+						# Variable pour la commande worldlist (r0x-Divers) pour partager le menu r0x.fr
+						set {mondecree.checkmenu.%uuid of player%} to "%player%" parsed as world
+						set {mondecree.datecreation.%uuid of player%} to now
+						if arg-1 is "nether" or "end":
+							execute console command "mv create %player% %arg-1%"
+						if arg-1 is "normal":
+							if arg-2 is "classique":
+								execute console command "mv create %player% %arg-1%"
+							if arg-2 is "plat":
+								execute console command "mv create %player% %arg-1% -t FLAT"
+						if arg-1 is "void":
+							execute console command "mv create %player% normal -g VoidGenerator"
+						set {mondecree.%uuid of player%} to true
+						wait 5 seconds
+						if arg-3 is "survival":
+							execute console command "mv modify set mode survival %player%"
+							execute console command "mvinv addworld %player% default"
+							add {mondecree.checkmenu.%uuid of player%} to {liste.worlds::*}
+						if arg-3 is "creatif":
+							execute console command "mv modify set mode creative %player%"
+							execute console command "mv modify set monsters false %player%"
+							execute console command "mv modify set animals false %player%"
+							execute console command "rg flag -w '%player%' __global__ blocked-cmds hdv,land,ca,ah,crazyauction,crazyauctions,bp,backpack"
+						execute console command "mv modify set memory false %player%"
+						execute console command "mv modify set portalform none %player%"
+						execute console command "mv modify set color lightpurple %player%"
+						execute console command "mv modify set style italic %player%"
+						execute console command "rg addowner -w '%player%' __global__ %player%"
+						execute console command "wb %player% set 500 500 0 0"
+						execute console command "mv tp %player% %player%"
+			# SINON, ON CONTINUE NORMALEMENT
+			else if arg-1 is "normal":
+			# PROCESS CHOIX DU MODE DE JEU
+				create a gui with virtual chest inventory with 2 rows named "&lChoix: Mode de jeu":
+					make gui slot 1 with dirt named "&2Overworld classique &f&lSURVIVAL":
+						make player execute command "/terraformeur normal classique survival"
+					make gui slot 2 with grass named "&2Overworld classique &f&lCREATIF":
+						make player execute command "/terraformeur normal classique creatif"
+					make gui slot 6 with dirt named "&2Overworld plat &f&lSURVIVAL":
+						make player execute command "/terraformeur normal plat survival"
+					make gui slot 7 with grass named "&2Overworld plat &f&lCREATIF":
+						make player execute command "/terraformeur normal plat creatif"
+					make gui slot 13 with red glass named "&cRetour":
+						make player execute command "/terraformeur"
+			else if arg-1 is "nether":
+				create a gui with virtual chest inventory with 2 rows named "&lChoix: Mode de jeu":
+					make gui slot 3 with netherrack named "&cNether classique &f&lSURVIVAL":
+						make player execute command "/terraformeur nether classique survival"
+					make gui slot 5 with nether bricks named "&cNether classique &f&lCREATIF":
+						make player execute command "/terraformeur nether classique creatif"
+					make gui slot 13 with red glass named "&cRetour":
+						make player execute command "/terraformeur"
+			else if arg-1 is "end":
+				create a gui with virtual chest inventory with 2 rows named "&lChoix: Mode de jeu":
+					make gui slot 3 with end stone named "&eEnd classique &f&lSURVIVAL":
+						make player execute command "/terraformeur end classique survival"
+					make gui slot 5 with end stone bricks named "&eEnd classique &f&lCREATIF":
+						make player execute command "/terraformeur end classique creatif"
+					make gui slot 13 with red glass named "&cRetour":
+						make player execute command "/terraformeur"
+			else if arg-1 is "void":
+				create a gui with virtual chest inventory with 2 rows named "&lChoix: Mode de jeu":
+					make gui slot 3 with sand named "&8Monde vide &f&lSURVIVAL":
+						make player execute command "/terraformeur void classique survival"
+					make gui slot 5 with glass named "&8Monde vide &f&lCREATIF":
+						make player execute command "/terraformeur void classique creatif"
+					make gui slot 13 with red glass named "&cRetour":
+						make player execute command "/terraformeur"
+		open the last gui for the player
+
+command /deleteworld:
+	permission: r0x.ranks.optimus
+	trigger:
+		# PROCESS SUPPRESSION DU MONDE DU JOUEUR
+		if {mondecree.%uuid of player%} is true:
+			create a gui with virtual chest inventory with 1 row named "&4&lSUPPRIMER ?":
+				make gui slot 3 with lime wool named "&4Oui&c, supprimer le monde" with lore "&7Action irréversible /!\":
+					execute console command "mvinv removeworld %{mondecree.nom.%uuid of player%}% default"
+					execute console command "mv delete %{mondecree.nom.%uuid of player%}%"
+					remove {mondecree.checkmenu.%uuid of player%} from {liste.worlds::*}
+					wait 4 tick
+					execute console command "mv confirm"
+					set {mondecree.%uuid of player%} to false
+					close player's inventory
+					message "&4[&6Terraformeur&4] &eVotre monde a été supprimé définitivement !" to player
+				make gui slot 5 with red wool named "&aNon&2, ne pas supprimer le monde":
+					make player execute command "/terraformeur"
+			open the last gui for the player
+		else:
+			message "&4[&6Terraformeur&4] &cVous ne pouvez pas supprimer un monde qui n'existe pas !" to player

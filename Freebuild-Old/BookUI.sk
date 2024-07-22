@@ -1,0 +1,84 @@
+command /bookui [<text>] [<text>] [<player>]:
+	permission: bookui.use
+	executable by: players and console
+	trigger:
+		if argument 1 is not set:
+			message "&7&m=======================&4[&6BookUI&4]&7&m======================="
+			message "&c/bookui add <name>&7 - &2Créer un livre." to executor
+			message "&c/bookui open <name> [player]&7 - &2Ouvrir le livre souhaité pour vous, ou le joueur nommé" to executor
+			message "&c/bookui delete <name>&7 - &2Supprimer un livre" to executor
+			message "&c/bookui get <name>&7 - &2Recevoir le livre sous forme d'item" to executor
+			message "&c/bookui info&7 - &2Informations à propos de BookUI" to executor
+			message "&7&m=====================================================" to executor
+		else if argument 1 is "help":
+			message "&7&m=======================&4[&6BookUI&4]&7&m======================="
+			message "&c/bookui add <name>&7 - &2Créer un livre." to executor
+			message "&c/bookui open <name> [player]&7 - &2Ouvrir le livre souhaité pour vous, ou le joueur nommé" to executor
+			message "&c/bookui delete <name>&7 - &2Supprimer un livre" to executor
+			message "&c/bookui get <name>&7 - &2Recevoir le livre sous forme d'item" to executor
+			message "&c/bookui info&7 - &2Informations à propos de BookUI" to executor
+			message "&7&m=====================================================" to executor
+		else if argument 1 is "add":
+			if executor is console:
+				message "&4[&6BookUI&4]&2 Cette commande ne peut pas être executée depuis la console." to executor
+			else:
+				if argument 2 is not set:
+					message "&4[&6BookUI&4]&2 Utilisation: &c/bookui add <name>" to executor
+				else:
+					if argument 3 is set:
+						message "&4[&6BookUI&4]&2 Utilisation: &c/bookui add <name>" to executor
+					else:
+						if {bookui.book.%arg 2%} is set:
+							message "&4[&6BookUI&4]&2 Le livre &c%arg 2%&2 existe déjà !" to executor
+						else:
+							if player is holding a written book:
+								set {bookui.book.%arg 2%} to executor's tool
+								message "&4[&6BookUI&4]&2 Le livre &c%arg 2%&2 a été enregistré avec succès !" to executor
+							else:
+								message "&4[&6BookUI&4]&2 Vous devez tenir un livre signé pour exécuter cette commande." to executor
+		else if argument 1 is "open":
+			if argument 2 is not set:
+				message "&4[&6BookUI&4]&2 Utilisation: &c/bookui open <name> [player]" to executor
+			else:
+				if {bookui.book.%arg 2%} is not set:
+					message "&4[&6BookUI&4]&2 Le livre &c%arg 2%&2n'existe pas." to executor
+				else:
+					if argument 3 is not set:
+						if executor is console:
+							message "&4[&6BookUI&4]&2 Cette commande ne peut pas être executée depuis la console." to executor
+						else:
+							open book {bookui.book.%arg 2%} to executor
+					else:
+						set {_player} to argument 3
+						open book {bookui.book.%arg 2%} to {_player}
+		else if argument 1 is "delete":
+			if argument 2 is not set:
+				message "&4[&6BookUI&4]&2 Utilisation: &c/bookui delete <name>" to executor
+			else:
+				if {bookui.book.%arg 2%} is not set:
+					message "&4[&6BookUI&4]&2 Le livre &c%arg 2%&2 n'existe pas." to executor
+				else:
+					delete {bookui.book.%arg 2%}
+					message "&4[&6BookUI&4]&2 Le livre &c%arg 2%&2a été supprimé !" to executor
+		else if argument 1 is "info":
+			if argument 2 is set:
+				message "&4[&6BookUI&4]&2 Utilisation: &c/bookui info" to executor
+			else:
+				message "&7&m=======================&4[&6BookUI&4]&7&m=======================" to executor
+				message "&2Vous possédez &cBookUI v1.1&2." to executor
+				message "&2Créé par: &csymvizan&2." to executor
+				message "&7&m=====================================================" to executor
+		else if argument 1 is "get":
+			if argument 2 is not set:
+				message "&4[&6BookUI&4]&2 Utilisation: &c/bookui get <book>" to executor
+			else:
+				if executor is console:
+					message "&4[&6BookUI&4]&2 Cette commande ne peut pas être executée depuis la console." to executor
+				else:
+					if {bookui.book.%arg 2%} is not set:
+						message "&4[&6BookUI&4]&2 Le livre &c%arg 2%&2 n'existe pas." to executor
+					else:
+						give 1 of {bookui.book.%arg 2%} to player
+						message "&4[&6BookUI&4]&c %arg 2%&2 vous a été donné sous forme d'item !" to executor
+		else:
+			message "&4[&6BookUI&4]&2 Utilisation: &c/bookui help" to executor

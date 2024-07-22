@@ -1,0 +1,35 @@
+# # # # # # # # # # # # # # # # # # # # # #
+#    _____   _____   __  ______ _____     #
+#   |  __ \ / _ \ \ / / |  ____|  __ \    #
+#   | |__) | | | \ V /  | |__  | |__) |   #
+#   |  _  /| | | |> <   |  __| |  _  /    #
+#   | | \ \| |_| / . \ _| |    | | \ \    #
+#   |_|  \_\\___/_/ \_(_|_|    |_|  \_\   #
+#                                         #
+#      CONNEXION / FIRST JOIN SKRIPT      #
+# # # # # # # # # # # # # # # # # # # # # #
+# OPTIONS SECTION - SKRIPT CUSTOMIZATION  #
+# # # # # # # # # # # # # # # # # # # # # #
+options:
+	DisableJoinQuitMessages : false # "true" or "false"
+	TimeTitle : 8 # how many time, in second, the title should be shown to the new player ?
+# LANGUAGE SECTION
+	WelcomeTitle1 : &2Bienvenue moussaillon !
+	WelcomeSubTitle1 : &cTu es sur le serveur Freebuild de r0x.fr !
+	JoinMessage : &7[&a+&7] &a%player%
+	QuitMessage : &7[&c-&7] &c%player%
+# Code : NE PAS TOUCHER !
+on first join:
+	send title "{@WelcomeTitle1}" with subtitle "{@WelcomeSubTitle1}" to player for {@TimeTitle} seconds
+	stop
+on join:
+	if {@DisableJoinQuitMessages} is true:
+		set join message to ""
+	else:
+		set join message to "{@JoinMessage}"
+	make console execute command "/bookui open MOTD %player%"
+on quit:
+	if {@DisableJoinQuitMessages} is true:
+		set quit message to ""
+	else:
+		set quit message to "{@QuitMessage}"

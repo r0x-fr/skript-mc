@@ -1,0 +1,1241 @@
+command /menu [<text>] [<text>] [<text>]:
+	permission: r0x.menu
+	trigger:
+		if player is not in world "Events" or "Jeux":
+			# POUR UNE RAPIDITE ACCRUE, D'ABORD ON VERIF SI IL Y A UN ARGUMENT
+			# POUR UNE RAPIDITE ACCRUE, D'ABORD ON VERIF SI IL Y A UN ARGUMENT
+			# POUR UNE RAPIDITE ACCRUE, D'ABORD ON VERIF SI IL Y A UN ARGUMENT
+			# POUR UNE RAPIDITE ACCRUE, D'ABORD ON VERIF SI IL Y A UN ARGUMENT
+			# POUR UNE RAPIDITE ACCRUE, D'ABORD ON VERIF SI IL Y A UN ARGUMENT
+			# 
+			# SOUS-MENU 1 - Règles
+			if arg 1 is "rules":
+				create a gui with virtual chest inventory with 2 rows named "&eFreebuild &7- &4Règles":
+					set {_itemreglestriche} to a paper named "&4Triche / Usebug"
+					set line 1 of lore of {_itemreglestriche} to "&aMods de triches et usebugs sont interdits"
+					set line 2 of lore of {_itemreglestriche} to "&aUn seul usebug autorisé : &caccès au toit du Nether"
+					set line 3 of lore of {_itemreglestriche} to "&aMods : X-Ray, Aimbot, Anti-KB, NoFall, WorldDownloader..."
+					set line 4 of lore of {_itemreglestriche} to "&2Sanction : &4Ban définitif"
+					make gui slot 0 with {_itemreglestriche} 
+					set {_itemreglespub} to a paper named "&4Publicité"
+					set line 1 of lore of {_itemreglespub} to "&aEnvoi d'IP ou nom de serveur,"
+					set line 2 of lore of {_itemreglespub} to "&aque ce soit sur le tchat ou en message privé"
+					set line 3 of lore of {_itemreglespub} to "&2Sanction : &4Ban définitif"
+					make gui slot 1 with {_itemreglespub} 
+					set {_itemreglescomportement} to a paper named "&cComportement correct"
+					set line 1 of lore of {_itemreglescomportement} to "&aPas d'insultes, harcèlement ou manque de respect"
+					set line 2 of lore of {_itemreglescomportement} to "&aFlood, spam, majuscules, déco-reco excessifs"
+					set line 3 of lore of {_itemreglescomportement} to "&2Sanction : &6Selon gravité, selon le modérateur"
+					make gui slot 2 with {_itemreglescomportement} 
+					set {_itemregleselevages} to a paper named "&6Elevages trop importants"
+					set line 1 of lore of {_itemregleselevages} to "&aDe plus de 100 entités dans une même zone"
+					set line 2 of lore of {_itemregleselevages} to "&2Sanction : &6Kill des entités dans la zone"
+					make gui slot 3 with {_itemregleselevages} 
+					set {_itemreglesredstone} to a paper named "&6Boucles de Redstone"
+					set line 1 of lore of {_itemreglesredstone} to "&aBoucle qui tourne seule sans arrêt"
+					set line 2 of lore of {_itemreglesredstone} to "&2Sanction : &6Suppression complète du système"
+					make gui slot 4 with {_itemreglesredstone} 
+					set {_itemreglesaccusation} to a paper named "&6Accusations sans preuves"
+					set line 1 of lore of {_itemreglesaccusation} to "&aDemandez de l'aide aux &5Ambassadeurs"
+					set line 2 of lore of {_itemreglesaccusation} to "&aplutôt que d'accuser quelqu'un sans savoir"
+					set line 3 of lore of {_itemreglesaccusation} to "&2Sanction : &6Selon gravité, selon le modérateur"
+					make gui slot 5 with {_itemreglesaccusation} 
+					set {_itemreglesdoublecompte} to a paper named "&4Double-comptes"
+					set line 1 of lore of {_itemreglesdoublecompte} to "&aQue ce soit pour jouer plus facilement ou"
+					set line 2 of lore of {_itemreglesdoublecompte} to "&apour contourner une sanction"
+					set line 3 of lore of {_itemreglesdoublecompte} to "&2Sanction : &4Ban définitif des deux comptes"
+					make gui slot 6 with {_itemreglesdoublecompte} 
+					set {_itemreglesdegradationmap} to a paper named "&cDégradation volontaire de la carte"
+					set line 1 of lore of {_itemreglesdegradationmap} to "&aArbres volants, incendies de grosses surfaces"
+					set line 2 of lore of {_itemreglesdegradationmap} to "&adestruction de constructions du serveur"
+					set line 3 of lore of {_itemreglesdegradationmap} to "&2Sanction : &cBan temporaire (1 semaine)"
+					make gui slot 7 with {_itemreglesdegradationmap} 
+					set {_itembuildinnapproprié} to a paper named "&6Construction innappropriée"
+					set line 1 of lore of {_itembuildinnapproprié} to "&aPouvant porter à atteinte à une personne"
+					set line 2 of lore of {_itembuildinnapproprié} to "&aou à un groupe de personnes"
+					set line 3 of lore of {_itembuildinnapproprié} to "&2Sanction : &6Selon gravité, selon le modérateur"
+					make gui slot 8 with {_itembuildinnapproprié} 
+					set {_itempseudoinnapproprié} to a paper named "&6Pseudonyme innapproprié"
+					set line 1 of lore of {_itempseudoinnapproprié} to "&aPouvant porter à atteinte à une personne"
+					set line 2 of lore of {_itempseudoinnapproprié} to "&aou à un groupe de personnes"
+					set line 3 of lore of {_itempseudoinnapproprié} to "&2Sanction : &6Selon gravité, selon le modérateur"
+					make gui slot 9 with {_itempseudoinnapproprié} 
+					set {_itemantiafk} to a paper named "&6Anti-AFK automatique"
+					set line 1 of lore of {_itemantiafk} to "&aTous interdits"
+					set line 2 of lore of {_itemantiafk} to "&asauf les usines à pêche"
+					set line 3 of lore of {_itemantiafk} to "&2Sanction : &6Emprisonnement de 30 minutes"
+					make gui slot 10 with {_itemantiafk} 
+					set {_itemgriefvol} to a paper named "&cGrief / Vol"
+					set line 1 of lore of {_itemgriefvol} to "&aDétruire des constructions qui ne sont pas"
+					set line 2 of lore of {_itemgriefvol} to "&aà soi ou piller ressources, coffres..."
+					set line 3 of lore of {_itemgriefvol} to "&2Sanction : &6Emprisonnement de 60 minutes"
+					make gui slot 11 with {_itemgriefvol}
+					set {_itemabusmecaniques} to a paper named "&cDétournement des mécaniques"
+					set line 1 of lore of {_itemabusmecaniques} to "&aTout abus ou détournement des mécaniques"
+					set line 2 of lore of {_itemabusmecaniques} to "&aproposées (ponts / herses / portes...)"
+					set line 3 of lore of {_itemabusmecaniques} to "&2Sanction : &6destruction système, ou autre selon modérateur"
+					make gui slot 12 with {_itemabusmecaniques} 
+					make gui slot 17 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+				open the last gui for the player
+				stop
+			# 
+			# SOUS-MENU 2 - VoteKick / VoteDay
+			if arg 1 is "vote":
+				create a gui with virtual chest inventory with 1 row named "&eFreebuild &7- &fLancer un vote":
+					make gui slot 1 with clock named "&eLancer un VoteDay":
+						close player's inventory
+						make player execute command "/voteday"
+					make gui slot 4 with netherite sword named "&4Lancer un VoteKick":
+						make player execute command "/menu vote kick"
+					make gui slot 7 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+				open the last gui for the player
+				# VOTEKICK : Choix du motif
+				if arg 2 is "kick":
+					create a gui with virtual chest inventory with 1 row named "&4VoteKick &7- &cMotif":
+						make gui slot 0 with paper named "&cFlood / Spam du tchat":
+							make player execute command "/menu vote kick chat"
+						make gui slot 1 with paper named "&cManque de respect / insultes":
+							make player execute command "/menu vote kick insultes"
+						make gui slot 2 with paper named "&cGrief / Vol":
+							make player execute command "/menu vote kick grief"
+						make gui slot 3 with paper named "&cPublicité":
+							make player execute command "/menu vote kick pub"
+						make gui slot 7 with red stained glass named "&cRetour":
+							make player execute command "/menu vote"
+					open the last gui for the player
+					# VOTEKICK : Choix du joueur
+					if arg 3 is "chat":
+						create a gui with virtual chest inventory with 3 row named "&4VoteKick &7- &cChoix du joueur":
+							set {_slotvotekickchat} to 0
+							loop all players:
+								if loop-value is not player:
+									set {_votekickchat} to loop-value's name
+									make gui slot {_slotvotekickchat} with loop-value's skull named "&7%loop-value's name%":
+										close player's inventory
+										make player execute command "/votekick %{_votekickchat}% Flood / Spam du tchat"
+									add 1 to {_slotvotekickchat}
+									make gui slot 26 with red stained glass named "&cRetour":
+										make player execute command "/menu vote kick"
+						open the last gui for the player
+					if arg 3 is "insultes":
+						create a gui with virtual chest inventory with 3 row named "&4VoteKick &7- &cChoix du joueur":
+							set {_slotvotekickinsultes} to 0
+							loop all players:
+								if loop-value is not player:
+									set {_votekickinsultes} to loop-value's name
+									make gui slot {_slotvotekickinsultes} with loop-value's skull named "&7%loop-value's name%":
+										close player's inventory
+										make player execute command "/votekick %{_votekickinsultes}% Manque de respect / insultes"
+									add 1 to {_slotvotekickinsultes}
+									make gui slot 26 with red stained glass named "&cRetour":
+										make player execute command "/menu vote kick"
+						open the last gui for the player
+					if arg 3 is "grief":
+						create a gui with virtual chest inventory with 3 row named "&4VoteKick &7- &cChoix du joueur":
+							set {_slotvotekickgrief} to 0
+							loop all players:
+								if loop-value is not player:
+									set {_votekickgrief} to loop-value's name
+									make gui slot {_slotvotekickgrief} with loop-value's skull named "&7%loop-value's name%":
+										close player's inventory
+										make player execute command "/votekick %{_votekickgrief}% Grief / Vol"
+									add 1 to {_slotvotekickgrief}
+									make gui slot 26 with red stained glass named "&cRetour":
+										make player execute command "/menu vote kick"
+						open the last gui for the player
+					if arg 3 is "pub":
+						create a gui with virtual chest inventory with 3 row named "&4VoteKick &7- &cChoix du joueur":
+							set {_slotvotekickpub} to 0
+							loop all players:
+								if loop-value is not player:
+									set {_votekickpub} to loop-value's name
+									make gui slot {_slotvotekickpub} with loop-value's skull named "&7%loop-value's name%":
+										close player's inventory
+										make player execute command "/votekick %{_votekickpub}% Publicité"
+									add 1 to {_slotvotekickpub}
+									make gui slot 26 with red stained glass named "&cRetour":
+										make player execute command "/menu vote kick"
+						open the last gui for the player
+						stop
+			# 
+			# SOUS-MENU 3 - ScoreBoard
+			if arg 1 is "scboard":
+				create a gui with virtual chest inventory with 1 row named "&eFreebuild &7- &6Scoreboard":
+					if {scoreboard.%player's UUID%} is set:
+						make gui slot 1 with red concrete named "&2Scoreboard : &cDésactivé" with lore "&7Cliquez pour : &aactiver":
+							close player's inventory
+							make player execute command "/scboard on"
+					else if {scoreboard.%player's UUID%} is not set:
+						make gui slot 1 with green concrete named "&2Scoreboard : &aActivé" with lore "&7Cliquez pour : &cdésactiver":
+							close player's inventory
+							make player execute command "/scboard off"
+					if {scoreboard-xyz.%player's UUID%} is false:
+						make gui slot 4 with compass named "&2Coordonnées : &cMasquées" with lore "&7Cliquez pour : &aactiver":
+							close player's inventory
+							make player execute command "/scboard xyz"
+					if {scoreboard-xyz.%player's UUID%} is not set:
+						make gui slot 4 with compass named "&2Coordonnées : &aAffichées" with lore "&7Cliquez pour : &cdésactiver":
+							close player's inventory
+							make player execute command "/scboard xyz"
+					make gui slot 7 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+				open the last gui for the player
+				stop
+			# 
+			# SOUS-MENU 4 - Téléportation
+			if arg 1 is "tp":
+				create a gui with virtual chest inventory with 3 rows named "&eFreebuild &7- &5Téléportation":
+					set {_slottp} to 0
+					loop all players:
+						if loop-value is not player:
+							set {_playerheadtp} to loop-value's skull named "&7%loop-value's name%"
+							set line 1 of lore of {_playerheadtp} to "&aClic-Gauche : &cse téléporter à"
+							set line 2 of lore of {_playerheadtp} to "&aClic-Droit : &ctéléporter à vous"
+							set {_playernametp} to loop-value's name
+							make gui slot {_slottp} with {_playerheadtp}:					
+								if gui-click-type is left mouse button:
+									make player execute command "/tpa %{_playernametp}%"
+									close player's inventory
+								else if gui-click-type is right mouse button:
+									make player execute command "/tpahere %{_playernametp}%"
+									close player's inventory
+							add 1 to {_slottp}
+					if player has permission "essentials.tptoggle":
+						if {tptoggle.%player's UUID%} is not set:
+							make gui slot 24 with green concrete named "&2Cliquez pour &cdésactiver&2 la téléportation":					
+								make player execute command "/tptoggle"
+								set {tptoggle.%player's UUID%} to false
+								make player execute command "/menu tp"
+						else if {tptoggle.%player's UUID%} is false:
+							make gui slot 24 with red concrete named "&2Cliquez pour &aactiver &2la téléportation":					
+								make player execute command "/tptoggle"
+								delete {tptoggle.%player's UUID%}
+								make player execute command "/menu tp"
+					else:
+						make gui slot 24 with barrier named "&cActiver/Désactiver la téléportation" with lore "&7Rang requis : &aVillageois" 
+					if player has permission "essentials.back":
+						set {_itemback} to player head named "&cRetourner à l'emplacement précédent"
+						add "{SkullOwner:{Id:""af0c4f24-76b8-414d-8b5f-6b529dae3971"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDdlNTA1OTFmNDExOGI5YWU0NDc1NWY3YjQ4NTY5OWI0YjkxN2YwMGQ2NWY1ZWE4NTUzZWU0ODgyNmQyMzRjNyJ9fX0=""}]}}}" to nbt of {_itemback}
+						make gui slot 25 with {_itemback}:
+							make player execute command "/back"
+					else:
+						make gui slot 25 with barrier named "&cRetourner à l'emplacement précédent" with lore "&7Rang requis : &aVillageois" 
+					make gui slot 26 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+				open the last gui to the player
+				stop
+			# 
+			# SOUS-MENU 5 - Territoires
+			if arg 1 is "land":
+				# On vérif d'abord si le deuxième argument est indiqué
+				if arg 2 is "info":
+					create a gui with virtual chest inventory with 1 row named "&eTerritoires &7- &2Tutoriels":
+						make gui slot 1 with book named "&cTutoriel 1" with lore "&eLes bases de la gestion" and "&ede territoire":
+							close player's inventory
+							message "&3=====================================================" to player
+							message "&bLien du tutoriel vidéo ""&eLes bases de la gestion de territoire&b"" :" to player
+							message "&c                   https://youtu.be/3M2lO8sxumI                       " to player
+							message "&3=====================================================" to player
+						make gui slot 3 with book named "&cTutoriel 2" with lore "&eGestion des sous-zones" and "&edans un territoire":
+							close player's inventory
+							message "&3=====================================================" to player
+							message "&b  Lien du tutoriel vidéo ""&eLes sous-zones dans un territoire&b"" :" to player
+							message "&c                   https://youtu.be/9OSsCsbXnm8                       " to player
+							message "&3=====================================================" to player
+						make gui slot 5 with book named "&cTutoriel 3" with lore "&eGestion des rôles" and "&edans un territoire":
+							close player's inventory
+							message "&3=====================================================" to player
+							message "&b     Lien du tutoriel vidéo ""&eLes rôles dans un territoire&b"" :" to player
+							message "&c                   https://youtu.be/CDzONRsjU9E                       " to player
+							message "&3=====================================================" to player
+						make gui slot 8 with red stained glass named "&cRetour":
+							make player execute command "/menu land"
+					open the last gui to the player
+					stop
+				set {_itemlandmenu} to beacon named "&2Liste des territoires"
+				set line 1 of lore of {_itemlandmenu} to "&aAffiche vos territoires et"
+				set line 2 of lore of {_itemlandmenu} to "&aaccès au menu de gestion"
+				set {_itemlandunclaim} to red concrete named "&4Supprimer un chunk"
+				set line 1 of lore of {_itemlandunclaim} to "&aLève la protection du chunk"
+				set line 2 of lore of {_itemlandunclaim} to "&aoù vous vous trouvez"
+				create a gui with virtual chest inventory with 3 rows named "&eFreebuild &7- &2Territoires":
+					make gui slot 0 with diamond shovel named "&2Créer son territoire":
+						close player's inventory
+						make player execute command "/land create %player's name%"
+					make gui slot 2 with empty map named "&c/land map" with lore "&aAffiche une carte légendée" and "&ades chunks":
+						close player's inventory
+						make player execute command "/land map"
+					make gui slot 4 with {_itemlandmenu}:
+						make player execute command "/land menu"
+					make gui slot 6 with eye of ender named "&c/land view" with lore "&aAffiche les informations et" and "&ales contours du territoire":
+						close player's inventory
+						make player execute command "/land view"
+					make gui slot 8 with wooden axe named "&c/land selection" with lore "&aActive le mode sélection" and "&apour les territoires et" and "&ales sous-zones":
+						close player's inventory
+						make player execute command "/land selection"
+					make gui slot 9 with respawn anchor named "&c/land setspawn" with lore "&aDéfini le spawn de" and "&avotre territoire":
+						close player's inventory
+						make player execute command "/land setspawn"
+					make gui slot 11 with green bed named "&c/land spawn" with lore "&aVous téléporte au spawn" and "&ade votre territoire":
+						close player's inventory
+						make player execute command "/land spawn"
+					make gui slot 13 with green concrete named "&2Protéger un chunk" with lore "&aProtège le chunk où" and "&avous vous trouvez":
+						close player's inventory
+						make player execute command "/land claim"
+					make gui slot 15 with {_itemlandunclaim}:
+						close player's inventory
+						make player execute command "/land unclaim"
+					make gui slot 17 with birch sign named "&eTutoriels":
+						make player execute command "/menu land info"
+					make gui slot 22 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+				open the last gui to the player
+				stop
+			# 
+			# SOUS-MENU 6 - Protections
+			if arg 1 is "lock":
+				if arg 2 is "bloc1":
+					create a gui with virtual chest inventory with 6 rows named "&2Blocs (&c1&2/&c2&2)":
+						make gui slot 0 with chest
+						make gui slot 1 with furnace
+						make gui slot 2 with smoker
+						make gui slot 3 with blast furnace
+						make gui slot 4 with grindstone
+						make gui slot 5 with smithing table
+						make gui slot 6 with stonecutter
+						make gui slot 7 with dispenser
+						make gui slot 8 with lectern
+						make gui slot 9 with respawn anchor
+						make gui slot 10 with enchanting table
+						make gui slot 11 with anvil
+						make gui slot 12 with oak sign
+						make gui slot 13 with birch sign
+						make gui slot 14 with spruce sign
+						make gui slot 15 with jungle sign
+						make gui slot 16 with acacia sign
+						make gui slot 17 with dark oak sign
+						make gui slot 18 with crimson sign
+						make gui slot 19 with warped sign
+						make gui slot 20 with oak door
+						make gui slot 21 with iron door
+						make gui slot 22 with spruce door
+						make gui slot 23 with birch door
+						make gui slot 24 with jungle door
+						make gui slot 25 with acacia door
+						make gui slot 26 with dark oak door
+						make gui slot 27 with crimson door
+						make gui slot 28 with warped door
+						make gui slot 29 with oak trapdoor
+						make gui slot 30 with iron trapdoor
+						make gui slot 31 with spruce trapdoor
+						make gui slot 32 with birch trapdoor
+						make gui slot 33 with jungle trapdoor
+						make gui slot 34 with acacia trapdoor
+						make gui slot 35 with dark oak trapdoor
+						make gui slot 36 with crimson trapdoor
+						make gui slot 37 with warped trapdoor
+						make gui slot 38 with oak fence gate
+						make gui slot 39 with spruce fence gate
+						make gui slot 40 with birch fence gate
+						make gui slot 41 with jungle fence gate
+						make gui slot 42 with acacia fence gate
+						make gui slot 43 with dark oak fence gate
+						make gui slot 44 with crimson fence gate
+						make gui slot 45 with red stained glass named "&cRetour":
+							make player execute command "/menu lock"
+						make gui slot 46 with warped fence gate
+						make gui slot 47 with trapped chest
+						make gui slot 48 with hopper
+						make gui slot 49 with diamond block
+						make gui slot 50 with emerald block
+						make gui slot 51 with iron block
+						make gui slot 52 with gold block
+						make gui slot 53 with arrow named "&7Page suivante":
+							make player execute command "/menu lock bloc2"
+					open the last gui to the player
+					stop
+				if arg 2 is "bloc2":
+					create a gui with virtual chest inventory with 6 rows named "&2Blocs (&c2&2/&c2&2)":
+						make gui slot 0 with netherite block
+						make gui slot 1 with redstone block
+						make gui slot 2 with ender chest
+						make gui slot 3 with white bed
+						make gui slot 4 with orange bed
+						make gui slot 5 with magenta bed
+						make gui slot 6 with light blue bed
+						make gui slot 7 with yellow bed
+						make gui slot 8 with lime bed
+						make gui slot 9 with pink bed
+						make gui slot 10 with gray bed
+						make gui slot 11 with light gray bed
+						make gui slot 12 with cyan bed
+						make gui slot 13 with purple bed
+						make gui slot 14 with blue bed
+						make gui slot 15 with brown bed
+						make gui slot 16 with green bed
+						make gui slot 17 with red bed
+						make gui slot 18 with black bed
+						make gui slot 19 with dropper
+						make gui slot 20 with oak button
+						make gui slot 21 with spruce button
+						make gui slot 22 with birch button
+						make gui slot 23 with jungle button
+						make gui slot 24 with acacia button
+						make gui slot 25 with dark oak button
+						make gui slot 26 with crimson button
+						make gui slot 27 with warped button
+						make gui slot 28 with polished blackstone button
+						make gui slot 29 with lever
+						make gui slot 30 with beacon
+						make gui slot 31 with shulker box
+						make gui slot 32 with white shulker box
+						make gui slot 33 with orange shulker box
+						make gui slot 34 with magenta shulker box
+						make gui slot 35 with light blue shulker box
+						make gui slot 36 with yellow shulker box
+						make gui slot 37 with lime shulker box
+						make gui slot 38 with pink shulker box
+						make gui slot 39 with gray shulker box
+						make gui slot 40 with light gray shulker box
+						make gui slot 41 with purple shulker box
+						make gui slot 42 with cyan shulker box
+						make gui slot 43 with blue shulker box
+						make gui slot 44 with brown shulker box
+						make gui slot 45 with arrow named "&7Page précédente":
+							make player execute command "/menu lock bloc1"
+						make gui slot 46 with green shulker box
+						make gui slot 47 with red shulker box
+						make gui slot 48 with black shulker box
+						make gui slot 49 with barrel
+					open the last gui to the player
+					stop
+				create a gui with virtual chest inventory with 1 row named "&eFreebuild &7- &6Protections":
+					make gui slot 0 with tripwire hook named "&2Protéger un bloc" with lore "&aClic-droit sur le bloc":
+						close player's inventory
+						make player execute command "/lock"
+					make gui slot 2 with trapped chest named "&4Lever une protection" with lore "&aClic-droit sur le bloc":
+						close player's inventory
+						make player execute command "/unlock"
+					set {_itemlockpersiston} to nametag named "&6Mode Persistance (&aON&6)"
+					set line 1 of lore of {_itemlockpersiston} to "&aPermet une action répétitive sans revenir au menu"
+					set line 2 of lore of {_itemlockpersiston} to "&a1. Cliquez ici pour activer / désactiver"
+					set line 3 of lore of {_itemlockpersiston} to "&a2. Choisissez ensuite de protéger ou lever une protection"
+					set {_itemlockpersistoff} to nametag named "&6Mode Persistance (&cOFF&6)"
+					set line 1 of lore of {_itemlockpersistoff} to "&aPermet une action répétitive sans revenir au menu"
+					set line 2 of lore of {_itemlockpersistoff} to "&a1. Cliquez ici pour activer / désactiver"
+					set line 3 of lore of {_itemlockpersistoff} to "&a2. Choisissez ensuite de protéger ou lever une protection"
+					if {lockpersit.%player's UUID%} is true:
+						make gui slot 4 with {_itemlockpersiston}:					
+							make player execute command "/lwc mode persist"
+							delete {lockpersit.%player's UUID%}
+							close player's inventory
+					else if {lockpersit.%player's UUID%} is not set:
+						make gui slot 4 with {_itemlockpersistoff}:					
+							make player execute command  "/lwc mode persist"
+							set {lockpersit.%player's UUID%} to true
+							close player's inventory
+					make gui slot 6 with book named "&6Liste des blocs protégeables":
+						make player execute command "/menu lock bloc1"
+					make gui slot 8 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+				open the last gui to the player
+				stop
+			# 
+			# SOUS-MENU 7 - Métiers
+			if arg 1 is "jobs":
+				create a gui with virtual chest inventory with 1 row named "&eFreebuild &7- &fMétiers":
+					make gui slot 0 with book named "&2Liste des Métiers" with lore "&aInfos, rejoindre, quitter un métier...":
+						make player execute command "/jobs browse"
+					make gui slot 2 with brewing stand named "&8Statistiques":
+						close player's inventory
+						make player execute command "/jobs stats"
+					make gui slot 4 with gold block named "&6Top par Métiers":
+						make player execute command "/menu jobs top"
+					make gui slot 6 with red concrete named "&4Quitter tous ses métiers":
+						close player's inventory
+						make player execute command "/jobs leaveall"
+					make gui slot 8 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+				if arg 2 is "top":
+					create a gui with virtual chest inventory with 1 row named "&fMétiers &7- &6Top par Métiers":
+						make gui slot 0 with oak log named "&aBûcheron":
+							close player's inventory
+							make player execute command "/jobs top Bûcheron"
+						make gui slot 1 with diamond pickaxe named "&8Mineur":
+							close player's inventory
+							make player execute command "/jobs top Mineur"
+						make gui slot 2 with wheat named "&2Agriculteur":
+							close player's inventory
+							make player execute command "/jobs top Agriculteur"
+						make gui slot 3 with bow named "&4Chasseur":
+							close player's inventory
+							make player execute command "/jobs top Chasseur"
+						make gui slot 4 with cod named "&9Pêcheur":
+							close player's inventory
+							make player execute command "/jobs top Pêcheur"
+						make gui slot 5 with diamond shovel named "&ePaysagiste":
+							close player's inventory
+							make player execute command "/jobs top Paysagiste"
+						make gui slot 8 with red stained glass named "&cRetour":
+							close player's inventory
+							make player execute command "/menu jobs"
+					open the last gui to the player
+				open the last gui to the player
+				stop
+			# 
+			# SOUS-MENU 8 - Homes
+			if arg 1 is "homes":
+				create a gui with virtual chest inventory with 3 rows named "&eFreebuild &7- &cHomes":
+					make gui slot 0 with red bed named "&cLit" with lore "&7Clic-Gauche pour" and "&7s'y téléporter":
+						make player execute command "/home bed"
+					make gui slot 25 with red concrete named "&4Supprimer un home":
+						make player execute command "/menu homes supp"
+					make gui slot 26 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+					load yaml "plugins/Essentials/userdata/%player's uuid%.yml" as "%player's uuid%.yml"
+					set {_homes::*} to yaml nodes with keys "homes" of "%player's uuid%.yml"
+					set {_slothome} to 1
+					loop {_homes::*}:
+						set {_namehome} to loop-value
+						set {_itemhomes} to a player head named "&c%loop-value%" with lore "&7Clic-Gauche pour" and "&7s'y téléporter"
+						add "{SkullOwner:{Id:""7db0de46-0c0a-4e23-b00f-3bd851839481"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzc0MTBjMDdiZmJiNDE0NTAwNGJmOTE4YzhkNjMwMWJkOTdjZTEzMjcwY2UxZjIyMWQ5YWFiZWUxYWZkNTJhMyJ9fX0=""}]}}}" to nbt of {_itemhomes}
+						make gui slot {_slothome} with {_itemhomes}:
+							close player's inventory
+							make player execute command "/home %{_namehome}%"
+						add 1 to {_slothome}
+						unload "plugins/Essentials/userdata/%player's uuid%.yml"
+				open the last gui to the player
+				if arg 2 is "supp":
+					create a gui with virtual chest inventory with 3 rows named "&cHomes &7- &4Supprimer":
+						make gui slot 26 with red stained glass named "&cRetour":
+							make player execute command "/menu homes"
+						load yaml "plugins/Essentials/userdata/%player's uuid%.yml" as "%player's uuid%.yml"
+						set {_delhomes::*} to yaml nodes with keys "homes" of "%player's uuid%.yml"
+						set {_slotdelhome} to 0
+						loop {_delhomes::*}:
+							set {_namedelhome} to loop-value
+							set {_itemdelhomes} to a player head named "&c%loop-value%"
+							add "{SkullOwner:{Id:""7db0de46-0c0a-4e23-b00f-3bd851839481"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzc0MTBjMDdiZmJiNDE0NTAwNGJmOTE4YzhkNjMwMWJkOTdjZTEzMjcwY2UxZjIyMWQ5YWFiZWUxYWZkNTJhMyJ9fX0=""}]}}}" to nbt of {_itemdelhomes}
+							make gui slot {_slotdelhome} with {_itemdelhomes}:
+								close player's inventory
+								make player execute command "/delhome %{_namedelhome}%"
+							add 1 to {_slotdelhome}
+							unload "plugins/Essentials/userdata/%player's uuid%.yml"
+					open the last gui to the player
+				open the last gui to the player
+				stop
+			# 
+			# SOUS-MENU 9 - WARPS
+			if arg 1 is "warps":
+				create a gui with virtual chest inventory with 2 rows named "&eFreebuild &7- &dWarps":
+					make gui slot 0 with writable book named "&bSe rendre à l'Académie":
+						make player execute command "/warp Academie"
+					make gui slot 1 with honeycomb named "&6Se rendre au Monde Events":
+						make player execute command "/warp Events"
+					make gui slot 2 with gold block named "&eSe rendre au Marché":
+						make player execute command "/warp Marché"
+					make gui slot 17 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+					if player has permission "essentials.warps.*":
+						make gui slot 3 with dragon head named "&fSe rendre dans l'End":
+							make player execute command "/warp End"
+						make gui slot 4 with netherrack named "&cSe rendre dans le Nether":
+							make player execute command "/warp Nether"
+						make gui slot 5 with beacon named "&9Se rendre sur l'Ile Communautaire":
+							make player execute command  "/warp IleCommunautaire"
+						make gui slot 6 with pink wool named "&dSe rendre à la Lèche-Cul-Zone":
+							make player execute command "/warp LCZ"
+						make gui slot 7 with diamond pickaxe named "&8Se rendre à la Maison de l'Emploi":
+							make player execute command "/warp MaisonEmploi"
+						make gui slot 8 with potion named "&5Se rendre au Marché Noir":
+							make player execute command "/warp Marchénoir"
+						make gui slot 9 with oak boat named "&9Se rendre au Port":
+							make player execute command "/warp Port"
+						make gui slot 10 with netherite block named "&8Se rendre à Port Lointain":
+							make player execute command "/warp PortLointain"
+						make gui slot 11 with oak log named "&6Se rendre au Village":
+							make player execute command "/warp Village"
+					else:
+						make gui slot 3 with barrier named "&fSe rendre dans l'End" with lore "&7Rang requis : &8Explorateur" 
+						make gui slot 4 with barrier named "&cSe rendre dans le Nether" with lore "&7Rang requis : &8Explorateur" 
+						make gui slot 5 with barrier named "&9Se rendre sur l'Ile Communautaire" with lore "&7Rang requis : &8Explorateur" 
+						make gui slot 6 with barrier named "&dSe rendre à la Lèche-Cul-Zone" with lore "&7Rang requis : &8Explorateur" 
+						make gui slot 7 with barrier named "&8Se rendre à la Maison de l'Emploi" with lore "&7Rang requis : &8Explorateur" 
+						make gui slot 8 with barrier named "&5Se rendre au Marché Noir" with lore "&7Rang requis : &8Explorateur" 
+						make gui slot 9 with barrier named "&9Se rendre au Port" with lore "&7Rang requis : &8Explorateur" 
+						make gui slot 10 with barrier named "&8Se rendre à Port Lointain" with lore "&7Rang requis : &8Explorateur" 
+						make gui slot 11 with barrier named "&6Se rendre au Village" with lore "&7Rang requis : &8Explorateur"
+				open the last gui to the player
+				stop
+			# 
+			# SOUS-MENU 10 - Profil
+			if arg 1 is "profil":
+				create a gui with virtual chest inventory with 3 row named "&eFreebuild &7- &cRankUp":
+					if player has permission "r0x.ranks.vagabonds":
+						make gui slot 0 with gray wool named "&fPasser au rang &8Explorateur" with lore "&7Prérequis:" and "&7(1) Avoir 5000 eur0x" and "&7(2) Être niveau 10 dans 1 métier":
+							make player execute command "/rankup Explorateur"
+						make gui slot 2 with barrier named "&fPasser au rang &aVillageois" with lore "&7Achetez d'abord &8Explorateur&7 !"
+						make gui slot 4 with barrier named "&fPasser au rang &eCitadin" with lore "&7Achetez d'abord &aVillageois&7 !"
+						make gui slot 6 with barrier named "&fPasser au rang &3Bourgeois" with lore "&7Achetez d'abord &eCitadin&7 !"
+						make gui slot 8 with barrier named "&fPasser au rang &6Comte" with lore "&7Achetez d'abord &3Bourgeois&7 !"
+						make gui slot 10 with barrier named "&fPasser au rang &dMarquis" with lore "&7Achetez d'abord &6Comte&7 !"
+						make gui slot 12 with barrier named "&fPasser au rang &5Duc" with lore "&7Achetez d'abord &dMarquis&7 !"
+						make gui slot 14 with barrier named "&fPasser au rang &9Prince" with lore "&7Achetez d'abord &5Duc&7 !"
+						make gui slot 16 with barrier named "&fPasser au rang &cOptimus" with lore "&7Achetez d'abord &9Prince&7 !"
+					else if player has permission "r0x.ranks.explorateurs":
+						make gui slot 0 with gray wool named "&fRang &8Explorateur &aacheté&f !" 
+						make gui slot 2 with lime wool named "&fPasser au rang &aVillageois" with lore "&7Prérequis:" and "&7(1) Avoir 20.000 eur0x" and "&7(2) Être niveau 20 dans 2 métiers":
+							make player execute command "/rankup Villageois"
+						make gui slot 4 with barrier named "&fPasser au rang &eCitadin" with lore "&7Achetez d'abord &aVillageois&7 !"
+						make gui slot 6 with barrier named "&fPasser au rang &3Bourgeois" with lore "&7Achetez d'abord &eCitadin&7 !"
+						make gui slot 8 with barrier named "&fPasser au rang &6Comte" with lore "&7Achetez d'abord &3Bourgeois&7 !"
+						make gui slot 10 with barrier named "&fPasser au rang &dMarquis" with lore "&7Achetez d'abord &6Comte&7 !"
+						make gui slot 12 with barrier named "&fPasser au rang &5Duc" with lore "&7Achetez d'abord &dMarquis&7 !"
+						make gui slot 14 with barrier named "&fPasser au rang &9Prince" with lore "&7Achetez d'abord &5Duc&7 !"
+						make gui slot 16 with barrier named "&fPasser au rang &cOptimus" with lore "&7Achetez d'abord &9Prince&7 !"
+					else if player has permission "r0x.ranks.villageois":
+						make gui slot 0 with gray wool named "&fRang &8Explorateur &aacheté&f !" 
+						make gui slot 2 with lime wool named "&fRang &aVillageois acheté&f !" 
+						make gui slot 4 with yellow wool named "&fPasser au rang &eCitadin" with lore "&7Prérequis:" and "&7(1) Avoir 55.000 eur0x" and "&7(2) Être niveau 35 dans 1 métier":
+							make player execute command "/rankup Citadin"
+						make gui slot 6 with barrier named "&fPasser au rang &3Bourgeois" with lore "&7Achetez d'abord &eCitadin&7 !"
+						make gui slot 8 with barrier named "&fPasser au rang &6Comte" with lore "&7Achetez d'abord &3Bourgeois&7 !"
+						make gui slot 10 with barrier named "&fPasser au rang &dMarquis" with lore "&7Achetez d'abord &6Comte&7 !"
+						make gui slot 12 with barrier named "&fPasser au rang &5Duc" with lore "&7Achetez d'abord &dMarquis&7 !"
+						make gui slot 14 with barrier named "&fPasser au rang &9Prince" with lore "&7Achetez d'abord &5Duc&7 !"
+						make gui slot 16 with barrier named "&fPasser au rang &cOptimus" with lore "&7Achetez d'abord &9Prince&7 !"
+					else if player has permission "r0x.ranks.citadins":
+						make gui slot 0 with gray wool named "&fRang &8Explorateur &aacheté&f !" 
+						make gui slot 2 with lime wool named "&fRang &aVillageois acheté&f !" 
+						make gui slot 4 with yellow wool named "&fRang &eCitadin acheté&f !" 
+						make gui slot 6 with cyan wool named "&fPasser au rang &3Bourgeois" with lore "&7Prérequis:" and "&7(1) Avoir 120.000 eur0x" and "&7(2) Être niveau 30 dans 3 métiers":
+							make player execute command "/rankup Bourgeois"
+						make gui slot 8 with barrier named "&fPasser au rang &6Comte" with lore "&7Achetez d'abord &3Bourgeois&7 !"
+						make gui slot 10 with barrier named "&fPasser au rang &dMarquis" with lore "&7Achetez d'abord &6Comte&7 !"
+						make gui slot 12 with barrier named "&fPasser au rang &5Duc" with lore "&7Achetez d'abord &dMarquis&7 !"
+						make gui slot 14 with barrier named "&fPasser au rang &9Prince" with lore "&7Achetez d'abord &5Duc&7 !"
+						make gui slot 16 with barrier named "&fPasser au rang &cOptimus" with lore "&7Achetez d'abord &9Prince&7 !"
+					else if player has permission "r0x.ranks.bourgeois":
+						make gui slot 0 with gray wool named "&fRang &8Explorateur &aacheté&f !" 
+						make gui slot 2 with lime wool named "&fRang &aVillageois acheté&f !" 
+						make gui slot 4 with yellow wool named "&fRang &eCitadin &aacheté&f !" 
+						make gui slot 6 with cyan wool named "&fRang &3Bourgeois &aacheté &f!"
+						make gui slot 8 with orange wool named "&fPasser au rang &6Comte" with lore "&7Prérequis:" and "&7(1) Avoir 180.000 eur0x" and "&7(2) Être niveau 50 dans 1 métier":
+							make player execute command "/rankup Comte"
+						make gui slot 10 with barrier named "&fPasser au rang &dMarquis" with lore "&7Achetez d'abord &6Comte&7 !"
+						make gui slot 12 with barrier named "&fPasser au rang &5Duc" with lore "&7Achetez d'abord &dMarquis&7 !"
+						make gui slot 14 with barrier named "&fPasser au rang &9Prince" with lore "&7Achetez d'abord &5Duc&7 !"
+						make gui slot 16 with barrier named "&fPasser au rang &cOptimus" with lore "&7Achetez d'abord &9Prince&7 !"
+					else if player has permission "r0x.ranks.comtes":
+						make gui slot 0 with gray wool named "&fRang &8Explorateur &aacheté&f !" 
+						make gui slot 2 with lime wool named "&fRang &aVillageois acheté&f !" 
+						make gui slot 4 with yellow wool named "&fRang &eCitadin &aacheté&f !" 
+						make gui slot 6 with cyan wool named "&fRang &3Bourgeois &aacheté &f!"
+						make gui slot 8 with orange wool named "&fRang &6Comte &aacheté &f!"
+						make gui slot 10 with pink wool named "&fPasser au rang &dMarquis" with lore "&7Prérequis:" and "&7(1) Avoir 250.000 eur0x" and "&7(2) Être niveau 50 dans 2 métiers":
+							make player execute command "/rankup Marquis"
+						make gui slot 12 with barrier named "&fPasser au rang &5Duc" with lore "&7Achetez d'abord &dMarquis&7 !"
+						make gui slot 14 with barrier named "&fPasser au rang &9Prince" with lore "&7Achetez d'abord &5Duc&7 !"
+						make gui slot 16 with barrier named "&fPasser au rang &cOptimus" with lore "&7Achetez d'abord &9Prince&7 !"
+					else if player has permission "r0x.ranks.marquis":
+						make gui slot 0 with gray wool named "&fRang &8Explorateur &aacheté&f !" 
+						make gui slot 2 with lime wool named "&fRang &aVillageois acheté&f !" 
+						make gui slot 4 with yellow wool named "&fRang &eCitadin &aacheté&f !" 
+						make gui slot 6 with cyan wool named "&fRang &3Bourgeois &aacheté &f!"
+						make gui slot 8 with orange wool named "&fRang &6Comte &aacheté &f!"
+						make gui slot 10 with pink wool named "&fRang &dMarquis &aacheté &f!"
+						make gui slot 12 with purple wool named "&fPasser au rang &5Duc" with lore "&7Prérequis:" and "&7(1) Avoir 320.000 eur0x" and "&7(2) Être niveau 50 dans 3 métiers":
+							make player execute command "/rankup Duc"
+						make gui slot 14 with barrier named "&fPasser au rang &9Prince" with lore "&7Achetez d'abord &5Duc&7 !"
+						make gui slot 16 with barrier named "&fPasser au rang &cOptimus" with lore "&7Achetez d'abord &9Prince&7 !"
+					else if player has permission "r0x.ranks.ducs":
+						make gui slot 0 with gray wool named "&fRang &8Explorateur &aacheté&f !" 
+						make gui slot 2 with lime wool named "&fRang &aVillageois acheté&f !" 
+						make gui slot 4 with yellow wool named "&fRang &eCitadin &aacheté&f !" 
+						make gui slot 6 with cyan wool named "&fRang &3Bourgeois &aacheté &f!"
+						make gui slot 8 with orange wool named "&fRang &6Comte &aacheté &f!"
+						make gui slot 10 with pink wool named "&fRang &dMarquis &aacheté &f!"
+						make gui slot 12 with purple wool named "&fRang &5Duc &aacheté &f!"
+						make gui slot 14 with blue wool named "&fPasser au rang &9Prince" with lore "&7Prérequis:" and "&7(1) Avoir 400.000 eur0x" and "&7(2) Être niveau 60 dans 1 métier":
+							make player execute command "/rankup Prince"
+						make gui slot 16 with barrier named "&fPasser au rang &cOptimus" with lore "&7Achetez d'abord &9Prince&7 !"
+					else if player has permission "r0x.ranks.princes":
+						make gui slot 0 with gray wool named "&fRang &8Explorateur &aacheté&f !" 
+						make gui slot 2 with lime wool named "&fRang &aVillageois acheté&f !" 
+						make gui slot 4 with yellow wool named "&fRang &eCitadin &aacheté&f !" 
+						make gui slot 6 with cyan wool named "&fRang &3Bourgeois &aacheté &f!"
+						make gui slot 8 with orange wool named "&fRang &6Comte &aacheté &f!"
+						make gui slot 10 with pink wool named "&fRang &dMarquis &aacheté &f!"
+						make gui slot 12 with purple wool named "&fRang &5Duc &aacheté &f!"
+						make gui slot 14 with blue wool named "&fRang &9Prince &aacheté &f!"
+						make gui slot 16 with red wool named "&fPasser au rang &cOptimus" with lore "&7Prérequis:" and "&7(1) Avoir 500.000 eur0x" and "&7(2) Être niveau 100 dans 1 métier":
+							make player execute command "/rankup Optimus"
+					else if player has permission "r0x.ranks.optimus":
+						make gui slot 0 with gray wool named "&fRang &8Explorateur &aacheté&f !" 
+						make gui slot 2 with lime wool named "&fRang &aVillageois acheté&f !" 
+						make gui slot 4 with yellow wool named "&fRang &eCitadin &aacheté&f !" 
+						make gui slot 6 with cyan wool named "&fRang &3Bourgeois &aacheté &f!"
+						make gui slot 8 with orange wool named "&fRang &6Comte &aacheté &f!"
+						make gui slot 10 with pink wool named "&fRang &dMarquis &aacheté &f!"
+						make gui slot 12 with purple wool named "&fRang &5Duc &aacheté &f!"
+						make gui slot 14 with blue wool named "&fRang &9Prince &aacheté &f!"
+						make gui slot 16 with red wool named "&fRang &cOptimus &aacheté &f!"
+					make gui slot 22 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+				open the last gui to the player
+				stop
+			# 
+			# SOUS-MENU 11 - Atelier
+			if arg 1 is "atelier":
+				create a gui with virtual chest inventory with 1 row named "&eFreebuild &7- &cAtelier":
+					# Atelier slot 0
+					if player has permission "essentials.workbench":
+						make gui slot 0 with workbench named "&c/craft" with lore "&aUtiliser l'établi portable":
+							close player's inventory
+							make player execute command "/craft"
+					else:
+						make gui slot 0 with barrier named "&c/craft" with lore "&7Rang requis : &eCitadin"
+					# Atelier slot 1
+					if player has permission "essentials.cartographytable":
+						make gui slot 1 with cartography table named "&c/cartographytable" with lore "&aUtiliser la table" and "&ade cartographie" and "&aportable":
+							close player's inventory
+							make player execute command "/cartographytable"
+					else:
+						make gui slot 1 with barrier named "&c/cartographytable" with lore "&7Rang requis : &6Comte"
+					# Atelier slot 2
+					if player has permission "essentials.loom":
+						make gui slot 2 with loom named "&c/loom" with lore "&aUtiliser le métier" and "&aà tisser portable":
+							close player's inventory
+							make player execute command "/loom"
+					else:
+						make gui slot 2 with barrier named "&c/loom" with lore "&7Rang requis : &6Comte"
+					# Atelier slot 3
+					if player has permission "essentials.stonecutter":
+						make gui slot 3 with stonecutter named "&c/stonecutter" with lore "&aUtiliser le tailleur" and "&ade pierre portable":
+							close player's inventory
+							make player execute command "/stonecutter"
+					else:
+						make gui slot 3 with barrier named "&c/stonecutter" with lore "&7Rang requis : &dMarquis"
+					# Atelier slot 4
+					if player has permission "essentials.grindstone":
+						make gui slot 4 with grindstone named "&c/grindstone" with lore "&aUtiliser la meule":
+							close player's inventory
+							make player execute command "/grindstone"
+					else:
+						make gui slot 4 with barrier named "&c/grindstone" with lore "&7Rang requis : &5Duc"
+					# Atelier slot 5
+					if player has permission "essentials.smithingtable":
+						make gui slot 5 with smithing table named "&c/smithingtable" with lore "&aUtiliser la table" and "&ade forgeron":
+							close player's inventory
+							make player execute command "/smithingtable"
+					else:
+						make gui slot 5 with barrier named "&c/smithingtable" with lore "&7Rang requis : &5Duc"
+					# Atelier slot 6
+					if player has permission "essentials.anvil":
+						make gui slot 6 with anvil named "&c/anvil" with lore "&aUtiliser l'enclume":
+							close player's inventory
+							make player execute command "/anvil"
+					else:
+						make gui slot 6 with barrier named "&c/anvil" with lore "&7Rang requis : &9Prince"
+					# Atelier slot 8
+					make gui slot 8 with red glass named "&cRetour" with lore "&7Retourner au menu" and "&7principal":
+						make player execute command "/menu"
+					# Atelier fin slots
+				open the last gui to the player
+				stop
+			# 
+			# SOUS-MENU 12 - Economie
+			set {_rightarrow} to a player head named "&e→"
+			add "{SkullOwner:{Id:""79f13daf-4884-40ab-8e35-95e472463321"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19""}]}}}" to nbt of {_rightarrow}
+			set {_downarrow} to a player head named "&e↓ &7Créer un marchand" with lore "&7Tout en visant un coffre" and "&7récemment placé, créer" and "&7un marchand capable de" and "&7vendre, d'acheter, et" and "&7d'échanger vos objets"
+			add "{SkullOwner:{Id:""90dae868-ec0a-4989-8705-97e32490ca5d"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzI0MzE5MTFmNDE3OGI0ZDJiNDEzYWE3ZjVjNzhhZTQ0NDdmZTkyNDY5NDNjMzFkZjMxMTYzYzBlMDQzZTBkNiJ9fX0=""}]}}}" to nbt of {_downarrow}
+			set {_downarrow1} to a player head named "&e↓ &7Ouvrir l'hôtel de vente"
+			add "{SkullOwner:{Id:""90dae868-ec0a-4989-8705-97e32490ca5d"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzI0MzE5MTFmNDE3OGI0ZDJiNDEzYWE3ZjVjNzhhZTQ0NDdmZTkyNDY5NDNjMzFkZjMxMTYzYzBlMDQzZTBkNiJ9fX0=""}]}}}" to nbt of {_downarrow1}
+			if arg 1 is "economie":
+				# CE MENU ACCESSIBLE UNIQUEMENT SI EN SURVIVAL OU AVENTURE
+				if gamemode of player is creative:
+					if player don't have permission "r0x.admin":
+						close player's inventory
+						message "&cVous devez être en mode de jeu survie pour aller dans ce menu !" to player
+						stop
+				# ON VERIF ENSUITE SI LE JOUEUR A OUVERT LE MENU D'ENVOI
+				if arg 2 is "envoi":
+					if arg 3 is set:
+						create a gui with virtual chest inventory with 6 rows named "&e--> Choisir destinataire":
+							set {_slotbanque} to 0
+							loop all players:
+								if loop-value is not player:
+									set {_playernamebanque} to loop-value's name
+									make gui slot {_slotbanque} with loop-value's skull:
+										make player execute command "/pay %{_playernamebanque}% %arg-3%"
+									add 1 to {_slotbanque}
+							make gui slot 53 with red stained glass named "&cRetour":
+								make player execute command "/menu economie"
+						open the last gui to the player
+						stop
+				create a gui with virtual chest inventory with 6 rows named "&eFreebuild &7- &cEconomie":
+					# SOLDE DU COMPTE LIGNE 1
+					make gui slot 0 and 1 and 2 and 3 and 5 and 6 and 7 and 8 with blue stained glass pane named "&r"
+					make gui slot 4 with player's skull named "&2Solde :" with lore "&a%player's balance%"
+					# MESSAGE : RETIRER BOURSES (ligne 2)
+					make gui slot 9 with gold nugget named "&6Retirer des bourses de pièces d'or" with lore "&aChoisissez le montant" and "&aà droite"
+					make gui slot 10 with {_rightarrow}
+					# RETIRER 1 BOURSE
+					make gui slot 11 with gold nugget named "&61 Bourse de pièce d'or" with lore "&aRetirer 1 Bourse d'Or" and "&ade votre compte" and "&7(8 eur0x)":
+						if player's balance is smaller than 9:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer une &cBourse d'Or&2."
+						else:
+							if player has enough space for 1 gold nugget named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 8"
+								make console execute command "/comitems give -p %player% Bourse"
+								send "&4[&6Banque&4] &2Vous avez reçu &c1 Bourse d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 16 BOURSES
+					make gui slot 12 with gold nugget named "&616 Bourses de pièce d'or" with lore "&aRetirer 16 Bourses d'Or" and "&ade votre compte" and "&7(128 eur0x)":
+						if player's balance is smaller than 129:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer &c16 Bourses d'Or&2."
+						else:
+							if player has enough space for 16 gold nugget named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 128"
+								make console execute command "/comitems give -p %player% Bourse -a 16"
+								send "&4[&6Banque&4] &2Vous avez reçu &c16 Bourses d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 32 BOURSES
+					make gui slot 13 with gold nugget named "&632 Bourses de pièce d'or" with lore "&aRetirer 32 Bourses d'Or" and "&ade votre compte" and "&7(256 eur0x)":
+						if player's balance is smaller than 257:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer &c32 Bourses d'Or&2."
+						else:
+							if player has enough space for 32 gold nugget named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 256"
+								make console execute command "/comitems give -p %player% Bourse -a 32"
+								send "&4[&6Banque&4] &2Vous avez reçu &c32 Bourses d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 64 BOURSES
+					make gui slot 14 with gold nugget named "&664 Bourses de pièce d'or" with lore "&aRetirer 64 Bourses d'Or" and "&ade votre compte" and "&7(512 eur0x)":
+						if player's balance is smaller than 513:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer &c64 Bourses d'Or&2."
+						else:
+							if player has enough space for 64 gold nugget named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 512"
+								make console execute command "/comitems give -p %player% Bourse -a 64"
+								send "&4[&6Banque&4] &2Vous avez reçu &c64 Bourses d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 128 BOURSES
+					make gui slot 15 with gold nugget named "&6128 Bourses de pièce d'or" with lore "&aRetirer 128 Bourses d'Or" and "&ade votre compte" and "&7(1024 eur0x)":
+						if player's balance is smaller than 1025:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer &c128 Bourses d'Or&2."
+						else:
+							if player has enough space for 128 gold nugget named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 1024"
+								make console execute command "/comitems give -p %player% Bourse -a 128"
+								send "&4[&6Banque&4] &2Vous avez reçu &c128 Bourses d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 256 BOURSES
+					make gui slot 16 with gold nugget named "&6256 Bourses de pièce d'or" with lore "&aRetirer 256 Bourses d'Or" and "&ade votre compte" and "&7(2048 eur0x)":
+						if player's balance is smaller than 2049:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer &c256 Bourses d'Or&2."
+						else:
+							if player has enough space for 256 gold nugget named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 2048"
+								make console execute command "/comitems give -p %player% Bourse -a 256"
+								send "&4[&6Banque&4] &2Vous avez reçu &c256 Bourses d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 512 BOURSES
+					make gui slot 17 with gold nugget named "&6512 Bourses de pièce d'or" with lore "&aRetirer 512 Bourses d'Or" and "&ade votre compte" and "&7(4096 eur0x)":
+						if player's balance is smaller than 4097:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer &c512 Bourses d'Or&2."
+						else:
+							if player has enough space for 512 gold nugget named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 4096"
+								make console execute command "/comitems give -p %player% Bourse -a 512"
+								send "&4[&6Banque&4] &2Vous avez reçu &c512 Bourses d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# MESSAGE : RETIRER SACS D'OR (ligne 3)
+					make gui slot 18 with gold block named "&6Retirer des Sacs d'or" with lore "&aChoisissez le montant" and "&aà droite"
+					make gui slot 19 with {_rightarrow}
+					# RETIRER 1 SAC D'OR
+					make gui slot 20 with gold block named "&61 Sac de pièces d'Or" with lore "&aRetirer 1 Sac de pièces d'Or" and "&ade votre compte" and "&7(128 eur0x)":
+						if player's balance is smaller than 129:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer un &cSac d'Or&2."
+						else:
+							if player has enough space for 1 gold block named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 128"
+								make console execute command "/comitems give -p %player% SacOr"
+								send "&4[&6Banque&4] &2Vous avez reçu un &cSac d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 16 SACS D'OR
+					make gui slot 21 with gold block named "&616 Sacs de pièces d'Or" with lore "&aRetirer 16 Sacs de pièces d'Or" and "&ade votre compte" and "&7(2048 eur0x)":
+						if player's balance is smaller than 2049:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer 16 &cSacs d'Or&2."
+						else:
+							if player has enough space for 16 gold block named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 2048"
+								make console execute command "/comitems give -p %player% SacOr -a 16"
+								send "&4[&6Banque&4] &2Vous avez reçu 16 &cSacs d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 32 SACS D'OR
+					make gui slot 22 with gold block named "&632 Sacs de pièces d'Or" with lore "&aRetirer 32 Sacs de pièces d'Or" and "&ade votre compte" and "&7(4096 eur0x)":
+						if player's balance is smaller than 4097:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer 32 &cSacs d'Or&2."
+						else:
+							if player has enough space for 32 gold block named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 4096"
+								make console execute command "/comitems give -p %player% SacOr -a 32"
+								send "&4[&6Banque&4] &2Vous avez reçu 32 &cSacs d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 64 SACS D'OR
+					make gui slot 23 with gold block named "&664 Sacs de pièces d'Or" with lore "&aRetirer 64 Sacs de pièces d'Or" and "&ade votre compte" and "&7(8192 eur0x)":
+						if player's balance is smaller than 8193:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer 64 &cSacs d'Or&2."
+						else:
+							if player has enough space for 64 gold block named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 8192"
+								make console execute command "/comitems give -p %player% SacOr -a 64"
+								send "&4[&6Banque&4] &2Vous avez reçu 64 &cSacs d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 128 SACS D'OR
+					make gui slot 24 with gold block named "&6128 Sacs de pièces d'Or" with lore "&aRetirer 128 Sacs de pièces d'Or" and "&ade votre compte" and "&7(16.384 eur0x)":
+						if player's balance is smaller than 16385:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer 128 &cSacs d'Or&2."
+						else:
+							if player has enough space for 128 gold block named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 16384"
+								make console execute command "/comitems give -p %player% SacOr -a 128"
+								send "&4[&6Banque&4] &2Vous avez reçu 128 &cSac4 d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 256 SACS D'OR
+					make gui slot 25 with gold block named "&6256 Sacs de pièces d'Or" with lore "&aRetirer 256 Sacs de pièces d'Or" and "&ade votre compte" and "&7(32.768 eur0x)":
+						if player's balance is smaller than 32769:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer 256 &cSacs d'Or&2."
+						else:
+							if player has enough space for 256 gold block named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 32768"
+								make console execute command "/comitems give -p %player% SacOr -a 256"
+								send "&4[&6Banque&4] &2Vous avez reçu 256 &cSacs d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# RETIRER 512 SACS D'OR
+					make gui slot 26 with gold block named "&6512 Sacs de pièces d'Or" with lore "&aRetirer 512 Sacs de pièces d'Or" and "&ade votre compte" and "&7(65.536 eur0x)":
+						if player's balance is smaller than 65537:
+							send "&4[&6Banque&4] &2Vous n'avez pas assez d'argent pour retirer 512 &cSacs d'Or&2."
+						else:
+							if player has enough space for 512 gold block named "&6Bourse de pièce d'or":
+								make console execute command "/eco take %player% 65536"
+								make console execute command "/comitems give -p %player% SacOr -a 512"
+								send "&4[&6Banque&4] &2Vous avez reçu 512 &cSacs d'Or&2."
+							else:
+								send "&4[&6Banque&4] &2Vous n'avez pas assez de place dans votre inventaire"
+					# MESSAGE : ENVOYER DE L'ARGENT (ligne 4)
+					make gui slot 27 with paper named "&cEnvoyer de l'argent" with lore "&aChoisissez le montant" and "&aà envoyer à droite"
+					make gui slot 28 with {_rightarrow}
+					make gui slot 29 with paper named "&cEnvoyer 10 Eur0x":
+						make player execute command "/menu economie envoi 10"
+					make gui slot 30 with paper named "&cEnvoyer 100 Eur0x":
+						make player execute command "/menu economie envoi 100"
+					make gui slot 31 with paper named "&cEnvoyer 500 Eur0x":
+						make player execute command "/menu economie envoi 500"
+					make gui slot 32 with paper named "&cEnvoyer 1000 Eur0x":
+						make player execute command "/menu economie envoi 1000"
+					make gui slot 33 with paper named "&cEnvoyer 2500 Eur0x":
+						make player execute command "/menu economie envoi 2500"
+					make gui slot 34 with paper named "&cEnvoyer 10.000 Eur0x":
+						make player execute command "/menu economie envoi 10000"
+					make gui slot 35 with paper named "&cChoisir le montant" with lore "&7Vous serez invité à" and "&7taper la quantité" and "&7désirée dans le" and "&7tchat":
+						set {prompt.quantity.%player's UUID%} to true
+						close player's inventory
+						message "&7Veuillez d'abord taper le chiffre ou le nombre que vous désirez envoyer :"
+					# LIGNE 5 SEPARATION
+					make gui slot 36 and 38 and 39 and 40 and 41 and 43 and 44 with blue stained glass pane named "&r"
+					make gui slot 37 with {_downarrow}
+					make gui slot 42 with {_downarrow1}
+					make gui slot 49 with red stained glass named "&cRetour":
+						make player execute command "/menu"
+					# LIGNE 6 ; 45 46 47 48 49 50 51 52 53
+					make gui slot 45 with villager spawn egg named "&eMarchand Vendeur" with lore "&7Ce marchand s'occupe" and "&7de vendre vos objets":
+						close player's inventory
+						make player execute command "/shopkeeper [Marchand]-Vendeur"
+					make gui slot 46 with villager spawn egg named "&eMarchand Acheteur" with lore "&7Ce marchand s'occupe" and "&7d'acheter les objets" and "&7que vous désirez":
+						close player's inventory
+						make player execute command "/shopkeeper [Marchand]-Acheteur"
+					make gui slot 47 with villager spawn egg named "&eMarchand Troqueur" with lore "&7Ce marchand s'occupe" and "&7d'échanger des objets" and "&7contre d'autres objets":
+						close player's inventory
+						make player execute command "/shopkeeper [Marchand]-Troqueur"
+					make gui slot 48 with villager spawn egg named "&eMarchand Libraire" with lore "&7Ce marchand s'occupe" and "&7de vendre plusieurs" and "&7de vos livres grâce" and "&7à un seul exemplaire":
+						close player's inventory
+						make player execute command "/shopkeeper [Marchand]-Libraire"
+					make gui slot 50 and 51 and 52 and 53 with enchanted book named "&eHôtel des Ventes" with lore "&7Proposer vos objets" and "&7à la vente, et acheter" and "&7ceux des autres":
+						make player execute command "/hdv"
+				open the last gui to the player
+				stop
+			# PAS D'ARGUMENT DETECTE, DEMARRAGE DU MENU PRINCIPAL
+			# PAS D'ARGUMENT DETECTE, DEMARRAGE DU MENU PRINCIPAL
+			# PAS D'ARGUMENT DETECTE, DEMARRAGE DU MENU PRINCIPAL
+			# DEMARRAGE DU MENU PRINCIPAL
+			# DEMARRAGE DU MENU PRINCIPAL
+			create a gui with virtual chest inventory with 6 rows named "&eFreebuild &7- &2Menu principal":
+				# LIGNE 2 (séparation)
+				make gui slot 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 with blue stained glass pane named "&r"
+				# LIGNE 1
+				make gui slot 0 with compass named "&cRetour au Spawn":
+					close player's inventory
+					make player execute command "/spawn"
+				set {_itembackpackhead} to a player head named "&2Sac à Dos" with lore "&7Sert à stocker des" and "&7objets indépendamment" and "&7de l'inventaire"
+				add "{SkullOwner:{Id:""becabad0-525f-4d6b-8354-e0df80840a46"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGRjYzZlYjQwZjNiYWRhNDFlNDMzOTg4OGQ2ZDIwNzQzNzU5OGJkYmQxNzVjMmU3MzExOTFkNWE5YTQyZDNjOCJ9fX0=""}]}}}" to nbt of {_itembackpackhead}
+				make gui slot 2 with {_itembackpackhead}:
+					make player execute command "/backpack"
+				set {_itemcosmetiqueshead} to a player head named "&aMenu des Cosmétiques" with lore "&7Sert à équiper des" and "&7effets visuels"
+				add "{SkullOwner:{Id:""04603407-c258-4b58-b506-920500f0b201"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2ZlOWFmMTBlZjM4MjI5ZjM4MzFkYjhmNTJmZGZhMWY5ODllOGNmNGYzNWI0ZTkyMTA0ZmZmZjcyODIyMCJ9fX0=""}]}}}" to nbt of {_itemcosmetiqueshead}
+				make gui slot 4 with {_itemcosmetiqueshead}:
+					make player execute command "/gmenu main"
+				set {_itemvoteshead} to a player head named "&9Voter pour r0x.fr" with lore "&7Voter améliore la visibilité" and "&7de la communauté et" and "&7permet de gagner des" and "&7récompenses"
+				add "{SkullOwner:{Id:""afee5492-b231-4e5e-adfb-79c78097b1f3"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzhjYjk4OWVmMjljNzM0ZmUwNWE5NWJmYTE1YWYwOGFiYmI2NGExNzNlYTMyZjBmNmYwNmQ2ZTM0ZjliZDM4In19fQ==""}]}}}" to nbt of {_itemvoteshead}
+				make gui slot 6 with {_itemvoteshead}:
+					close player's inventory
+					make player execute command "/votes"
+				make gui slot 8 with redstone block named "&4Règles du serveur":
+					make player execute command "/menu rules"
+				# LIGNE 3
+				make gui slot 19 with red bed named "&cMes Homes" with lore "&7Liste des points de" and "&7téléportation qui ont" and "&7été créés avec /sethome <nom>":
+					make player execute command "/menu homes"
+				make gui slot 21 with ender pearl named "&5Téléportation" with lore "&7Se téléporter vers des" and "&7joueurs et téléporter des" and "&7joueurs à vous":
+					make player execute command "/menu tp"
+				make gui slot 23 with grass block named "&2Mes Territoires" with lore "&7Un territoire sert" and "&7à protéger des" and "&7zones et gérer" and "&7ses habitants":
+					make player execute command "/menu land"
+				make gui slot 25 with oak fence gate named "&6Mes protections" with lore "&7Protéger un bloc" and "&7individuellement" and "&7comme une porte," and "&7un coffre, etc":
+					make player execute command "/menu lock"
+				# LIGNE 4
+				make gui slot 27 with crimson sign named "&dWarps" with lore "&7Points de téléportation" and "&7du serveur":
+					make player execute command "/menu warps"
+				make gui slot 29 with gold pickaxe named "&eKits" with lore "&7Récupérer des objets" and "&7selon votre rang, votre" and "&7grade, ou votre métier":
+					make player execute command "/viewkits"
+				make gui slot 31 with iron axe named "&fMétiers" with lore "&7Rejoindre, quitter," and "&7s'informer sur un" and "&7des 6 métiers":
+					make player execute command "/menu jobs"
+				make gui slot 33 with gold ingot named "&eEconomie" with lore "&7Accès à la banque," and "&7à l'hôtel de vente," and "&7et aux marchands":
+					if gamemode of player is survival or adventure:
+						make player execute command "/menu economie"
+					else:
+						close player's inventory
+						message "&cVous devez être en mode de jeu survie pour aller dans ce menu !" to player
+				set {_mondecreatif} to a player head named "&aMonde créatif" with lore "&7Aller dans le" and "&7monde créatif"
+				add "{SkullOwner:{Id:""22fdc3e6-15d5-400f-af24-f0ae6f0827b9"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmNmZTg2ODQ4MjdiMDUxM2UzMTBiNDVlODAyMzc2ZTEzM2YxYTI4MmZkYzEzNTBjZGQ0ZjdiZWExYmNjNzllZiJ9fX0=""}]}}}" to nbt of {_mondecreatif}
+				make gui slot 35 with {_mondecreatif}:
+					make console execute command "mv tp %player% Freebuild_creatif"
+				# LIGNE 5
+				set {_itemafk} to a player head named "&2Mode AFK" with lore "&7Cliquez pour être AFK"
+				add "{SkullOwner:{Id:""79879de3-bb05-4fcb-b032-88ea506a0984"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTY1MWIzM2E3NzM0NDdkZTBmM2VlMTA3ZDdkNzg0ZjE4MzNjZTUxNGUzYjdhMDhjMmIzMWI3MWNhYzYwY2EifX19""}]}}}" to nbt of {_itemafk}
+				make gui slot 36 with {_itemafk}:
+					close player's inventory
+					make player execute command "/afk"
+				make gui slot 37 with crafting table named "&cAtelier" with lore "&aOuvre votre atelier" and "&aportable":
+					make player execute command "/menu atelier"
+				if player has permission "essentials.hat":
+					make gui slot 38 with gold helmet named "&c/hat" with lore "&aPose le bloc en main" and "&asur votre tête":
+						close player's inventory
+						make player execute command "/hat"
+				else:
+					make gui slot 38 with barrier named "&c/hat" with lore "&7Rang requis : &8Explorateur" 
+				if player has permission "essentials.enderchest":
+					make gui slot 39 with ender chest named "&c/enderchest" with lore "&aOuvre votre coffre" and "&ade l'End":
+						close player's inventory
+						make player execute command "/enderchest"
+				else:
+					make gui slot 39 with barrier named "&c/enderchest" with lore "&7Rang requis : &3Bourgeois"
+				set {_itemmondenobles} to a player head named "&c/terresnobles" with lore "&aAccéder au monde" and "&ades Terres Nobles"
+				add "{SkullOwner:{Id:""dba2d29e-f550-487c-b0fa-7e8a7a0a74d2"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmE0NGUyYjgzODhkZjU5M2E4NWY3ZDU0NDQ1Y2U3ODc5NmNlZTZiMGJjYjdhNTVhY2JkZDFjYmQ4ZjM1YWVmMiJ9fX0=""}]}}}" to nbt of {_itemmondenobles}
+				if player has permission "r0x.mondenobles":
+					make gui slot 40 with {_itemmondenobles}:
+						close player's inventory
+						make player execute command "/terresnobles"
+				else:
+					make gui slot 40 with barrier named "&c/TerresNobles" with lore "&7Rang requis : &6Comte"
+				if player has permission "essentials.repair":
+					make gui slot 41 with anvil named "&c/repair" with lore "&aRépare l'outil tenu":
+						close player's inventory
+						make player execute command "/repair"
+				else:
+					make gui slot 41 with barrier named "&c/repair" with lore "&7Rang requis : &dMarquis"
+				if player has permission "essentials.heal":
+					make gui slot 42 with healing potion named "&c/heal + /feed" with lore "&aRend toute votre vie" and "&aet remplit la barre de" and "&afaim.":
+						close player's inventory
+						make player execute command "/heal"
+						make player execute command "/feed"
+				else:
+					make gui slot 42 with barrier named "&c/heal" with lore "&7Rang requis : &5Duc"
+				if player has permission "essentials.fly":
+					make gui slot 43 with elytra named "&c/fly" with lore "&aPermet de voler":
+						close player's inventory
+						make player execute command "/fly"
+				else:
+					make gui slot 43 with barrier named "&c/fly" with lore "&7Rang requis : &9Prince"
+				set {_itemmondeoptimus} to a player head named "&c/terraformeur" with lore "&aGérer votre monde"
+				add "{SkullOwner:{Id:""79d6eb9e-78bc-4f5f-a521-3fefbc0f0057"",Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2Y0MDk0MmYzNjRmNmNiY2VmZmNmMTE1MTc5NjQxMDI4NmE0OGIxYWViYTc3MjQzZTIxODAyNmMwOWNkMSJ9fX0=""}]}}}" to nbt of {_itemmondeoptimus}
+				if player has permission "r0x.ranks.Optimus":
+					make gui slot 44 with {_itemmondeoptimus}:
+						close player's inventory
+						make player execute command "/terraformeur"
+				else:
+					make gui slot 44 with barrier named "&c/terraformeur" with lore "&7Rang requis : &cOptimus"
+				# LIGNE 6
+				if {voteday.started} is true:
+					set {_itemvotedayvote} to writable book named "&2Votez pour : &eVoteDay"
+					set line 1 of lore of {_itemvotedayvote} to "&7Clic-Gauche : &aoui"
+					set line 2 of lore of {_itemvotedayvote} to "&7Clic-Droit : &cnon"
+					make gui slot 45 with {_itemvotedayvote}:						
+						if gui-click-type is left mouse button:
+							make player execute command "/votedayyes"
+							close player's inventory
+						if gui-click-type is right mouse button:
+							make player execute command "/votedayno"
+							close player's inventory
+					make gui slot 46 with clock named "&eVoteDay en cours" with lore "&a<-- Votez !" 
+				else if {votekick.started} is true:
+					set {_itemvotekick} to netherite sword named "&4VoteKick en cours"
+					set line 1 of lore of {_itemvotekick} to "&a<-- Votez !"
+					set line 2 of lore of {_itemvotekick} to "&aJoueur ciblé : &c%{votekick.kicked}%"
+					set {_itemvotekickvote} to writable book named "&2Votez pour : &4VoteKick"
+					set line 1 of lore of {_itemvotekickvote} to "&7Clic-Gauche : &aoui"
+					set line 2 of lore of {_itemvotekickvote} to "&7Clic-Droit : &cnon"
+					make gui slot 45 with {_itemvotekickvote}:						
+						if gui-click-type is left mouse button:
+							make player execute command "/votekickyes"
+							close player's inventory
+						else if gui-click-type is right mouse button:
+							make player execute command "/votekickno"
+							close player's inventory
+					make gui slot 46 with {_itemvotekick} 
+				else:
+					make gui slot 45 and 46 with orange stained glass pane named "&6Aucun vote en cours" 
+				if player has permission "r0x.votekick.start" and "r0x.voteday.start":
+					make gui slot 47 with paper named "&fLancer un vote":						
+						make player execute command "/menu vote"
+				set {_itemtprequete} to ender pearl named "&5Requêtes de Téléportation"
+				set line 1 of lore of {_itemtprequete} to "&7Clic-Gauche : &aaccepter"
+				set line 2 of lore of {_itemtprequete} to "&7Clic-Droit : &crefuser"
+				make gui slot 48 with {_itemtprequete}:						
+					if gui-click-type is left mouse button:
+						make player execute command "/tpyes"
+						close player's inventory
+					else if gui-click-type is right mouse button:
+						make player execute command "/tpno"
+						close player's inventory
+				make gui slot 49 with diamond sword named "&cAccès au Serveur Survival":						
+					connect player to "survival"
+				make gui slot 50 with white wool named "&fChat Global" with lore "&aParler avec tous les joueurs":
+					close player's inventory
+					make player execute command "/ch g"
+				make gui slot 51 with light gray wool named "&7Chat Local" with lore "&aParler avec les joueurs" and "&adans un rayon de 150 blocs":
+					close player's inventory
+					make player execute command "/ch l"
+				make gui slot 52 with nametag named "&6Gestion Scoreboard":
+					make player execute command "/menu scboard"
+				set {_itemprofil} to skull of player named "&2Profil &7- &c%player's name%"
+				set line 1 of lore of {_itemprofil} to "&aCliquez pour gérer vos rangs"
+				if player has permission "r0x.ranks.vagabonds":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &fVagabond"
+				else if player has permission "r0x.ranks.explorateurs":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &8Explorateur"
+				else if player has permission "r0x.ranks.villageois":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &aVillageois"
+				else if player has permission "r0x.ranks.citadins":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &eCitadin"
+				else if player has permission "r0x.ranks.bourgeois":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &3Bourgeois"
+				else if player has permission "r0x.ranks.comtes":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &6Comte"
+				else if player has permission "r0x.ranks.marquis":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &dMarquis"
+				else if player has permission "r0x.ranks.ducs":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &5Duc"
+				else if player has permission "r0x.ranks.princes":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &9Prince"
+				else if player has permission "r0x.ranks.optimus":
+					set line 2 of lore of {_itemprofil} to "&7Rang : &cOptimus"
+				set line 3 of lore of {_itemprofil} to "&7Compte : &c%player's balance%"
+				make gui slot 53 with {_itemprofil}:
+					make player execute command "/menu profil"
+			open the last gui for the player
+		else:
+			send "&4[&6Menu&4] &2Le menu principal est désactivé dans ce monde..."
+		# FIN MENU PRINCIPAL
+
+#VERIFICATION DE QUANTITE EN MODE PROMPT (POUR LA BANQUE)
+on chat:
+	if {prompt.quantity.%player's UUID%} is true:
+		if player is not in world "Events" or "Jeux":
+			cancel event
+			wait 1 tick
+			set {_payment.value} to message parsed as integer
+			if {_payment.value} > 0:
+				make player execute command "/menu economie envoi %{_payment.value}%"
+			else:
+				send "&cVous devez entrer un chiffre ou un nombre ! -> Opération annulée"
+			set {prompt.quantity.%player's UUID%} to false
+
+# ON EXECUTE LA COMMANDE /menu QUAND ON CLIC SUR LE LIVRE r0x.fr - Menu
+on inventory click:
+	if player is not in world "Events" or "Jeux":
+		if event-item is a written book named "&2r0x.fr - Menu":
+			cancel event
+			if player has permission "r0x.menu":
+				make player execute command "/menu"
+				stop
+			close player's inventory
+			message "&cVous n'avez pas la permission d'aller dans le menu, complétez d'abord le tutoriel du bateau !" to player
+
+
+# GROUPE DE RUSTINES POUR NE PAS FAIRE DISPARAITRE LE MENU
+#
+# ON EVITE QUE LE JOUEUR RECUPERE LE LIVRE (même si osef) QUAND IL MEURT, PUIS LE REFAIRE SPAWN AU RESPAWN
+on death of player:
+	if player is not in world "Events" or "Jeux":
+		remove 1 written book named "&2r0x.fr - Menu" from the drops
+on respawn:
+	if player is not in world "Events" or "Jeux":
+		set slot 17 of player's inventory to a written book named "&2r0x.fr - Menu"
+# CONNEXION DANS LE MONDE FREEBUILD, LE JOUEUR RECUPERE PREMIER MENU
+on join:
+	if player is not in world "Events" or "Jeux":
+		set slot 17 of player's inventory to a written book named "&2r0x.fr - Menu"
+# CHANGEMENT DE MONDE, ON REMET LE LIVRE SI JAMAIS L'INVENTAIRE EST SEPARE
+on player world change:
+	if player is not in world "Events" or "Jeux":
+		set slot 17 of player's inventory to a written book named "&2r0x.fr - Menu"
+
+
+# ON REMET LE MENU R0X.FR APRES UN CLEAN DE L'INVENTAIRE
+on command "/eclear" or "/clear" or "/clearinventory" or "/ci" or "/eci" or "/eclearinventory" or "/clearinvent" or "/eclearinvent":
+	if player is not in world "Events" or "Jeux":
+		if player has permission "r0x.menu":
+			wait 1 tick
+			set slot 17 of player's inventory to a written book named "&2r0x.fr - Menu"
+			wait 2 ticks
+			send "&4[&6Menu&4] &2Item de menu remis en place dans l'inventaire."
+
+
+# PROTECTION POUR PAS AVOIR DES BOURSES VIA SHOPKEEPER (marchand acheteur) EN CREATIVE
+on command "/shopkeeper" or "/shopkeepers":
+	if gamemode of player is creative:
+		if player don't have permission "r0x.admin":
+			cancel event
+			message "&cImpossible d'invoquer un marchand en mode créatif !" to player
+
+# PROTECTION POUR PAS UTILISER L'HDV EN CREATIVE hdv,ca,ah,crazyauction,crazyauctions
+on command "/ca" or "/ah" or "/hdv" or "/crazyauction" or "/crazyauctions":
+	if gamemode of player is creative:
+		if player don't have permission "r0x.admin":
+			cancel event
+			message "&cImpossible d'accéder à l'hotel des ventes en mode creatif !" to player

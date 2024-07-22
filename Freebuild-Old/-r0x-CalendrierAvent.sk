@@ -1,0 +1,628 @@
+# # # # # # # # # # # # # # # # # # # # # #
+#    _____   _____   __  ______ _____     #
+#   |  __ \ / _ \ \ / / |  ____|  __ \    #
+#   | |__) | | | \ V /  | |__  | |__) |   #
+#   |  _  /| | | |> <   |  __| |  _  /    #
+#   | | \ \| |_| / . \ _| |    | | \ \    #
+#   |_|  \_\\___/_/ \_(_|_|    |_|  \_\   #
+#                                         #
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+# BEGINNING OF THE SKRIPT - EDIT AT YOUR OWN RISK #
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+options:
+	multiplier: 1
+command /acreset:
+	permission: r0x.staff
+	trigger:
+		delete {multiplier.%player's UUID%}
+		delete {%player's UUID%.calendar.1}
+		delete {%player's UUID%.calendar.2}
+		delete {%player's UUID%.calendar.3}
+		delete {%player's UUID%.calendar.4}
+		delete {%player's UUID%.calendar.5}
+		delete {%player's UUID%.calendar.6}
+		delete {%player's UUID%.calendar.7}
+		delete {%player's UUID%.calendar.8}
+		delete {%player's UUID%.calendar.9}
+		delete {%player's UUID%.calendar.10}
+		delete {%player's UUID%.calendar.11}
+		delete {%player's UUID%.calendar.12}
+		delete {%player's UUID%.calendar.13}
+		delete {%player's UUID%.calendar.14}
+		delete {%player's UUID%.calendar.15}
+		delete {%player's UUID%.calendar.16}
+		delete {%player's UUID%.calendar.17}
+		delete {%player's UUID%.calendar.18}
+		delete {%player's UUID%.calendar.19}
+		delete {%player's UUID%.calendar.20}
+		delete {%player's UUID%.calendar.21}
+		delete {%player's UUID%.calendar.22}
+		delete {%player's UUID%.calendar.23}
+		delete {%player's UUID%.calendar.24}
+		delete {%player's UUID%.calendar.25}
+command /acitems:
+	permission: r0x.staff
+	trigger:
+		make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+		make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"		
+		make console execute command "/comitems give -p %player% PotionResurrection2"
+		make console execute command "/comitems give -p %player% PotionFly60M2"
+		make console execute command "/comitems give -p %player% PotionFly30M2"
+		make console execute command "/comitems give -p %player% PotionFly15M2"
+		give 1 red shulker box to player
+		give 1 green shulker box to player
+		give 1 white shulker box to player
+		give 1 yellow shulker box to player
+		give 1 trident to player
+		give 1 enchanted golden apple to player
+		give 1 netherite ingot to player
+command /adventcalendar:
+	permission: r0x.adventcalendar
+	trigger:
+		if {multiplier.%player's UUID%} is not set:
+			set {multiplier.%player's UUID%} to 1
+		create a gui with virtual chest inventory with 6 rows named "&6Calendrier de l'avent":
+			make gui slot 0 and 2 and 4 and 6 and 8 and 18 and 26 and 36 and 44 and 46 and 48 and 50 and 52 with red stained glass pane named "&r"
+			make gui slot 1 and 3 and 5 and 7 and 9 and 17 and 27 and 35 and 45 and 47 and 49 and 51 and 53 with green stained glass pane named "&r"
+			set {_date} to "%now%"
+#1er Décembre
+			if {%player's UUID%.calendar.1} is set:
+				set {_present1} to a player head named "&e1er Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present1}
+				make gui slot 10 with {_present1}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "01/12/20":
+					set {_present1} to a player head named "&e1er Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present1}
+					make gui slot 10 with {_present1}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present1} to player
+						set {%player's UUID%.calendar.1} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present1} to a player head named "&e1er Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present1}
+					make gui slot 10 with {_present1}:
+						stop
+#2 Décembre
+			if {%player's UUID%.calendar.2} is set:
+				set {_present2} to a player head named "&e2 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present2}
+				make gui slot 11 with {_present2}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "02/12/20":
+					set {_present2} to a player head named "&e2 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present2}
+					make gui slot 11 with {_present2}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present2} to player
+						set {%player's UUID%.calendar.2} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present2} to a player head named "&e2 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present2}
+					make gui slot 11 with {_present2}:
+						stop
+#3 Décembre
+			if {%player's UUID%.calendar.3} is set:
+				set {_present3} to a player head named "&e3 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present3}
+				make gui slot 12 with {_present3}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "03/12/20":
+					set {_present3} to a player head named "&e3 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present3}
+					make gui slot 12 with {_present3}:
+						give 1 red shulker box to player
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present3} to player
+						set {%player's UUID%.calendar.3} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present3} to a player head named "&e3 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present3}
+					make gui slot 12 with {_present3}:
+						stop
+#4 Décembre
+			if {%player's UUID%.calendar.4} is set:
+				set {_present4} to a player head named "&e4 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present4}
+				make gui slot 13 with {_present4}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "04/12/20":
+					set {_present4} to a player head named "&e4 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present4}
+					make gui slot 13 with {_present4}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present4} to player
+						set {%player's UUID%.calendar.4} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present4} to a player head named "&e4 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present4}
+					make gui slot 13 with {_present4}:
+						stop
+#5 Décembre
+			if {%player's UUID%.calendar.5} is set:
+				set {_present5} to a player head named "&e5 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present5}
+				make gui slot 14 with {_present5}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "05/12/20":
+					set {_present5} to a player head named "&e5 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present5}
+					make gui slot 14 with {_present5}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present5} to player
+						set {%player's UUID%.calendar.5} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present5} to a player head named "&e5 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present5}
+					make gui slot 14 with {_present5}:
+						stop
+#6 Décembre
+			if {%player's UUID%.calendar.6} is set:
+				set {_present6} to a player head named "&e6 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present6}
+				make gui slot 15 with {_present6}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "06/12/20":
+					set {_present6} to a player head named "&e6 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present6}
+					make gui slot 15 with {_present6}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present6} to player
+						set {%player's UUID%.calendar.6} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present6} to a player head named "&e6 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present6}
+					make gui slot 15 with {_present6}:
+						stop
+#7 Décembre
+			if {%player's UUID%.calendar.7} is set:
+				set {_present7} to a player head named "&e7 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present7}
+				make gui slot 16 with {_present7}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "07/12/20":
+					set {_present7} to a player head named "&e7 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present7}
+					make gui slot 16 with {_present7}:
+						give 1 green shulker box to player
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present7} to player
+						set {%player's UUID%.calendar.7} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present7} to a player head named "&e7 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present7}
+					make gui slot 16 with {_present7}:
+						stop
+#8 Décembre
+			if {%player's UUID%.calendar.8} is set:
+				set {_present8} to a player head named "&e8 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present8}
+				make gui slot 19 with {_present8}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "08/12/20":
+					set {_present8} to a player head named "&e8 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present8}
+					make gui slot 19 with {_present8}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present8} to player
+						set {%player's UUID%.calendar.8} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present8} to a player head named "&e8 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present8}
+					make gui slot 19 with {_present8}:
+						stop
+#9 Décembre
+			if {%player's UUID%.calendar.9} is set:
+				set {_present9} to a player head named "&e9 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present9}
+				make gui slot 20 with {_present9}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "09/12/20":
+					set {_present9} to a player head named "&e9 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present9}
+					make gui slot 20 with {_present9}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present9} to player
+						set {%player's UUID%.calendar.9} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present9} to a player head named "&e9 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present9}
+					make gui slot 20 with {_present9}:
+						stop
+#10 Décembre
+			if {%player's UUID%.calendar.10} is set:
+				set {_present10} to a player head named "&e10 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present10}
+				make gui slot 21 with {_present10}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "10/12/20":
+					set {_present10} to a player head named "&e10 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present10}
+					make gui slot 21 with {_present10}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% PotionFly15M2"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present10} to player
+						set {%player's UUID%.calendar.10} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present10} to a player head named "&e10 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present10}
+					make gui slot 21 with {_present10}:
+						stop
+#11 Décembre
+			if {%player's UUID%.calendar.11} is set:
+				set {_present11} to a player head named "&e11 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present11}
+				make gui slot 22 with {_present11}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "11/12/20":
+					set {_present11} to a player head named "&e11 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present11}
+					make gui slot 22 with {_present11}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present11} to player
+						set {%player's UUID%.calendar.11} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present11} to a player head named "&e11 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present11}
+					make gui slot 22 with {_present11}:
+						stop
+#12 Décembre
+			if {%player's UUID%.calendar.12} is set:
+				set {_present12} to a player head named "&e12 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present12}
+				make gui slot 23 with {_present12}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "12/12/20":
+					set {_present12} to a player head named "&e12 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present12}
+					make gui slot 23 with {_present12}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present12} to player
+						set {%player's UUID%.calendar.12} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present12} to a player head named "&e12 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present12}
+					make gui slot 23 with {_present12}:
+						stop
+#13 Décembre
+			if {%player's UUID%.calendar.13} is set:
+				set {_present13} to a player head named "&e13 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present13}
+				make gui slot 24 with {_present13}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "13/12/20":
+					set {_present13} to a player head named "&e13 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present13}
+					make gui slot 24 with {_present13}:
+						make console execute command "/comitems give -p %player% PotionResurrection2"
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present13} to player
+						set {%player's UUID%.calendar.13} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present13} to a player head named "&e13 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present13}
+					make gui slot 24 with {_present13}:
+						stop
+#14 Décembre
+			if {%player's UUID%.calendar.14} is set:
+				set {_present14} to a player head named "&e14 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present14}
+				make gui slot 25 with {_present14}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "14/12/20":
+					set {_present14} to a player head named "&e14 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present14}
+					make gui slot 25 with {_present14}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present14} to player
+						set {%player's UUID%.calendar.14} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present14} to a player head named "&e14 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present14}
+					make gui slot 25 with {_present14}:
+						stop
+#15 Décembre
+			if {%player's UUID%.calendar.15} is set:
+				set {_present15} to a player head named "&e15 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present15}
+				make gui slot 28 with {_present15}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "15/12/20":
+					set {_present15} to a player head named "&e15 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present15}
+					make gui slot 28 with {_present15}:
+						make console execute command "/comitems give -p %player% PotionFly30M2"
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present15} to player
+						set {%player's UUID%.calendar.15} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present15} to a player head named "&e15 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present15}
+					make gui slot 28 with {_present15}:
+						stop
+#16 Décembre
+			if {%player's UUID%.calendar.16} is set:
+				set {_present16} to a player head named "&e16 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present16}
+				make gui slot 29 with {_present16}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "16/12/20":
+					set {_present16} to a player head named "&e16 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present16}
+					make gui slot 29 with {_present16}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present16} to player
+						set {%player's UUID%.calendar.16} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present16} to a player head named "&e16 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present16}
+					make gui slot 29 with {_present16}:
+						stop
+#17 Décembre
+			if {%player's UUID%.calendar.17} is set:
+				set {_present17} to a player head named "&e17 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present17}
+				make gui slot 30 with {_present17}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "17/12/20":
+					set {_present17} to a player head named "&e17 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present17}
+					make gui slot 30 with {_present17}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present17} to player
+						set {%player's UUID%.calendar.17} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present17} to a player head named "&e17 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present17}
+					make gui slot 30 with {_present17}:
+						stop
+#18 Décembre
+			if {%player's UUID%.calendar.18} is set:
+				set {_present18} to a player head named "&e18 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present18}
+				make gui slot 31 with {_present18}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "18/12/20":
+					set {_present18} to a player head named "&e18 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present18}
+					make gui slot 31 with {_present18}:
+						give 1 white shulker box to player
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present18} to player
+						set {%player's UUID%.calendar.18} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present18} to a player head named "&e18 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present18}
+					make gui slot 31 with {_present18}:
+						stop
+#19 Décembre
+			if {%player's UUID%.calendar.19} is set:
+				set {_present19} to a player head named "&e19 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present19}
+				make gui slot 32 with {_present19}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "19/12/20":
+					set {_present19} to a player head named "&e19 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present19}
+					make gui slot 32 with {_present19}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present19} to player
+						set {%player's UUID%.calendar.19} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present19} to a player head named "&e19 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present19}
+					make gui slot 32 with {_present19}:
+						stop
+#20 Décembre
+			if {%player's UUID%.calendar.20} is set:
+				set {_present20} to a player head named "&e20 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present20}
+				make gui slot 33 with {_present20}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "20/12/20":
+					set {_present20} to a player head named "&e20 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present20}
+					make gui slot 33 with {_present20}:
+						give 1 trident to player
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present20} to player
+						set {%player's UUID%.calendar.20} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present20} to a player head named "&e20 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present20}
+					make gui slot 33 with {_present20}:
+						stop
+#21 Décembre
+			if {%player's UUID%.calendar.21} is set:
+				set {_present21} to a player head named "&e21 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present21}
+				make gui slot 34 with {_present21}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "21/12/20":
+					set {_present21} to a player head named "&e21 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present21}
+					make gui slot 34 with {_present21}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present21} to player
+						set {%player's UUID%.calendar.21} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present21} to a player head named "&e21 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present21}
+					make gui slot 34 with {_present21}:
+						stop
+#22 Décembre
+			if {%player's UUID%.calendar.22} is set:
+				set {_present22} to a player head named "&e22 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present22}
+				make gui slot 37 with {_present22}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "22/12/20":
+					set {_present22} to a player head named "&e22 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present22}
+					make gui slot 37 with {_present22}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present22} to player
+						set {%player's UUID%.calendar.22} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present22} to a player head named "&e22 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present22}
+					make gui slot 37 with {_present22}:
+						stop
+#23 Décembre
+			if {%player's UUID%.calendar.23} is set:
+				set {_present23} to a player head named "&e23 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present23}
+				make gui slot 38 with {_present23}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "23/12/20":
+					set {_present23} to a player head named "&e23 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present23}
+					make gui slot 38 with {_present23}:
+						give 1 yellow shulker box to player
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present23} to player
+						set {%player's UUID%.calendar.23} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present23} to a player head named "&e23 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present23}
+					make gui slot 38 with {_present23}:
+						stop
+#24 Décembre
+			if {%player's UUID%.calendar.24} is set:
+				set {_present24} to a player head named "&e24 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present24}
+				make gui slot 39 with {_present24}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "24/12/20":
+					set {_present24} to a player head named "&e24 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present24}
+					make gui slot 39 with {_present24}:
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						make console execute command "/comitems give -p %player% SacOr -a %{multiplier.%player's UUID%}%"
+						give {_present24} to player
+						set {%player's UUID%.calendar.24} to true
+						add 1 to {multiplier.%player's UUID%}
+						close player's inventory
+				else:
+					set {_present24} to a player head named "&e24 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present24}
+					make gui slot 39 with {_present24}:
+						stop
+#25 Décembre
+			if {%player's UUID%.calendar.25} is set:
+				set {_present25} to a player head named "&e25 Décembre &7- &2Déjà récupéré"
+				add "{SkullOwner:{Id:[I;1849489627,-120567995,-1479976366,-442376872],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc1ZDEzY2ExNGJjYmJkMWNkZTIxYWEwNjYwMDEwMWU0NTZkMzE4YWFkZjE3OGIyNzkzNjc4YjQ5NGY2ZGNlOCJ9fX0=""}]}}}" to nbt of {_present25}
+				make gui slot 40 with {_present25}:
+					send "&4[&6Calendrier de l'avent&4] &2Vous avez déjà récupéré ce cadeau"
+			else:
+				if "%{_date}%" contains "25/12/20":
+					set {_present25} to a player head named "&e25 Décembre"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present25}
+					make gui slot 40 with {_present25}:
+						give 1 enchanted golden apple to player
+						give 1 netherite ingot to player
+						make console execute command "/comitems give -p %player% BonCoffreAuTresor"
+						give {_present25} to player
+						set {%player's UUID%.calendar.25} to true
+						close player's inventory
+				else:
+					set {_present25} to a player head named "&e25 Décembre &7- &2Ce n'est pas la date d'aujourd'hui"
+					add "{SkullOwner:{Id:[I;-593323462,1993558393,-2002637408,884576786],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlZjlhYTE0ZTg4NDc3M2VhYzEzNGE0ZWU4OTcyMDYzZjQ2NmRlNjc4MzYzY2Y3YjFhMjFhODViNyJ9fX0=""}]}}}" to nbt of {_present25}
+					make gui slot 40 with {_present25}:
+						stop
+		open the last gui for the player
+on skript load:
+	wait 2 ticks
+	send "&4[&6Calendrier de l'avent&4]&2 Calendrier de l'avent chargé - Version 1.2" to console

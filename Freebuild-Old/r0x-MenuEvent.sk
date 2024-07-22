@@ -1,0 +1,281 @@
+# # # # # # # # # # # # # # # # # # # # # #
+#    _____   _____   __  ______ _____     #
+#   |  __ \ / _ \ \ / / |  ____|  __ \    #
+#   | |__) | | | \ V /  | |__  | |__) |   #
+#   |  _  /| | | |> <   |  __| |  _  /    #
+#   | | \ \| |_| / . \ _| |    | | \ \    #
+#   |_|  \_\\___/_/ \_(_|_|    |_|  \_\   #
+#                                         #
+#                                         #
+# # # # # # # # # # # # # # # # # # # # # #
+# OPTIONS SECTION - SKRIPT CUSTOMIZATION  #
+# # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+# BEGINNING OF THE SKRIPT - EDIT AT YOUR OWN RISK #
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+command /menuevent [<text>] [<text>]:
+	permission: r0x.menuevent
+	trigger:
+		if player is in world "JeuxVoid":
+			create a gui with virtual chest inventory with 6 rows named "&bMini-jeux &7- &2Menu principal":
+				make gui slot 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 with yellow stained glass pane named "&r"
+				make gui slot 36 and 37 and 38 and 39 and 40 and 41 and 42 and 43 and 44 with yellow stained glass pane named "&r"
+#Stick Fight
+				make gui slot 10 with stick named "&4Stick Fight" with lore "&aPoussez vos adversaires dans le vide":
+					make player execute command "/menuevent stickfight"
+#Reuben on Ice
+				make gui slot 12 with blue ice named "&bReuben On Ice" with lore "&aMarquez des buts avec Reuben":
+					make player execute command "/menuevent reubenonice"
+#Reuben Race
+				make gui slot 14 with saddle named "&dReuben Race" with lore "&aArrivez le premier de cette course folle !":
+					make player execute command "/menuevent reubenrace"
+#QPUR
+				make gui slot 16 with writable book named "&eQuestion pour un r0xien" with lore "&aRépondez aux question pour gagner":
+					close player's inventory
+					make player execute command "/clear"
+					make console execute command "/tp %player's UUID% -251 100 -251"
+#Lapins VS Chasseur
+				make gui slot 18 with bow named "&5Lapins VS Chasseur" with lore "&aLapins ou chasseur, qui va gagner ?":
+					make player execute command "/menuevent lapinsvschasseur"
+#Fishing Rush
+				make gui slot 20 with fishing rod named "&3Fishing Rush" with lore "&aSerez-vous chanceux à la pêche ?":
+					make player execute command "/menuevent fishingrush"
+#Miss-It
+				make gui slot 22 with cobweb named "&6Miss-It" with lore "&aQui arrivera en bas le plus vite ?":
+					make player execute command "/menuevent missit"
+#Reuben Escape
+				make gui slot 24 with carved pumpkin named "&8Reuben Escape" with lore "&aSortez le premier du labyrinthe !":
+					close player's inventory
+					make player execute command "/clear"
+					make console execute command "/tp %player's UUID% -751 100 750"
+#Mob Arena (Non affiché)
+				make gui slot 26 with netherite sword named "&4Mob Arena" with lore "&aSurvivez aux créatures &6(Besoin d'un Animateur)":
+					close player's inventory
+					make player execute command "/clear"
+					make console execute command "/tp %player's UUID% -150 84 -151"
+#Dye Wars
+				make gui slot 26 with red dye named "&5Dy&9e &6Wa&crs" with lore "&aMarquez des points colorés &6(Besoin d'un Animateur)":
+					close player's inventory
+					make player execute command "/clear"
+					make console execute command "/tp %player's UUID% 750 100 -751"
+#Sodème
+				make gui slot 28 with rabbit foot named "&cSodème" with lore "&aFinissez le jump le plus vite possible !":
+					close player's inventory
+					make player execute command "/clear"
+					make console execute command "/tp %player's UUID% -751 100 -751"
+#Spleaf
+				make gui slot 30 with oak leaves named "&aSpleaf" with lore "&aPourrez-vous faire tomber tout le monde ?":
+					make player execute command "/menuevent spleaf"
+#Fall Anvil
+				make gui slot 32 with anvil named "&9Fall Anvil" with lore "&a1 minute pour survivre à une pluie d'enclume":
+					close player's inventory
+					make player execute command "/clear"
+					make console execute command "/tp %player's UUID% -1001 100 1000"
+#Get r0x
+				make gui slot 34 with leather boots named "&cGet r0x" with lore "&aPourrez-vous descendre sans mourir ?":
+					close player's inventory
+					make player execute command "/clear"
+					make console execute command "/tp %player's UUID% 1000 100 -1001"
+#Aller au Spawn
+				make gui slot 47 with compass named "&cAller au Spawn":
+					close player's inventory
+					make player execute command "/spawn"
+#Retour au Lobby
+				make gui slot 49 with nether star named "&cRetour au Lobby":
+					close player's inventory
+					make player execute command "/clear"
+					make player execute command "/warp Events"
+				make gui slot 51 with skull of player named "&c%player's name%"
+			open the last gui for the player
+# # # # # # # #
+# SOUS - MENU #
+# # # # # # # #
+			#Reuben Race
+			if arg 1 is "reubenrace":
+				close player's inventory
+				make player execute command "/clear"
+				make console execute command "/tp %player's UUID% -251 100 250"
+				make console execute command "/give %player% carrot_on_a_stick{Unbreakable:1b,Enchantments:[{}]} 1"
+				make console execute command "/give %player% pig_spawn_egg{EntityTag:{id:""minecraft:pig"",CustomName:'{""text"":""Reuben"",""bold"":true,""color"":""gold""}',CustomNameVisible:1,PersistenceRequired:0b,Saddle:1}}"
+			#Reuben On Ice
+			if arg 1 is "reubenonice":
+				close player's inventory
+				make player execute command "/clear"
+				make console execute command "/tp %player's UUID% 250 99.00 250"
+				make console execute command "/give %player% minecraft:stick{Unbreakable:1,display:{Name:""{\""text\"":\""Le bâton du berger\""}""},Enchantments:[{id:""minecraft:knockback"",lvl:1}]}"
+				make console execute command "/give %player% minecraft:blaze_rod{Unbreakable:1,display:{Name:""{\""text\"":\""Le bâton du diable\""}""},Enchantments:[{id:""minecraft:knockback"",lvl:2}]}"
+			#Stick Fight
+			if arg 1 is "stickfight":
+				close player's inventory
+				make player execute command "/clear"
+				make console execute command "/tp %player's UUID% 250 100 -251"
+				make console execute command "/give %player% minecraft:stick{Unbreakable:1,Enchantments:[{id:""minecraft:knockback"",lvl:2}]}"
+			#Fishing Rush
+			if arg 1 is "fishingrush":
+				close player's inventory
+				make player execute command "/clear"
+				make console execute command "/tp %player's UUID% 500 100 -501"
+				make console execute command "/give %player% minecraft:fishing_rod{display:{Name:""{\""text\"":\""Canne de l'ultime pécheur\"",\""color\"":\""white\"",\""bold\"":\""true\""}"",Lore:[""{\""text\"":\""Un bon passe temps pour l'éternité\""}""]},Enchantments:[{id:""minecraft:lure"",lvl:3}]}"
+			#SOUS-MENU 1 - Lapins VS Chasseur
+			if arg 1 is "lapinsvschasseur":
+				close player's inventory
+				create a gui with virtual chest inventory with 1 rows named "&2Versions du jeu":
+					make gui slot 1 with bow named "&5Lapins VS Chasseur" with lore "&aLapins ou chasseur, qui va gagner ?":
+						close player's inventory
+						make player execute command "/clear"
+						make console execute command "/tp %player's UUID% 500 100 500"
+					make gui slot 4 with stone sword named "&5Lapins VS Chasseur 2" with lore "&aLapins ou chasseur, qui va gagner ?":
+						close player's inventory
+						make player execute command "/clear"
+						make console execute command "/tp %player's UUID% -501 100 -501"
+					make gui slot 7 with red stained glass named "&cRetour":
+						close player's inventory
+						make player execute command "/menuevent"
+				open the last gui for the player
+			#SOUS-MENU 2 - Miss-It
+			if arg 1 is "missit":
+				close player's inventory
+				create a gui with virtual chest inventory with 1 rows named "&2Versions du jeu":
+					make gui slot 1 with cobweb named "&5Miss-It" with lore "&aQui arrivera en bas le plus vite ?":
+						close player's inventory
+						make player execute command "/clear"
+						make console execute command "/tp %player's UUID% -501 100 500"
+					make gui slot 4 with string named "&6Miss-It 2" with lore "&aQui arrivera en bas le plus vite ?":
+						close player's inventory
+						make player execute command "/clear"
+						make console execute command "/tp %player's UUID% 750 100 750"
+					make gui slot 7 with red stained glass named "&cRetour":
+						close player's inventory
+						make player execute command "/menuevent"
+				open the last gui for the player
+			#SOUS-MENU 3 - Spleaf
+			if arg 1 is "spleaf":
+				close player's inventory
+				set {_restore} to player head named "&aRégénère toute la carte"
+				add "{SkullOwner:{Id:[I;1721907346,1973373683,-2113143615,52302103],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTFkNzIwY2QzOWRmM2JlNzRiMGNhYzc1ZTM5MzdmMDA4NWEzNzgyNDc0M2NhZDYzMzBkYzlmNDY2NmE0NTEwZCJ9fX0=""}]}}}" to nbt of {_restore}
+				create a gui with virtual chest inventory with 1 rows named "&2Versions du jeu":
+					make gui slot 1 with oak leaves named "&aSpleaf - 8 joueurs" with lore "&aPourrez-vous faire tomber tout le monde ?":
+						make player execute command "/menuevent spleaf huitjoueurs"
+					make gui slot 4 with jungle leaves named "&2Spleaf - 16 joueurs" with lore "&aPourrez-vous faire tomber tout le monde ?":
+						make player execute command "menuevent spleaf seizejoueurs"
+					make gui slot 7 with red stained glass named "&cRetour":
+						close player's inventory
+						make player execute command "/menuevent"
+				open the last gui for the player
+				#8 JOUEURS : choix de l'action
+				if arg 2 is "huitjoueurs":
+					close player's inventory
+					create a gui with virtual chest inventory with 1 rows named "&28 joueurs":
+						make gui slot 1 with oak leaves named "&aRejoindre" with lore "&aRejoindre la partie":
+							close player's inventory
+							make player execute command "/clear"
+							make console execute command "/tp %player's UUID% 1000 100 1000"
+							make console execute command "/minecraft:give %player% shears{Unbreakable:1b,Enchantments:[{id:""minecraft:efficiency"",lvl:5s}]}"
+						make gui slot 4 with {_restore}:
+							close player's inventory
+							set {_loc} to location(1018, 107, 977, world of player)
+							set block at {_loc} to redstone block
+						make gui slot 7 with red stained glass named "&cRetour":
+							close player's inventory
+							make player execute command "/menuevent spleaf"
+					open the last gui for the player
+				#16 JOUEURS : choix de l'action
+				if arg 2 is "seizejoueurs":
+					close player's inventory
+					create a gui with virtual chest inventory with 1 rows named "&216 joueurs":
+						make gui slot 1 with oak leaves named "&aRejoindre" with lore "&aRejoindre la partie":
+							close player's inventory
+							make player execute command "/clear"
+							make console execute command "/tp %player's UUID% -1001 100 -1001"
+							make console execute command "/minecraft:give %player% shears{Unbreakable:1b,Enchantments:[{id:""minecraft:efficiency"",lvl:5s}]}"
+							make console execute command "/minecraft:give %player% stone_shovel{Unbreakable:1b,Enchantments:[{id:""minecraft:efficiency"",lvl:5s}]}"
+							make console execute command "/minecraft:give %player% stone_axe{Unbreakable:1b,Enchantments:[{id:""minecraft:efficiency"",lvl:5s}]}"
+						make gui slot 4 with {_restore}:
+							close player's inventory
+							set {_loc} to location(-1031, 64, -1001, world of player)
+							set block at {_loc} to redstone block
+						make gui slot 7 with red stained glass named "&cRetour":
+							close player's inventory
+							make player execute command "/menuevent spleaf"
+					open the last gui for the player
+		else:
+			send "&4[&6Menu&4] &2Vous ne pouvez pas utiliser cette commande ici. Il faut être dans le monde event (&c/warp Events&2)."
+#
+on skript load:
+	wait 2 ticks
+	send "&4[&6MenuEvent&4]&2 MenuEvent chargé - Version 1.4" to console
+on right click:
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			if event-item is a nether star named "&2r0x.fr &7- &6Sélecteur de jeu":
+				make player execute command "/menuevent"
+				wait 1 tick
+on death of player:
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			remove 1 nether star named "&2r0x.fr &7- &6Sélecteur de jeu" from the drops
+on player world change:
+	if player has permission "r0x.menuevent":
+		wait 1 tick
+		if player is in world "JeuxVoid":
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"
+		else:
+			loop all items in player's inventory:
+				if loop-item is a nether star named "&2r0x.fr &7- &6Sélecteur de jeu":
+					remove loop-item from player's inventory
+on command "/warp events":
+	if player has permission "r0x.menuevent":
+		wait 10 tick
+		if player is in world "JeuxVoid":
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"
+on drop:
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			if event-item is nether star named "&2r0x.fr &7- &6Sélecteur de jeu":
+				cancel event
+on inventory click:
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			if event-item is a nether star named "&2r0x.fr &7- &6Sélecteur de jeu":
+				make player execute command "/menuevent"
+on command "/eclear":
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			wait 1 tick
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"
+on command "/clear":
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			wait 1 tick
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"
+on command "/clearinventory":
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			wait 1 tick
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"
+on command "/ci":
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			wait 1 tick
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"
+on command "/eci":
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			wait 1 tick
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"
+on command "/eclearinventory":
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			wait 1 tick
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"
+on command "/clearinvent":
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			wait 1 tick
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"
+on command "/eclearinvent":
+	if player has permission "r0x.menuevent":
+		if player is in world "JeuxVoid":
+			wait 1 tick
+			set slot 4 of player's inventory to a nether star named "&2r0x.fr &7- &6Sélecteur de jeu"

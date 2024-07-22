@@ -1,0 +1,93 @@
+# Skript permettant d'avoir des joueurs OP dans le monde Jeux.
+
+# AJOUTER UN JOUEUR DE LA LISTE DES OPS JEUX
+command /addtempop <offline player>:
+	permission: r0x.admin
+	trigger:
+		if command sender is not the console or a player:
+			stop
+		if {liste.tempop::*} contains arg-1:
+			send "&cCe joueur est déjà dans la liste." to executor and console
+			stop
+		add arg-1 to {liste.tempop::*}
+		send "&a%arg-1% &ea été ajouté aux personnes OP dans le monde Jeux." to executor and console
+		if {tempop.status.%arg-1%} is not set:
+			set {tempop.status.%arg-1%} to true
+
+# ENLEVER UN JOUEUR DE LA LISTE DES OPS JEUX
+command /removetempop <offline player>:
+	permission: r0x.admin
+	trigger:
+		if command sender is not the console or a player:
+			stop
+		remove arg-1 from {liste.tempop::*}
+		delete {tempop.status.%arg-1%}
+		send "&c%arg-1% &ea été supprimé des personnes OP dans le monde Jeux." to executor and console
+
+# LISTE DES OP DU MONDE JEUX
+command /tempoplist:
+	permission: r0x.admin
+	trigger:
+		if command sender is not the console or a player:
+			stop
+		send "&dListe des joueurs OP dans le monde Jeux:" to executor
+		set {_tempop} to ""
+		loop {liste.tempop::*}:
+			set {_tempop} to "%{_tempop}% %loop-value% |"
+		send {_tempop} to executor
+
+# CHECK DU MONDE, ON OP QUE DANS LE MONDE JEUX
+on join:
+	if {liste.tempop::*} contains player:
+		if player's world is not "Jeux":
+			if {tempop.status.%player%} is true:
+				set {tempop.status.%player%} to false
+				make console execute command "/deop %player%"
+				send "&eVous quittez le monde Jeux, vous êtes automatiquement DEOP." to player
+on player world change:
+	if {liste.tempop::*} contains player:
+		if player's world is not "Jeux":
+			if {tempop.status.%player%} is true:
+				set {tempop.status.%player%} to false
+				make console execute command "/deop %player%"
+				make console execute command "/gamemode survival %player%"
+				send "&eVous quittez le monde Jeux, vous êtes automatiquement DEOP." to player
+		else:
+			if {tempop.status.%player%} is false:
+				set {tempop.status.%player%} to true
+				make console execute command "/op %player%"
+				send "&eVous entrez dans le monde Jeux, vous êtes automatiquement OP." to player
+
+on command "skript":
+	if command sender is not the console or a player:
+		stop
+	if {tempop.status.%player%} is true:
+		cancel event
+
+on command "sk":
+	if command sender is not the console or a player:
+		stop
+	if {tempop.status.%player%} is true:
+		cancel event
+
+on command "lp":
+	if command sender is not the console or a player:
+		stop
+	if {tempop.status.%player%} is true:
+		cancel event
+
+on command "luckperms":
+	if command sender is not the console or a player:
+		stop
+	if {tempop.status.%player%} is true:
+		cancel event
+
+on command "op":
+	if command sender is not the console or a player:
+		stop
+	if {tempop.status.%player%} is true:
+		cancel event
+
+on command:
+	if {tempop.status.%player%} is true:
+		log "%player% a lancé la commande : /%full command%" to "event/logOPjeux.log"

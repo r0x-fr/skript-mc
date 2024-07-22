@@ -1,0 +1,39 @@
+#on join:
+#	loop all items in player's inventory:
+#		if loop-item is a written book named "&2r0x.fr - Menu":
+#			set {menureceived.%player's UUID%} to true
+#		else:
+#			set {menureceived.%player's UUID%} to false
+#	if {menureceived.%player's UUID%} is false:
+#		if player has enough space for 1 written book named "&2r0x.fr - Menu":
+#			wait 5 tick
+#			set slot 8 of player's inventory to a written book named "&2r0x.fr - Menu"
+#		else:
+#			wait 10 tick
+#			send "&4[&6Menu&4] &2Vous n'avez pas pu recevoir l'item de menu car vous n'aviez pas assez de place."
+#			send "&2Libérez le dernier item de votre barre d'inventaire puis reconnectez-vous."
+#	else:
+#		stop
+#on drop:
+#	event-item is a written book named "&2r0x.fr - Menu":
+#		cancel event
+#		loop all items in player's inventory:
+#			if loop-item is a written book named "&2r0x.fr - Menu":
+#				remove loop-item from player's inventory
+#				wait 1 tick
+#				set slot 8 of player's inventory to a written book named "&2r0x.fr - Menu"
+#on right-click:
+#	event-item is a written book named "&2r0x.fr - Menu":
+#		make player execute command "/menu"
+#on inventory click:
+#	if clicked item is a written book named "&2r0x.fr - Menu":
+#		cancel event
+#on join:
+#	if slot 8 of player's inventory is not air:
+#		if slot 8 of player's inventory is not a written book named "&2r0x.fr - Menu":
+#			send "&4[&6Menu&4] &2Vous n'avez pas pu recevoir l'item de menu car vous n'aviez pas assez de place."
+#			send "&2Libérez le dernier item de votre barre d'inventaire puis reconnectez-vous."
+#		else:
+#			stop
+#	else:
+#		set slot 8 of player's inventory to a written book named "&2r0x.fr - Menu"

@@ -1,0 +1,94 @@
+command /viewkits:
+	permission: essentials.kit
+	trigger:
+		create a gui with virtual chest inventory with 6 rows named "&eFreebuild &7- &eKits":
+			make gui slot 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 with yellow stained glass pane named "&r"
+			make gui slot 0 with chest named "&2>> Kits &cGrades"
+			if player has permission "essentials.kits.resident":
+				make gui slot 2 with green wool named "&2Kit du Résident":
+					close player's inventory
+					make player execute command "/kit Resident"
+			else:
+				make gui slot 2 with barrier named "&2Kit du Résident" with lore "&7Grade r0x.fr requis : &2Résident"
+			if player has permission "essentials.kits.Ambassadeur":
+				make gui slot 6 with purple wool named "&5Kit de l'Ambassadeur":
+					close player's inventory
+					make player execute command "/kit Ambassadeur"
+			else:
+				make gui slot 6 with barrier named "&5Kit de l'Ambassadeur" with lore "&7Grade r0x.fr requis : &5Ambassadeur"
+			make gui slot 8 with chest named "&2<< Kits &cGrades"
+			make gui slot 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35 with yellow stained glass pane named "&r"
+			make gui slot 18 with chest named "&2>> Kits &cRangs"
+			make gui slot 26 with chest named "&2<< Kits &cRangs"
+			if player has permission "essentials.kits.vagabond":
+				make gui slot 20 with white wool named "&fKit du Vagabond":
+					close player's inventory
+					make player execute command "/kit Vagabond"
+			else:
+				make gui slot 20 with barrier named "&fKit du Vagabond" with lore "&7Rang de jeu requis : &fVagabond"
+			if player has permission "essentials.kits.explorateur":
+				make gui slot 21 with gray wool named "&8Kit de l'Explorateur":
+					close player's inventory
+					make player execute command "/kit Explorateur"
+			else:
+				make gui slot 21 with barrier named "&8Kit de l'Explorateur" with lore "&7Rang de jeu requis : &8Explorateur"
+			if player has permission "essentials.kits.villageois":
+				make gui slot 22 with lime wool named "&aKit du Villageois":
+					close player's inventory
+					make player execute command "/kit Villageois"
+			else:
+				make gui slot 22 with barrier named "&aKit du Villageois" with lore "&7Rang de jeu requis : &aVillageois"
+			if player has permission "essentials.kits.citadin":
+				make gui slot 23 with yellow wool named "&eKit du Citadin":
+					close player's inventory
+					make player execute command "/kit Citadin"
+			else:
+				make gui slot 23 with barrier named "&eKit du Citadin" with lore "&7Rang de jeu requis : &eCitadin"
+			if player has permission "essentials.kits.bourgeois":
+				make gui slot 24 with cyan wool named "&3Kit du Bourgeois":
+					close player's inventory
+					make player execute command "/kit Bourgeois"
+			else:
+				make gui slot 24 with barrier named "&3Kit du Bourgeois" with lore "&7Rang de jeu requis : &3Bourgeois"
+			make gui slot 45 and 46 and 47 and 48 and 49 and 50 and 51 and 52 with yellow stained glass pane named "&r"
+			make gui slot 36 with chest named "&2>> Kits &cMétiers"
+			make gui slot 44 with chest named "&2<< Kits &cMétiers"
+			if player has permission "essentials.kits.bucheron":
+				make gui slot 37 with lime wool named "&aKit du Bûcheron":
+					close player's inventory
+					make player execute command "/kit bucheron"
+			else:
+				make gui slot 37 with barrier named "&aKit du Bûcheron" with lore "&7Niveau de métier requis : &a40"
+			if player has permission "essentials.kits.mineur":
+				make gui slot 38 with gray wool named "&8Kit du Mineur":
+					close player's inventory
+					make player execute command "/kit mineur"
+			else:
+				make gui slot 38 with barrier named "&8Kit du Mineur" with lore "&7Niveau de métier requis : &825"
+			if player has permission "essentials.kits.agriculteur":
+				make gui slot 39 with green wool named "&2Kit de l'Agriculteur":
+					close player's inventory
+					make player execute command "/kit agriculteur"
+			else:
+				make gui slot 39 with barrier named "&2Kit de l'Agriculteur" with lore "&7Niveau de métier requis : &230"
+			if player has permission "essentials.kits.chasseur":
+				make gui slot 41 with red wool named "&4Kit du Chasseur":
+					close player's inventory
+					make player execute command "/kit chasseur"
+			else:
+				make gui slot 41 with barrier named "&4Kit du Chasseur" with lore "&7Niveau de métier requis : &430"
+			if player has permission "essentials.kits.pecheur":
+				make gui slot 42 with blue wool named "&9Kit du Pêcheur":
+					close player's inventory
+					make player execute command "/kit pecheur"
+			else:
+				make gui slot 42 with barrier named "&9Kit du Pêcheur" with lore "&7Niveau de métier requis : &910"
+			if player has permission "essentials.kits.paysagiste":
+				make gui slot 43 with yellow wool named "&eKit du Paysagiste":
+					close player's inventory
+					make player execute command "/kit paysagiste"
+			else:
+				make gui slot 43 with barrier named "&eKit du Paysagiste" with lore "&7Niveau de métier requis : &e40"
+			make gui slot 53 with red stained glass named "&cRetour":
+				make player execute command "/menu"
+		open the last gui to the player

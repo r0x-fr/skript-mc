@@ -1,0 +1,28 @@
+command /potionresurrection <player>:
+	executable by: console
+	trigger:
+		add 1 to {life.%arg 1%}
+		wait 1 tick
+		message "&4[&6Effet&4] &2Un mystérieux pouvoir vous envahit, votre prochaine mort n'aura pas lieu (&c%{life.%arg 1%}%&2 vies restantes : &c/vie&2 pour voir votre nombre de vies)..." to arg-1
+
+on death of player:
+	if victim is in world "Freebuild" or "Freebuild_nether" or "Freebuild_the_end":
+		if {life.%victim%} is greater than 0:
+			if {suicide.state.%player%} is not set:
+				cancel event
+				wait 1 ticks
+				broadcast "&c%victim% &aa survécu à la mort..."
+				strike lightning effect at the victim
+				message "&4[&6Effets&4] &2Il vous reste maintenant &c%{life.%victim%}% &2vie(s)."
+				remove 1 from {life.%victim%}
+				stop
+	wait 4 ticks
+	delete {suicide.state.%player%}
+
+command /vies:
+	aliases: /lifes, /life, /vie
+	trigger:
+		if {life.%player%} is greater than 0:
+			message "&4[&6Effets&4] &2Il vous reste &c%{life.%player%}% &2vie(s)."
+		else:
+			message "&4[&6Effets&4] &2Vous n'avez plus de vie..."

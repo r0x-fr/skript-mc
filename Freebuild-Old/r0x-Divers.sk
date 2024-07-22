@@ -1,0 +1,245 @@
+options:
+	listenotes: block.note_block.bell, block.note_block.chime, block.note_block.flute, block.note_block.guitar, block.note_block.harp, block.note_block.snare, block.note_block.xylophone, block.note_block.cow_bell, block.note_block.iron_xylophone, block.note_block.didgeridoo, block.note_block.bit, block.note_block.banjo, block.note_block.pling, entity.zombie.hurt, entity.cat.ambient, entity.wolf.ambient, block.note_block.basedrum
+
+# Skript divers, ne servant pas forcément une fonctionnalité pour les joueurs
+on command "/hdv":
+	if player is in world "Jeux" or "plotcreative":
+		cancel event
+		message "&4[&6HDV&4] &2Indisponible dans ce monde."
+on command "/ca":
+	if player is in world "Jeux" or "plotcreative":
+		cancel event
+		message "&4[&6HDV&4] &2Indisponible dans ce monde."
+on command "/ah":
+	if player is in world "Jeux" or "plotcreative":
+		cancel event
+		message "&4[&6HDV&4] &2Indisponible dans ce monde."
+command /annoncevote <text>:
+	executable by: console
+	trigger: 
+		broadcast "&4[&6Vote&4] &2%arg 1%"
+command /votes:
+	aliases: /vote
+	trigger:
+		make console execute command "/tellraw %player% ["""",{""text"":""["",""color"":""dark_red""},{""text"":""Votes"",""color"":""gold""},{""text"":""]"",""color"":""dark_red""},{""text"":"" Votez pour r0x.fr en suivant ce lien :"",""color"":""dark_green""},{""text"":"" ""},{""text"":""https://votes.r0x.fr"",""color"":""blue"",""clickEvent"":{""action"":""open_url"",""value"":""https://votes.r0x.fr""},""hoverEvent"":{""action"":""show_text"",""contents"":""Et en plus, gagne des récompenses !""}},{""text"":"" !"",""color"":""dark_green""}]"
+command /wiki:
+	trigger:
+		message "&4[&6Info&4] &2Une mine d'informations est disponible sur notre Wiki : &9https://r0x.fr/forum/wiki &2!"
+command /tour <integer> <integer> <integer> <integer>:
+	permission: r0x.admin
+	description: Crée une tour de blocs aléatoires aux coordonnées et à la taille données
+	trigger:
+		add 1 stone to {list_of_blocks::*}
+		add 1 oak log to {list_of_blocks::*}
+		add 1 sand to {list_of_blocks::*}
+		add 1 diamond block to {list_of_blocks::*}
+		set {_i} to 0
+		loop arg-4 times:
+			set block at location at arg-1, arg-2 + {_i}, arg-3 to random block out of {list_of_blocks::*}
+			set {_i} to {_i}+1
+		clear {list_of_blocks::*}
+on command "/kit resident":
+	if player has permission "essentials.kits.Resident":
+		if difference between {kit.Resident.%player's UUID%} and now is more than 86400 seconds:
+			delete {kit.Resident.%player's UUID%}
+			make console execute command "/give %player% minecraft:shield{BlockEntityTag:{Patterns:[{Pattern:cs,Color:12},{Pattern:bs,Color:13},{Pattern:bts,Color:12},{Pattern:tts,Color:5}],Base:3}} 1"
+			make console execute command "/comitems give -p %player% PotionFly15M"
+			set {kit.Resident.%player's UUID%} to now
+		if {kit.Resident.%player's UUID%} is not set:
+			make console execute command "/give %player% minecraft:shield{BlockEntityTag:{Patterns:[{Pattern:cs,Color:12},{Pattern:bs,Color:13},{Pattern:bts,Color:12},{Pattern:tts,Color:5}],Base:3}} 1"
+			make console execute command "/comitems give -p %player% PotionFly15M"
+			set {kit.Resident.%player's UUID%} to now
+on command "/kits resident":
+    cancel event
+    make player execute command "/kit resident"
+command /resetkitres <player>:
+	permission: r0x.admin
+	trigger:
+		delete {kit.Resident.%arg-1's UUID%}
+		message "&4[&6Kits&4] &2Délai remis à 0 pour le &cKit Résident&2."
+on command "/motd":
+	make console execute command "/bookui open MOTD %player%"
+on command "/rules":
+	cancel event
+	make player execute command "/menu rules"
+on command "/erules":
+	cancel event
+	make player execute command "/menu rules"
+
+# POUR LES 10 ANS
+command /firework10ans-ball <number> <number> <number>:
+	permission: r0x.admin
+	trigger:
+		set {_x} to arg-1
+		set {_y} to arg-2+1
+		set {_z} to arg-3
+		set {_firework10anslocation} to location at {_x}, {_y}, {_z}
+		launch a firework with effect ball large coloured gray and green fading to purple, blue, orange and red at {_firework10anslocation} with duration 1
+
+# SONS DE NOEL
+command /playsoundnoelzombie:
+	permission: r0x.admin
+	trigger:
+		set {_soundnoellocation} to executor's location
+		play sound "entity.zombie.hurt" with volume 1.2 and pitch 2 at {_soundnoellocation}
+		wait 11 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.8 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.zombie.hurt" with volume 1.2 and pitch 1.7 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.35 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.7 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.zombie.hurt" with volume 1.2 and pitch 1.35 at {_soundnoellocation}
+		wait 7 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.7 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.8 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.58 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.zombie.hurt" with volume 1.2 and pitch 1.7 at {_soundnoellocation}
+		wait 9 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.35 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.zombie.hurt" with volume 1 and pitch 1.3 at {_soundnoellocation}
+		wait 7 tick
+		play sound "entity.zombie.hurt" with volume 1.2 and pitch 1.35 at {_soundnoellocation}
+
+command /playsoundnoelsquelette:
+	permission: r0x.admin
+	trigger:
+		set {_soundnoellocation} to executor's location
+		play sound "entity.skeleton.hurt" with volume 1.2 and pitch 2 at {_soundnoellocation}
+		wait 11 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.8 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.skeleton.hurt" with volume 1.2 and pitch 1.7 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.35 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.7 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.skeleton.hurt" with volume 1.2 and pitch 1.35 at {_soundnoellocation}
+		wait 7 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.7 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.8 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.58 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.skeleton.hurt" with volume 1.2 and pitch 1.7 at {_soundnoellocation}
+		wait 9 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.35 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.skeleton.hurt" with volume 1 and pitch 1.3 at {_soundnoellocation}
+		wait 7 tick
+		play sound "entity.skeleton.hurt" with volume 1.2 and pitch 1.35 at {_soundnoellocation}
+
+command /playsoundnoelaraignee:
+	permission: r0x.admin
+	trigger:
+		set {_soundnoellocation} to executor's location
+		play sound "entity.spider.hurt" with volume 1.2 and pitch 2 at {_soundnoellocation}
+		wait 11 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.8 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.spider.hurt" with volume 1.2 and pitch 1.7 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.35 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.7 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.spider.hurt" with volume 1.2 and pitch 1.35 at {_soundnoellocation}
+		wait 7 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.7 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.8 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.58 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.spider.hurt" with volume 1.2 and pitch 1.7 at {_soundnoellocation}
+		wait 9 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.5 at {_soundnoellocation}
+		wait 3 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.35 at {_soundnoellocation}
+		wait 6 tick
+		play sound "entity.spider.hurt" with volume 1 and pitch 1.3 at {_soundnoellocation}
+		wait 7 tick
+		play sound "entity.spider.hurt" with volume 1.2 and pitch 1.35 at {_soundnoellocation}
+
+# SECURITE TETE DE NOEL
+on place of player head:
+	if name of tool of player is "&cSac de Noël":
+		cancel event
+		message "&8Mieux vaut aller échanger ce sac au Spawn !" to player
+on command "/fh":
+	if player has permission "r0x.admin":
+		stop
+	else:
+		cancel event
+		send "&4[&6r0x.fr&4] &2Tu n'as pas la permission d'utiliser cette commande."
+
+# REMPLACE LE FEED DE ESSENTIALS
+command /feed:
+	permission: r0x.mondenobles
+	cooldown: 1 minute
+	cooldown message: &cVous devez attendre %remaining time% avant de remplir votre estomac
+	trigger:
+		feed the player by 10 beefs
+		apply saturation to player for 2 seconds
+		message "&7Votre faim a été rassasiée." to player
+
+# FONCTION /THOR POUR LES PRINCES
+on rightclick with blaze rod:
+	if player has the permission "r0x.thor":
+		if name of the tool contains "foudre" or "lightning":
+			if target block is set:
+				create no sound fake lightning at target block of player
+				play sound "entity.lightning_bolt.thunder" with volume 3 at target block
+				wait 1 tick
+				play sound "entity.lightning_bolt.impact" with volume 1 at target block
+
+#NetherWaterBucket
+on right click with water bucket:
+	if player has permission "r0x.waterbucket":
+		if player is in world "Freebuild_nether":
+			cancel event
+			send "&4[&6r0x.fr&4] &2L'eau n'est pas utilisable dans le Nether"
+#DeathCoordinates
+on death:
+	if player has permission "r0x.deathcoordinates":
+		if player is in world "Jeux":
+			stop
+		else:
+			set {_playerlocation} to player's location
+			send "&4[&6r0x.fr&4] &2Vous êtes mort ici : %{_playerlocation}%"
+# Anti-repair Ailes du Gardien
+on command "/repair":
+	if player's tool is an elytra:
+		if name of player's tool contains "&7Aile du Gardien":
+			cancel event
+			message "&4[&6Réparation&4] &2Impossible de réparer cet objet..."

@@ -1,0 +1,22 @@
+Command /capitainerie:
+	trigger:
+		create a gui with virtual chest inventory with 3 rows named "&2Une question ?":
+			make gui slot 0 with yellow stained glass pane named "&r"
+			loop 26 times:
+				if loop-number is not 10 or 11 or 12 or 13 or 14 or 15 or 16:
+					make gui slot loop-number with yellow stained glass pane named "&r"
+			make gui slot 10 with purple dye named "&5Comment obtenir de l'argent ?":
+				close player's inventory
+				send "&2[Conseiller -> Vous] &aLe moyen le plus efficace est d'exercer un métier ! Tu peux t'engager à l'étage inférieur."
+			make gui slot 12 with magenta dye named "&dA quoi va me servir cet argent ?":
+				close player's inventory
+				send "&2[Conseiller -> Vous] &aEh bien, tu peux acheter un &cRang&a. Tu peux aussi acheter des objets au marché, ou commercer avec les autres joueurs !"
+			make gui slot 14 with lime dye named "&aPuis-je pratiquer plusieurs métiers ?":
+				close player's inventory
+				send "&2[Conseiller -> Vous] &aBien sûr ! Cependant, ton &cRang&a te limite dans le nombre d'emplois que tu peux assumer simultanément."
+			make gui slot 16 with grey dye named "&7Est-ce que je progresse ?":
+				close player's inventory
+				send "&2[Conseiller -> Vous] &aA force de travailler, tu montes en niveau. Cela augmente l'argent que tu gagne en exerçant ce métier. Essaie donc d'attendre le niveau 100 (celui maximum) pour frimer !"
+			make gui slot 22 with barrier named "&4Quitter":
+				close player's inventory
+			open the last gui to the player

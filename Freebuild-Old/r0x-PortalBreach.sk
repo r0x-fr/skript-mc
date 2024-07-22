@@ -1,0 +1,6 @@
+# Corrige la faille permettant de profiter du creatif en faisant des portail dans les mondes créatif
+On portal create:
+	if player is not in world "Freebuild" or "Freebuild_nether" or "Freebuild_the_end" or "JeuxVoid":
+		if player do not have permission "r0x.admin":
+			cancel event
+			send "&cLes portails sont interdits dans ce monde"
