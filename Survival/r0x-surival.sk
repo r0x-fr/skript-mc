@@ -1,0 +1,31 @@
+# Ajouts de commandes utiles
+command /setspawn:
+	permission: r0x.admin
+	trigger:
+		set {server.spawn} to player's location
+		message "&c[r0x.fr] Spawn mis en place en %player's location%"
+on first join:
+	teleport player to {server.spawn}
+	broadcast "&aBienvenue à &c%player% &aqui se connecte pour la première fois sur le serveur &cSurvival&a de r0x.fr !"
+command /spawn:
+	permission: r0x.admin
+	trigger:
+		teleport player to {server.spawn}
+		message "&4[&6r0x.fr&4] &2Téléportation au spawn."
+command /broadcast <text>:
+	permission: r0x.admin
+	trigger:
+		broadcast "&4[&6Info&4] &a%coloured arg-1%"
+
+# Ajout d'un MOTD
+on join:
+	message "&7================================================="
+	message "&2                          Salut, &c%player%&2 !"
+	message "&aTu es sur le serveur &cSurvival&a de r0x.fr !"
+	message "&4> &2Pour plus d'informations : &chttps://r0x.fr"
+	message "&6> &2Rejoins-nous aussi sur Discord : &chttps://discord.r0x.fr/"
+	message "                    &2Amuse-toi bien sur r0x.fr !"
+	message "&7================================================="
+every 1 seconds:
+	loop all players:
+		set score "&c❤" below loop-player to loop-player's health for all players
