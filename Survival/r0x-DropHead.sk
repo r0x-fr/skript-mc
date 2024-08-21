@@ -1,3 +1,9 @@
 on death:
 	victim is a player:
 		drop victim's skull named "&c%victim%" at victim's location
+command /playerhead <offline player>:
+	trigger:
+		if player is op:
+			give player the skull of arg-1 named "&c%arg-1%"
+		else:
+			send "&4[&2r0x.fr&4] &cEh ! T'essaye quoi là ??"
