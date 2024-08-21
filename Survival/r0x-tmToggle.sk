@@ -1,0 +1,20 @@
+command /tm [<text>]:
+	trigger:
+		if arg-1 is set:
+			make player execute "/minecraft:teammsg %arg-1%"
+			stop
+		else:
+			if {teamtoggle::%player%} is false:
+				set {teamtoggle::%player%} to true
+				send "[&6TeamChat - &aON&f]"
+				stop
+			else:
+				set {teamtoggle::%player%} to false
+				send "[&6TeamChat - &cOFF&f]"
+				stop
+on chat:
+	if {teamtoggle::%player%} is true:
+		cancel event
+		make player execute "/minecraft:teammsg %message%"
+		log "%player% messaged to his team: %message%"
+		stop
