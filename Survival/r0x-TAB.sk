@@ -10,33 +10,10 @@ command /tablist refresh:
       loop all players:
          set tab header to {@tabHeader} and footer to {@tabFooter} for loop-player
 
-# Commande de refresh du prefix/suffix du tab
-command /tabteam [<player>]:
-   executable by: the console and player
-   description: Refresh le nom d'un joueur dans le tab.
-   usage: /tabteam [player]
-   trigger:
-      execute console command "/tablist refresh"
-      if "%team of player%" is "<none>":
-         set the player's tablist name to player's name
-         stop
-      else:
-         set {_teamPrefix} to team prefix of team of player
-         set {_teamSuffix} to team suffix of team of player
-         set the player's tablist name to "%{_teamPrefix}%&f%name of player%%{_teamSuffix}%"
-         stop
-
 # Events
 on join:
    execute console command "/tablist refresh"
-   if "%team of player%" is "<none>":
-      set the player's tablist name to player's name
-      stop
-   else:
-      set {_teamPrefix} to team prefix of team of player
-      set {_teamSuffix} to team suffix of team of player
-      set the player's tablist name to "%{_teamPrefix}%&f%name of player%%{_teamSuffix}%"
-      stop
+   stop
 
 on quit:
    execute console command "/tablist refresh"
