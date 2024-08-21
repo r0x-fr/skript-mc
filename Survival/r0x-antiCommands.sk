@@ -1,0 +1,43 @@
+# Basic plugins list command
+on command "/plugins":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+on command "/pl":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+on command "/bukkit:plugins":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+on command "/bukkit:pl":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+# Help commands (could also show plugins list)
+on command "/bukkit:help":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Pourquoi aurais tu besoin d'aide ?%nl%Il y a le &e/dc [<player>]&2 pour le nombre de morts d'un joueur.%nl%Et &e/pi [<player>]&2 pour avoir quelques info sur les joueurs.%nl%Le &e/tm <text>&2 permet de toggle ou d'envoyer un message à votre team."
+on command "/help":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Pourquoi aurais tu besoin d'aide ?%nl%Il y a le &e/dc [<player>]&2 pour le nombre de morts d'un joueur.%nl%Et &e/pi [<player>]&2 pour avoir quelques info sur les joueurs.%nl%Le &e/tm <text>&2 permet de toggle ou d'envoyer un message à votre team."
+# Other commands that show plugins
+on command "/about":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+on command "/icanhasbukkit":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+on command "/version":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+on command "/ver":
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
