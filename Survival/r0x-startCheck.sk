@@ -59,4 +59,3 @@ command /checkup:
 		else:
 			send "[&6Server - &aCheck&6 - KeepInv&r] KeepInv is already false for world_the_end."
 			stop
-            
