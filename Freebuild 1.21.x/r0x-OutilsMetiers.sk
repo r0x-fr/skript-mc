@@ -1,0 +1,58 @@
+on tool break:
+# POUR PAYSAGISTE
+	if tool is a shovel:
+		if tool is a wooden shovel:
+			if player has permission "jobs.paysagiste.incassable.woodenshovel":
+				repair the tool
+		if tool is a stone shovel:
+			if player has permission "jobs.paysagiste.incassable.stoneshovel":
+				repair the tool
+		if tool is a iron shovel:
+			if player has permission "jobs.paysagiste.incassable.ironshovel":
+				repair the tool
+		if tool is a golden shovel:
+			if player has permission "jobs.paysagiste.incassable.goldenshovel":
+				repair the tool
+		if tool is a diamond shovel:
+			if player has permission "jobs.paysagiste.incassable.diamondshovel":
+				repair the tool
+# POUR BÛCHERONS
+	if tool is an axe:
+		if tool is a wooden axe:
+			if player has permission "jobs.bucheron.incassable.woodenaxe":
+				repair the tool
+		if tool is a stone axe:
+			if player has permission "jobs.bucheron.incassable.stoneaxe":
+				repair the tool
+		if tool is a iron axe:
+			if player has permission "jobs.bucheron.incassable.ironaxe":
+				repair the tool
+		if tool is a golden axe:
+			if player has permission "jobs.bucheron.incassable.goldenaxe":
+				repair the tool
+# POUR MINEURS
+	if tool is a pickaxe:
+		if tool is a wooden pickaxe:
+			if player has permission "jobs.mineur.incassable.woodenpickaxe":
+				repair the tool
+		if tool is a stone pickaxe:
+			if player has permission "jobs.mineur.incassable.stonepickaxe":
+				repair the tool
+		if tool is a iron pickaxe:
+			if player has permission "jobs.mineur.incassable.ironpickaxe":
+				repair the tool
+		if tool is a golden pickaxe:
+			if player has permission "jobs.mineur.incassable.goldenpickaxe":
+				repair the tool
+		if tool is a diamond pickaxe:
+			if player has permission "jobs.mineur.incassable.diamondpickaxe":
+				repair the tool
+# POUR AGRICULTEURS
+	if tool is a hoe:
+		if tool is a golden hoe:
+			if player has permission "jobs.mineur.incassable.goldenhoe":
+				repair the tool
+# POUR PECHEURS
+	if tool is a fishing rod:
+		if player has permission "jobs.pecheur.incassable.fishingrod":
+			repair the tool

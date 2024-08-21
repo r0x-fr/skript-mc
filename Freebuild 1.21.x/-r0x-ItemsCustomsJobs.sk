@@ -1,0 +1,328 @@
+# # # # # # # # # # # # # # # # # # # # # #
+#    _____   _____   __  ______ _____     #
+#   |  __ \ / _ \ \ / / |  ____|  __ \    #
+#   | |__) | | | \ V /  | |__  | |__) |   #
+#   |  _  /| | | |> <   |  __| |  _  /    #
+#   | | \ \| |_| / . \ _| |    | | \ \    #
+#   |_|  \_\\___/_/ \_(_|_|    |_|  \_\   #
+#                                         #
+#    SKELLET AND SHARPSK ARE NECESSARY    #
+# # # # # # # # # # # # # # # # # # # # # #
+# OPTIONS SECTION - SKRIPT CUSTOMIZATION  #
+# # # # # # # # # # # # # # # # # # # # # #
+#
+#Write the names of the blocks without underscores in commands
+#
+#-bûcheron: oak_log or spruce_log or birch_log or jungle_log or acacia_log or dark_oak_log or crimson_stem or warped_stem
+#
+#-mineur1: stone or diorite or andesite or granite or blackstone or prismarine or obsidian or netherrack or mossy_cobblestone or /
+#basalt or gravel
+#
+#-mineur2: gold_ore or diamond_ore or redstone_ore or emerald_ore or iron_ore or coal_ore or lapis_ore or ancient_debris or /
+#nether_quartz_ore or gilded_blackstone or nether_gold_ore
+#
+#-agriculteur: chorus_flower or wheat or beetroots or carrots or potatoes or pumpkin or melon or sugar_cane or cocoa or /
+#brown_mushroom or red_mushroom or cactus or nether_wart
+#
+#-paysagiste1: oak_log or spruce_log or birch_log or jungle_log or acacia_log or dark_oak_log or crimson_stem or warped_stem
+#
+#-paysagiste2: oak_leaves or spruce_leaves or birch_leaves or jungle_leaves or acacia_leaves or dark_oak_leaves or /
+#nether_wart_block or warped_wart_block
+#
+#-paysagiste3: grass or tall_grass or dandelion or poppy or blue_orchid or allium or azure_bluet or red_tulip or orange_tulip or /
+#white_tulip or pink_tulip or oxeye_daisy or cornflower or lily_of_the_valley or nether_sprouts or weeping_vines or /
+#twisting_vines or crimson_roots or warped_roots
+#
+#-paysagiste4: grass_block or stone or basalt or sand or dirt
+#
+# # # # # # # # # # # # # # # # # # # # #
+# COMMANDS CODE - EDIT AT YOUR OWN RISK #
+# # # # # # # # # # # # # # # # # # # # #
+#
+command /ICJaddblocks [<text>] <item>:
+    permission: r0x.admin
+    trigger:
+        if arg 1 is "bûcheron":
+            add arg 2 to {liste.blockbucheron::*}
+        if arg 1 is "mineur1":
+            add arg 2 to {liste.blockmineur1::*}
+        if arg 1 is "mineur2":
+            add arg 2 to {liste.blockmineur2::*}
+        if arg 1 is "agriculteur":
+            add arg 2 to {liste.blockagriculteur::*}
+        if arg 1 is "paysagiste1":
+            add arg 2 to {liste.blockpaysagiste1::*}
+        if arg 1 is "paysagiste2":
+            add arg 2 to {liste.blockpaysagiste2::*}
+        if arg 1 is "paysagiste3":
+            add arg 2 to {liste.blockpaysagiste3::*}
+        if arg 1 is "paysagiste4":
+            add arg 2 to {liste.blockpaysagiste4::*}
+command /ICJlistblocks [<text>]:
+    permission: r0x.admin
+    trigger:
+        if arg 1 is "bûcheron":
+            set {_listebûcheron} to ""
+            loop {liste.blockbucheron::*}:
+                set {_listebûcheron} to "%{liste.blockbucheron::*}% %loop-value%"
+            send {_listebûcheron} to executor
+        if arg 1 is "mineur1":
+            set {_listemineur1} to ""
+            loop {liste.blockmineur1::*}:
+                set {_listemineur1} to "%{liste.blockmineur1::*}% %loop-value%"
+            send {_listemineur1} to executor
+        if arg 1 is "mineur2":
+            set {_listemineur2} to ""
+            loop {liste.blockmineur2::*}:
+                set {_listemineur2} to "%{liste.blockmineur2::*}% %loop-value%"
+            send {_listemineur2} to executor
+        if arg 1 is "agriculteur":
+            set {_listeagriculteur} to ""
+            loop {liste.blockagriculteur::*}:
+                set {_listeagriculteur} to "%{liste.blockagriculteur::*}% %loop-value%"
+            send {_listeagriculteur} to executor
+        if arg 1 is "paysagiste1":
+            set {_listepaysagiste1} to ""
+            loop {liste.blockpaysagiste1::*}:
+                set {_listepaysagiste1} to "%{liste.blockpaysagiste1::*}% %loop-value%"
+            send {_listepaysagiste1} to executor
+        if arg 1 is "paysagiste2":
+            set {_listepaysagiste2} to ""
+            loop {liste.blockpaysagiste2::*}:
+                set {_listepaysagiste2} to "%{liste.blockpaysagiste2::*}% %loop-value%"
+            send {_listepaysagiste2} to executor
+        if arg 1 is "paysagiste3":
+            set {_listepaysagiste3} to ""
+            loop {liste.blockpaysagiste3::*}:
+                set {_listepaysagiste3} to "%{liste.blockpaysagiste3::*}% %loop-value%"
+            send {_listepaysagiste3} to executor
+        if arg 1 is "paysagiste4":
+            set {_listepaysagiste4} to ""
+            loop {liste.blockpaysagiste4::*}:
+                set {_listepaysagiste4} to "%{liste.blockpaysagiste4::*}% %loop-value%"
+            send {_listepaysagiste4} to executor
+command /ICJremove [<text>] <item>:
+    trigger:
+        if arg 1 is "bûcheron":
+            remove arg 2 from {liste.blockbucheron::*}
+            send "&2Le block &c%arg 2% &2a été supprimé de la liste &c%arg 1%&2."
+        if arg 1 is "mineur1":
+            remove arg 2 from {liste.blockmineur1::*}
+            send "&2Le block &c%arg 2% &2a été supprimé de la liste &c%arg 1%&2."
+        if arg 1 is "mineur2":
+            remove arg 2 from {liste.blockmineur2::*}
+            send "&2Le block &c%arg 2% &2a été supprimé de la liste &c%arg 1%&2."
+        if arg 1 is "agriculteur1":
+            remove arg 2 from {liste.blockagriculteur1::*}
+            send "&2Le block &c%arg 2% &2a été supprimé de la liste &c%arg 1%&2."
+        if arg 1 is "paysagiste1":
+            remove arg 2 from {liste.blockpaysagiste1::*}
+            send "&2Le block &c%arg 2% &2a été supprimé de la liste &c%arg 1%&2."
+        if arg 1 is "paysagiste2":
+            remove arg 2 from {liste.blockpaysagiste2::*}
+            send "&2Le block &c%arg 2% &2a été supprimé de la liste &c%arg 1%&2."
+        if arg 1 is "paysagiste3":
+            remove arg 2 from {liste.blockpaysagiste3::*}
+            send "&2Le block &c%arg 2% &2a été supprimé de la liste &c%arg 1%&2."
+        if arg 1 is "paysagiste4":
+            remove arg 2 from {liste.blockpaysagiste4::*}
+            send "&2Le block &c%arg 2% &2a été supprimé de la liste &c%arg 1%&2."
+#
+# # # # # # # # # # # # # # # # # # #
+# MAIN CODE - EDIT AT YOUR OWN RISK #
+# # # # # # # # # # # # # # # # # # #
+#
+on death of monster:
+#Chasseur
+	if attacker is a player:
+		if attacker is in job Chasseur:
+			if {cooldownchasseur.%attacker's UUID%} is not set:
+				chance of 1%:
+					set {_item} to bone of unbreaking 10 named "&4Trophée de chasse"
+					set line 1 of lore of {_item} to "&7Félicitations pour ce beau trophée"
+					set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+					drop {_item} at location of victim
+					set {cooldownchasseur.%attacker's UUID%} to now
+			else:
+				if difference between {cooldownchasseur.%attacker's UUID%} and now is less than 30 seconds:
+					stop
+				else:
+					chance of 1%:
+						set {_item} to bone of unbreaking 10 named "&4Trophée de chasse"
+						set line 1 of lore of {_item} to "&7Félicitations pour ce beau trophée"
+						set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+						drop {_item} at location of victim
+						set {cooldownchasseur.%attacker's UUID%} to now
+on block break:
+#Bucheron
+    if player is in job Bûcheron:
+        if {cooldownbucheron.%player's UUID%} is not set:
+            if {liste.blockbucheron::*} contains event-block:
+                chance of 1%:
+                    set {_item} to stick of unbreaking 10 named "&6Copeau de bois"
+                    set line 1 of lore of {_item} to "&7Cette chute de bois pourrait bien être utile"
+                    set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                    drop 1 of {_item} at location of event-block
+                    set {cooldownbucheron.%player's UUID%} to now
+        else:
+            if difference between {cooldownbucheron.%player's UUID%} and now is less than 30 seconds:
+                stop
+            else:
+                if {liste.blockbucheron::*} contains event-block:
+                    chance of 1%:
+                        set {_item} to stick of unbreaking 10 named "&6Copeau de bois"
+                        set line 1 of lore of {_item} to "&7Cette chute de bois pourrait bien être utile"
+                        set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                        drop 1 of {_item} at location of event-block
+                        set {cooldownbucheron.%player's UUID%} to now
+#Mineur
+    if player is in job Mineur:
+        if {cooldownmineur1.%player's UUID%} is not set:
+            if {liste.blockmineur1::*} contains event-block:
+                chance of 0.5%:
+                    set {_item} to dead horn coral fan of unbreaking 10 named "&8Morceau de roche"
+                    set line 1 of lore of {_item} to "&7Ce morceau semble provenir d'une roche très friable"
+                    set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                    drop 1 of {_item} at location of event-block
+                    set {cooldownmineur1.%player's UUID%} to now
+        else:
+            if difference between {cooldownmineur1.%player's UUID%} and now is less than 30 seconds:
+                stop
+            else:
+                if {liste.blockmineur1::*} contains event-block:
+                    chance of 0.5%:
+                        set {_item} to dead horn coral fan of unbreaking 10 named "&8Morceau de roche"
+                        set line 1 of lore of {_item} to "&7Ce morceau semble provenir d'une roche très friable"
+                        set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                        drop 1 of {_item} at location of event-block
+                        set {cooldownmineur1.%player's UUID%} to now
+        if {cooldownmineur2.%player's UUID%} is not set:
+            if {liste.blockmineur2::*} contains event-block:
+                chance of 0.5%:
+                    set {_item} to iron nugget of unbreaking 10 named "&bEclat de minerai"
+                    set line 1 of lore of {_item} to "&7Un éclat qui brille de mille feux"
+                    set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                    drop 1 of {_item} at location of event-block
+                    set {cooldownmineur2.%player's UUID%} to now
+        else:
+            if difference between {cooldownmineur2.%player's UUID%} and now is less than 30 seconds:
+                stop
+            else:
+                if {liste.blockmineur2::*} contains event-block:
+                    chance of 0.5%:
+                        set {_item} to iron nugget of unbreaking 10 named "&bEclat de minerai"
+                        set line 1 of lore of {_item} to "&7Un éclat qui brille de mille feux"
+                        set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                        drop 1 of {_item} at location of event-block
+                        set {cooldownmineur2.%player's UUID%} to now
+#Agriculteur
+    if player is in job Agriculteur:
+        if {cooldownagriculteur.%player's UUID%} is not set:
+            if {liste.blockagriculteur::*} contains event-block:
+                chance of 1%:
+                    set {_item} to nether sprouts of unbreaking 10 named "&2Compost"
+                    set line 1 of lore of {_item} to "&7Un tas de végétaux encore en décomposition"
+                    set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                    drop 1 of {_item} at location of event-block
+                    set {cooldownagriculteur.%player's UUID%} to now
+        else:
+            if difference between {cooldownagriculteur.%player's UUID%} and now is less than 30 seconds:
+                stop
+            else:
+                if {liste.blockagriculteur::*} contains event-block:
+                    chance of 1%:
+                        set {_item} to nether sprouts of unbreaking 10 named "&2Compost"
+                        set line 1 of lore of {_item} to "&7Un tas de végétaux encore en décomposition"
+                        set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                        drop 1 of {_item} at location of event-block
+                        set {cooldownagriculteur.%player's UUID%} to now
+#Paysagiste
+    if player is in job Paysagiste:
+        if {cooldownpaysagiste1.%player's UUID%} is not set:
+            if {liste.blockpaysagiste1::*} contains event-block:
+                chance of 0.25%:
+                    set {_item} to stick of unbreaking 10 named "&6Copeau de bois"
+                    set line 1 of lore of {_item} to "&7Cette chute de bois pourrait bien être utile"
+                    set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                    drop 1 of {_item} at location of event-block
+                    set {cooldownpaysagiste1.%player's UUID%} to now
+        else:
+            if difference between {cooldownpaysagiste1.%player's UUID%} and now is less than 30 seconds:
+                stop
+            else:
+                if {liste.blockpaysagiste1::*} contains event-block:
+                    chance of 0.25%:
+                        set {_item} to stick of unbreaking 10 named "&6Copeau de bois"
+                        set line 1 of lore of {_item} to "&7Cette chute de bois pourrait bien être utile"
+                        set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                        drop 1 of {_item} at location of event-block
+                        set {cooldownpaysagiste1.%player's UUID%} to now
+        if {cooldownpaysagiste2.%player's UUID%} is not set:
+            if {liste.blockpaysagiste2::*} contains event-block:
+                chance of 0.25%:
+                    set {_item} to kelp of unbreaking 10 named "&aFeuille d'arbre"
+                    set line 1 of lore of {_item} to "&7De belles feuilles, idéales pour un herbier"
+                    set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                    drop 1 of {_item} at location of event-block
+                    set {cooldownpaysagiste2.%player's UUID%} to now
+        else:
+            if difference between {cooldownpaysagiste2.%player's UUID%} and now is less than 30 seconds:
+                stop
+            else:
+                if {liste.blockpaysagiste2::*} contains event-block:
+                    chance of 0.25%:
+                        set {_item} to kelp of unbreaking 10 named "&aFeuille d'arbre"
+                        set line 1 of lore of {_item} to "&7De belles feuilles, idéales pour un herbier"
+                        set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                        drop 1 of {_item} at location of event-block
+                        set {cooldownpaysagiste2.%player's UUID%} to now
+        if {cooldownpaysagiste3.%player's UUID%} is not set:
+            if {liste.blockpaysagiste3::*} contains event-block:
+                chance of 0.25%:
+                    set {_item} to scute of unbreaking 10 named "&cPétale de fleur"
+                    set line 1 of lore of {_item} to "&7Une douce odeur se dégage de ce pétale"
+                    set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                    drop 1 of {_item} at location of event-block
+                    set {cooldownpaysagiste3.%player's UUID%} to now
+        else:
+            if difference between {cooldownpaysagiste3.%player's UUID%} and now is less than 30 seconds:
+                stop
+            else:
+                if {liste.blockpaysagiste3::*} contains event-block:
+                    chance of 0.25%:
+                        set {_item} to scute of unbreaking 10 named "&cPétale de fleur"
+                        set line 1 of lore of {_item} to "&7Une douce odeur se dégage de ce pétale"
+                        set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                        drop 1 of {_item} at location of event-block
+                        set {cooldownpaysagiste3.%player's UUID%} to now
+        if {cooldownpaysagiste4.%player's UUID%} is not set:
+            if {liste.blockpaysagiste4::*} contains event-block:
+                chance of 0.25%:
+                    set {_item} to lever of unbreaking 10 named "&dManche d'outil"
+                    set line 1 of lore of {_item} to "&7Attention à ne pas casser vos outils !"
+                    set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                    drop 1 of {_item} at location of event-block
+                    set {cooldownpaysagiste4.%player's UUID%} to now
+        else:
+            if difference between {cooldownpaysagiste4.%player's UUID%} and now is less than 30 seconds:
+                stop
+            else:
+                if {liste.blockpaysagiste4::*} contains event-block:
+                    chance of 0.25%:
+                        set {_item} to lever of unbreaking 10 named "&dManche d'outil"
+                        set line 1 of lore of {_item} to "&7Attention à ne pas casser vos outils !"
+                        set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                        drop 1 of {_item} at location of event-block
+                        set {cooldownpaysagiste4.%player's UUID%} to now
+#Pecheur
+on fish:
+    if player is in job Pêcheur:
+        if "%fish state%" is "CAUGHT_FISH":
+            chance of 5%:
+                set {_item} to prismarine shard of unbreaking 10 named "&3Ecaille de poisson"
+                set line 1 of lore of {_item} to "&7La pêche a été bonne"
+                set line 2 of lore of {_item} to "&7Je devrais pouvoir en obtenir un bon prix"
+                drop 1 of {_item} at location
+on skript load:
+	wait 2 ticks
+	send "&4[&6ICJ&4]&2 ItemsCustomsJobs chargé - Version 1.0" to console

@@ -1,0 +1,159 @@
+# # # # # # # # # # # # # # # # # # # # # #
+#    _____   _____   __  ______ _____     #
+#   |  __ \ / _ \ \ / / |  ____|  __ \    #
+#   | |__) | | | \ V /  | |__  | |__) |   #
+#   |  _  /| | | |> <   |  __| |  _  /    #
+#   | | \ \| |_| / . \ _| |    | | \ \    #
+#   |_|  \_\\___/_/ \_(_|_|    |_|  \_\   #
+#                                         #
+#             VOTEKICK SKRIPT             #
+# # # # # # # # # # # # # # # # # # # # # #
+# OPTIONS SECTION - SKRIPT CUSTOMIZATION  #
+# # # # # # # # # # # # # # # # # # # # # #
+options:
+	SkriptVersion: 1.2
+	Command: tempban # You can use "kick" or "tempban"
+	TempbanTime: 15m # If you choose "tempban" as command, you can set here the time of tempban with this format: "15m" for 15 minutes. Use "s", "m", "d", "w", "mo", "y" for second, minute, day, week, month and year. 
+	VoteDuration: 30 # In Seconds
+# LANGUAGE - Do not use quotation marks but you can use Minecraft color codes "&".
+	Prefix: &4[&6VoteKick&4] 
+	LoadingMessage: &2VoteKick chargé - Version
+	CommandUsage: &2Il faut préciser un joueur et un motif : &c/votekick <pseudo> <motif>
+	NeedPlayer: &2Il faut préciser un joueur : &c/votekick <pseudo> <motif>
+	NeedReason: &2Il faut préciser un motif : &c/votekick <pseudo> <motif>
+	NoKickStaff: &2On ne peut pas kicker un membre du staff voyons !
+	NoKickSelf: &2On ne s'éjecte pas soi-même voyons !
+	VoteKickInProgress: &2Un vote est déjà en cours !
+	BroadcastVoteKick: &c%player% &2propose d'expulser &c%arg 1%&2 pour le motif suivant : &c%arg 2%
+	BroadcastVoteKickYes: &7>> &2Faites &c/votekickyes&2 pour voter en faveur de l'expulsion
+	BroadcastVoteKickNo: &7>> &2Faites &c/votekickno&2 pour voter contre l'expulsion
+	BroadcastVoteKickTime: &4Vous avez &c%{votekick.duration}% secondes&4 pour voter !
+	EndVoteKick: &2Vote terminé. Nombre de voix en faveur : &c%{votekick.yes}% &7| &2Nombre de voix contre : &c%{votekick.no}%&2.
+	PlayerKicked: &2Le joueur &c%arg 1%&2 a été expulsé.
+	PlayerNotKicked: &2Le joueur &c%arg 1% &2n'a pas été expulsé.
+	LogVoteKickAccepted: KICK ACCEPTE : %player% a lancé un vote contre %arg 1% pour la raison suivante : %arg 2%. Pour : %{votekick.yes}%, Contre : %{votekick.no}%. Votants : %{votekick::voted::*}%
+	LogVoteKickRefused: KICK REFUSE : %player% a lancé un vote contre %arg 1% pour la raison suivante : %arg 2%. Pour : %{votekick.yes}%, Contre : %{votekick.no}%. Votants : %{votekick::voted::*}%
+	LogVoteKickEquality: KICK REFUSE [Egalité] : %player% a lancé un vote contre %arg 1% pour la raison suivante : %arg 2%. Pour : %{votekick.yes}%, Contre : %{votekick.no}%. Votants : %{votekick::voted::*}%
+	NoVoteKick: &2Aucun vote n'est en cours.
+	YouAreTargeted: &2Vous êtes visé par le vote et ne pouvez donc pas voter.
+	StillVotedYes: &2Vous avez déjà voté &cen faveur &2et ne pouvez pas voter deux fois ! Pour changer votre vote : &c/votekickno
+	VoteKickChangedYes: &2Votre vote a été changé. Vous votez maintenant &cen faveur&2 l'expulsion de &c%{votekick.kicked}%&2.
+	VoteKickChangedNo: &2Votre vote a été changé. Vous votez maintenant &ccontre&2 l'expulsion de &c%{votekick.kicked}%&2.
+	StillVotedNo: &2Vous avez déjà voté &ccontre &2et ne pouvez pas voter deux fois ! Pour changer votre vote : &c/votekickyes
+	VoteKickYes: &2Vous avez voté &cen faveur&2 de l'explusion de &c%{votekick.kicked}%&2.
+	VoteKickNo: &2Vous avez voté &ccontre&2 de l'explusion de &c%{votekick.kicked}%&2.
+command /votekick <player> <text>:
+	permission: r0x.votekick.start
+	usage: {@Prefix} {@CommandUsage}
+	trigger:
+		if arg 1 is not set:
+			message "{@Prefix} {@NeedPlayer}"
+		else:
+			if arg 2 is not set:
+				message "{@Prefix} {@NeedReason}"
+			else:
+				if arg 1 has permission "essentials.kick.exempt":
+					message "{@Prefix} {@NoKickStaff}"
+				else:
+					if arg 1 is player:
+						message "{@Prefix} {@NoKickSelf}"
+					else:
+						if {votekick.started} or {voteday.started} is true:
+							message "{@Prefix} {@VoteKickInProgress}"
+						else:
+							set {votekick.started} to true
+							set {votekick.stopped} to false
+							set {votekick.reason} to arg 2
+							set {votekick.kicked} to arg 1
+							set {votekick.kicker} to player
+							set {votekick.yes} to 0
+							set {votekick.no} to 0
+							set {votekick.duration} to {@VoteDuration}
+							set {votekick.command} to "{@Command}"
+							broadcast "{@Prefix} {@BroadcastVoteKick}"
+							broadcast "{@BroadcastVoteKickYes}"
+							broadcast "{@BroadcastVoteKickNo}"
+							broadcast "{@BroadcastVoteKickTime}"
+							loop all players:
+								set {votekick.%loop-player%.voted} to false
+							wait {@VoteDuration} seconds
+							if {votekick.yes} is greater than {votekick.no}:
+								wait 1 second
+								broadcast "{@Prefix} {@EndVoteKick}"
+								wait 1 second
+								if {votekick.command} contains "tempban":
+									make console execute command "/tempban %arg 1% {@TempbanTime} %arg 2%"
+								else if {votekick.command} contains "kick":
+									make console execute command "/kick %arg 1% %arg 2%"
+								log "{@LogVoteKickAccepted}" to "votes/voteskick.log"
+								broadcast "{@PlayerKicked}"
+							if {votekick.no} is greater than {votekick.yes}:
+								broadcast "{@Prefix} {@EndVoteKick}"
+								broadcast "{@PlayerNotKicked}"
+								log "{@LogVoteKickRefused}" to "votes/voteskick.log"
+							if {votekick.no} is equal to {votekick.yes}:
+								broadcast "{@Prefix} {@EndVoteKick}"
+								broadcast "{@PlayerNotKicked}"
+								log "{@LogVoteKickEquality}" to "votes/voteskick.log"
+							delete {votekick.yes}
+							delete {votekick.no}
+							delete {votekick.started}
+							delete {votekick.stopped}
+							delete {votekick.reason}
+							delete {votekick.kicker}
+							delete {votekick.kicked}
+							delete {votekick::voted::*}
+							delete {votekick::votedyes::*}
+							delete {votekick::votedno::*}
+							delete {votekick.duration}
+command /votekickyes:
+	permission: r0x.votekick.vote
+	trigger:
+		if {votekick.started} is not set:
+			message "{@Prefix} {@NoVoteKick}"
+		if {votekick.started} is false:
+			message "{@Prefix} {@NoVoteKick}"
+		if {votekick.started} is true:
+			if {votekick.kicked} is player:
+				message "{@Prefix} {@YouAreTargeted}"
+			else:
+				if "%{votekick::votedyes::*}%" contains "%player%":
+					message "{@Prefix} {@StillVotedYes}"
+				else if "%{votekick::votedno::*}%" contains "%player%":
+					remove player from {votekick::votedno::*}
+					remove 1 from {votekick.no}
+					message "{@Prefix} {@VoteKickChangedYes}"
+					add player to {votekick::votedyes::*}
+					add 1 to {votekick.yes}
+				else:
+					add player to {votekick::votedyes::*}
+					add 1 to {votekick.yes}
+					message "{@Prefix} {@VoteKickYes}"
+					add player to {votekick::voted::*}
+command /votekickno:
+	permission: r0x.votekick.vote
+	trigger:
+		if {votekick.started} is not set:
+			message "{@Prefix} {@NoVoteKick}"
+		if {votekick.started} is false:
+			message "{@Prefix} {@NoVoteKick}"
+		if {votekick.started} is true:
+			if {votekick.kicked} is player:
+				message "{@Prefix} {@YouAreTargeted}"
+			else:
+				if "%{votekick::votedno::*}%" contains "%player%":
+					message "{@Prefix} {@StillVotedNo}"
+				else if "%{votekick::votedyes::*}%" contains "%player%":
+					remove player from {votekick::votedyes::*}
+					remove 1 from {votekick.yes}
+					message "{@Prefix} {@VoteKickChangedNo}"
+					add player to {votekick::votedno::*}
+					add 1 to {votekick.no}
+				else:
+					add player to {votekick::votedno::*}
+					add 1 to {votekick.no}
+					message "{@Prefix} {@VoteKickNo}"
+					add player to {votekick::voted::*}
+on skript load:
+	wait 2 ticks
+	send "{@Prefix} {@LoadingMessage} {@SkriptVersion}" to console

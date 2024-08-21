@@ -1,0 +1,12 @@
+on death of player:
+	send "&4Vous êtes mort." to victim
+	if altitude of victim is less than 0:
+		if victim is in world "world" or "world_nether":
+			cancel event
+			send "&cMort dans le vide impossible ici : Mort annulée, et tp au spawn effectuée." to victim
+			wait 1 tick
+			execute console command "tp %victim% 60 121 67" 
+			loop all players:
+				if loop-player has permission "essentials.ban":
+					send "&4%victim% &4a faillit mourir dans le vide, la mort a été annulée!" to loop-player
+					send "&4%victim% &4a faillit mourir dans le vide, la mort a été annulée!" to console

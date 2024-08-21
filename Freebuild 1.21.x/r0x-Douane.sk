@@ -1,0 +1,52 @@
+command /douane <player>:
+	permission: r0x.douane
+	cooldown: 30 seconds
+	cooldown message: &a[Douanier] &cPatiente un peu !
+	trigger:
+		send "&a[Douanier] Bonjour %player% ! &aBien, vérifions que tout est en ordre..."
+		send action bar "&6&lVeuillez patientez..." to arg-1
+		wait 2 seconds
+		if player's balance is smaller than 250:
+			send "&a[Douanier] Il semble que vous n'ayez aucune économie sur vous... Vous devriez demander à vos compagnons de voyage de vous aider."
+		else:
+			send "&a[Douanier] Parfait, vous avez &c250 Eur0x&a sur vous, c'est parfait pour commencer."
+			send action bar "&6&lPatientez encore un peu, ça ne sera pas long..." to arg-1
+			wait 2 seconds
+			if arg-1's inventory contains 1 paper:
+				send "&a[Douanier] Bien, tout me semble en règle, vous pouvez passer !"
+				wait 1 tick
+				send "&a[Douanier] Vous êtes désormais un &7Aventurier&a de r0x.fr."
+				make console execute command "/lp user %arg-1% promote r0x.fr-grades"
+				wait 1 tick
+				make console execute command "/lp user %arg-1% promote r0x.fr-rangs"
+				wait 1 tick
+				make console execute command "/lp user %arg-1% permission unset essentials.kits.Bagages"
+				make console execute command "/lp user %arg-1% permission unset r0x.salaire"
+				wait 1 tick
+				remove 1 paper from the arg-1's inventory
+				wait 1 tick
+				send "&a[Douanier] Vous serez considéré comme un &fVagabond&r &apendant quelques temps, le temps de vous installer."
+				wait 1 tick
+				make console execute command "/tp %arg-1% 85 65 -12"
+				send "&a[Douanier] Bon jeu sur r0x.fr !"
+			else:
+				send "&a[Douanier] Vous ne disposez pas d'un &cVisa &apour entrer. Veuillez vous en procurer un pour passer."
+				stop
+command /bagagiste <player>:
+	permission: r0x.douane
+	trigger:
+		if arg-1 has permission "essentials.kits.Bagages":
+			send "&a[Bagagiste] Voilà tes bagages ! Pense à récupérer ton &csalaire &aauprès du &cCapitaine&a dans sa &ccabine&a, sur le &cpont du bateau&a, avant de partir !"
+			make console execute command "/kit Bagages %arg-1%"
+			make console execute command "/lp user %arg-1% permission set essentials.kits.Bagages false"
+		else:
+			send "&a[Bagagiste] Oui ? Tu as déjà récupérer tes bagages ! Pense à récupérer ton &csalaire&a auprès du &cCapitaine&a dans sa &ccabine&a, sur le &cpont du bateau&a, avant de partir !"
+command /capitaine <player>:
+	permission: r0x.douane
+	trigger:
+		if arg-1 has permission "r0x.salaire":
+			send "&a[Capitaine] Enfin arrivé à bon port ! Au fait, voilà ton salaire,  &c250 Eur0x. &aEt si tu cherches du travail, j'ai entendu dire qu'ils en proposaient à la &cMaison de l'Emploi&a. Tu peux sortir en passant par la &cDouane&a maintenant !"
+			make console execute command "eco set %arg-1% 250"
+			make console execute command "/lp user %arg-1% permission set r0x.salaire false"
+		else:
+			send "&a[Capitaine] Si tu cherches du travail, j'ai entendu dire qu'ils en proposaient à la &cMaison de l'Emploi&a. Tu peux sortir en passant par la &cDouane&a maintenant !"

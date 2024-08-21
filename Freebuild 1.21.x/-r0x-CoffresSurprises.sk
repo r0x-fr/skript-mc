@@ -1,0 +1,461 @@
+command /coffressurprises:
+	permission: r0x.animation
+	aliases: /cs
+	trigger:
+		if {coffressuprises.cooldown} is not set:
+			set {coffressuprises.cooldown} to now
+		else:
+			if difference between {coffressuprises.cooldown} and now is less than 2 hours:
+				if executor has permission "r0x.admin":
+					send "" to executor
+				else:
+					send "&cLa dernière commande est executée depuis &e%difference between {coffressuprises.cooldown} and now%&c. Cette commande ne peut être executée que toutes les 2 heures!" to executor
+					stop
+		set {coffressuprises.cooldown} to now
+		loop 2 times:  #nombre de coffre qui vont spawn
+			set {_checkair} to false
+			while {_checkair} is false:
+				set {_x} to random integer between -11000 and 11000 # La coordonnée x
+				set {_y} to random integer between 5 and 80 # La coordonnée Y
+				set {_z} to random integer between -11000 and 11000 # La coordonnée Z
+				set {coffre} to location at {_x}, {_y}, {_z}
+				if block at {coffre} is air or stone:
+					set {_checkair} to true
+				else:
+					wait 4 ticks
+			set {coffre} to location at {_x}, {_y}, {_z} # les coordonnée du coffre sont placé dans une variable
+			set block at {coffre} to chest # On place un coffre aux coordonées
+			set {_chanceitemchestsurprise} to a random integer between 1 and 4
+			# CHANCE 1%
+			chance of 1%:
+				if {_chanceitemchestsurprise} is 1:
+					add 1 elytra to {_list.objet.random::*}
+				# 50% de 1% = 0.5%
+				chance of 50%:
+					if {_chanceitemchestsurprise} is 2:
+						add 1 totem of undying to {_list.objet.random::*}
+					if {_chanceitemchestsurprise} is 3:
+						add 1 nether star to {_list.objet.random::*}
+					if {_chanceitemchestsurprise} is 4:
+						add 16 sponge to {_list.objet.random::*}
+			chance of 1%:
+				if {_chanceitemchestsurprise} is 1:
+					add 1 music disc 13 to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 1 music disc cat to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 1 music disc blocks to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 1 music disc chirp to {_list.objet.random::*}
+			chance of 1%:
+				if {_chanceitemchestsurprise} is 1:
+					add 1 music disc far to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 1 music disc mall to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 1 music disc mellohi to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 1 music disc stal to {_list.objet.random::*}
+			chance of 1%:
+				if {_chanceitemchestsurprise} is 1:
+					add 1 music disc strad to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 1 music disc ward to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 1 music disc 11 to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 1 music disc wait to {_list.objet.random::*}
+			# CHANCE 5 %
+			chance of 5%:
+				if {_chanceitemchestsurprise} is 1:
+					add 5 diamond ore to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					# 50% de 5% = 2.5%
+					chance of 50%:
+						remove 5 diamond ore from {_list.objet.random::*}
+						add 10 diamond ore to {_list.objet.random::*}
+						# 50% de 2.5% = 1.25%
+						chance of 50%:
+							remove 10 diamond ore from {_list.objet.random::*}
+							add 15 diamond ore to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 5 diamond to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 5 diamond ore from {_list.objet.random::*}
+						add 10 diamond ore to {_list.objet.random::*}
+						chance of 50%:
+							remove 10 diamond ore from {_list.objet.random::*}
+							add 15 diamond ore to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 8 diamond ore to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 8 diamond ore from {_list.objet.random::*}
+						add 15 diamond ore to {_list.objet.random::*}
+						chance of 50%:
+							remove 15 diamond ore from {_list.objet.random::*}
+							add 20 diamond ore to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 8 diamond to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 8 diamond ore from {_list.objet.random::*}
+						add 15 diamond ore to {_list.objet.random::*}
+						chance of 50%:
+							remove 15 diamond ore from {_list.objet.random::*}
+							add 20 diamond ore to {_list.objet.random::*}
+			# CHANCE 15 %
+			chance of 15%:
+				if {_chanceitemchestsurprise} is 1:
+					add 3 diamond to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 3 diamond from {_list.objet.random::*}
+						add 6 diamond to {_list.objet.random::*}
+						chance of 50%:
+							remove 6 diamond from {_list.objet.random::*}
+							add 9 diamond to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 4 diamond to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 4 diamond from {_list.objet.random::*}
+						add 7 diamond to {_list.objet.random::*}
+						chance of 50%:
+							remove 7 diamond from {_list.objet.random::*}
+							add 10 diamond to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 5 diamond to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 5 diamond from {_list.objet.random::*}
+						add 8 diamond to {_list.objet.random::*}
+						chance of 50%:
+							remove 8 diamond from {_list.objet.random::*}
+							add 11 diamond to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 6 diamond to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 6 diamond from {_list.objet.random::*}
+						add 9 diamond to {_list.objet.random::*}
+						chance of 50%:
+							remove 9 diamond from {_list.objet.random::*}
+							add 12 diamond to {_list.objet.random::*}
+			# CHANCE 25%
+			chance of 25%:
+				if {_chanceitemchestsurprise} is 1:
+					add 4 gold ingot to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 4 gold ingot from {_list.objet.random::*}
+						add 8 gold ingot to {_list.objet.random::*}
+						chance of 50%:
+							remove 8 gold ingot from {_list.objet.random::*}
+							add 12 gold ingot to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 8 gold ingot to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 8 gold ingot from {_list.objet.random::*}
+						add 12 gold ingot to {_list.objet.random::*}
+						chance of 50%:
+							remove 12 gold ingot from {_list.objet.random::*}
+							add 16 gold ingot to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 12 gold ingot to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 12 gold ingot from {_list.objet.random::*}
+						add 16 gold ingot to {_list.objet.random::*}
+						chance of 50%:
+							remove 16 gold ingot from {_list.objet.random::*}
+							add 20 gold ingot to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 16 gold ingot to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 16 gold ingot from {_list.objet.random::*}
+						add 20 gold ingot to {_list.objet.random::*}
+						chance of 50%:
+							remove 20 gold ingot from {_list.objet.random::*}
+							add 24 gold ingot to {_list.objet.random::*}
+			# CHANCE 35%
+			chance of 35%:
+				if {_chanceitemchestsurprise} is 1:
+					add 8 iron ingot to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 8 iron ingot from {_list.objet.random::*}
+						add 16 iron ingot to {_list.objet.random::*}
+						chance of 50%:
+							remove 16 iron ingot from {_list.objet.random::*}
+							add 24 iron ingot to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 16 iron ingot to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 16 iron ingot from {_list.objet.random::*}
+						add 24 iron ingot to {_list.objet.random::*}
+						chance of 50%:
+							remove 24 iron ingot from {_list.objet.random::*}
+							add 32 iron ingot to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 24 iron ingot to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 24 iron ingot from {_list.objet.random::*}
+						add 32 iron ingot to {_list.objet.random::*}
+						chance of 50%:
+							remove 32 iron ingot from {_list.objet.random::*}
+							add 40 iron ingot to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 32 iron ingot to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 32 iron ingot from {_list.objet.random::*}
+						add 40 iron ingot to {_list.objet.random::*}
+						chance of 50%:
+							remove 40 iron ingot from {_list.objet.random::*}
+							add 48 iron ingot to {_list.objet.random::*}
+			# CHANCE 45 %
+			chance of 45%:
+				if {_chanceitemchestsurprise} is 1:
+					add 16 redstone to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 16 redstone from {_list.objet.random::*}
+						add 32 redstone to {_list.objet.random::*}
+						chance of 50%:
+							remove 32 redstone from {_list.objet.random::*}
+							add 48 redstone to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 32 redstone to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 32 redstone from {_list.objet.random::*}
+						add 48 redstone to {_list.objet.random::*}
+						chance of 50%:
+							remove 48 redstone from {_list.objet.random::*}
+							add 64 redstone to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 48 redstone to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 48 redstone from {_list.objet.random::*}
+						add 64 redstone to {_list.objet.random::*}
+						chance of 50%:
+							remove 64 redstone from {_list.objet.random::*}
+							add 80 redstone to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 64 redstone to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 64 redstone from {_list.objet.random::*}
+						add 80 redstone to {_list.objet.random::*}
+						chance of 50%:
+							remove 80 redstone from {_list.objet.random::*}
+							add 96 redstone to {_list.objet.random::*}
+			# CHANCE 55%
+			chance of 55%:
+				if {_chanceitemchestsurprise} is 1:
+					add 4 emerald to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 4 emerald from {_list.objet.random::*}
+						add 8 emerald to {_list.objet.random::*}
+						chance of 50%:
+							remove 8 emerald from {_list.objet.random::*}
+							add 12 emerald to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 8 emerald to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 8 emerald from {_list.objet.random::*}
+						add 12 emerald to {_list.objet.random::*}
+						chance of 50%:
+							remove 12 emerald from {_list.objet.random::*}
+							add 16 emerald to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 12 emerald to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 12 emerald from {_list.objet.random::*}
+						add 16 emerald to {_list.objet.random::*}
+						chance of 50%:
+							remove 16 emerald from {_list.objet.random::*}
+							add 20 emerald to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 16 emerald to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 16 emerald from {_list.objet.random::*}
+						add 20 emerald to {_list.objet.random::*}
+						chance of 50%:
+							remove 20 emerald from {_list.objet.random::*}
+							add 24 emerald to {_list.objet.random::*}
+			# CHANCE 75%
+			chance of 75%:
+				if {_chanceitemchestsurprise} is 1:
+					add 16 blackstone to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 80%:
+						remove 16 blackstone from {_list.objet.random::*}
+						add 32 blackstone to {_list.objet.random::*}
+						chance of 80%:
+							remove 32 blackstone from {_list.objet.random::*}
+							add 48 blackstone to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 16 quartz block to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 16 quartz block from {_list.objet.random::*}
+						add 32 quartz block to {_list.objet.random::*}
+						chance of 50%:
+							remove 32 quartz block from {_list.objet.random::*}
+							add 48 quartz block to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 16 terracotta to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 16 terracotta from {_list.objet.random::*}
+						add 32 terracotta to {_list.objet.random::*}
+						chance of 50%:
+							remove 32 terracotta from {_list.objet.random::*}
+							add 48 terracotta to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 16 clay to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 16 clay from {_list.objet.random::*}
+						add 32 clay to {_list.objet.random::*}
+						chance of 50%:
+							remove 32 clay from {_list.objet.random::*}
+							add 48 clay to {_list.objet.random::*}
+			# CHANCE 85%
+			chance of 85%:
+				if {_chanceitemchestsurprise} is 1:
+					add 8 oak log to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 80%:
+						remove 8 oak log from {_list.objet.random::*}
+						add 16 oak log to {_list.objet.random::*}
+						chance of 80%:
+							remove 16 oak log from {_list.objet.random::*}
+							add 24 oak log to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 8 spruce log to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 8 spruce log from {_list.objet.random::*}
+						add 16 spruce log to {_list.objet.random::*}
+						chance of 50%:
+							remove 16 spruce log from {_list.objet.random::*}
+							add 24 spruce log to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 8 jungle log to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 8 jungle log from {_list.objet.random::*}
+						add 16 jungle log to {_list.objet.random::*}
+						chance of 50%:
+							remove 16 jungle log from {_list.objet.random::*}
+							add 24 jungle log to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 8 dark oak log to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 8 dark oak log from {_list.objet.random::*}
+						add 16 dark oak log to {_list.objet.random::*}
+						chance of 50%:
+							remove 16 dark oak log from {_list.objet.random::*}
+							add 24 dark oak log to {_list.objet.random::*}
+			chance of 85%:
+				if {_chanceitemchestsurprise} is 1:
+					add 8 birch log to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 80%:
+						remove 8 birch log from {_list.objet.random::*}
+						add 16 birch log to {_list.objet.random::*}
+						chance of 80%:
+							remove 16 birch log from {_list.objet.random::*}
+							add 24 birch log to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 2:
+					add 8 acacia log to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 8 acacia log from {_list.objet.random::*}
+						add 16 acacia log to {_list.objet.random::*}
+						chance of 50%:
+							remove 16 acacia log from {_list.objet.random::*}
+							add 24 acacia log to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 3:
+					add 16 terracotta to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 16 terracotta from {_list.objet.random::*}
+						add 32 terracotta to {_list.objet.random::*}
+						chance of 50%:
+							remove 32 terracotta from {_list.objet.random::*}
+							add 48 terracotta to {_list.objet.random::*}
+				if {_chanceitemchestsurprise} is 4:
+					add 16 terracotta to {_list.objet.random::*} # On ajoute l'objet dans une liste
+					chance of 50%:
+						remove 16 terracotta from {_list.objet.random::*}
+						add 32 terracotta to {_list.objet.random::*}
+						chance of 50%:
+							remove 32 terracotta from {_list.objet.random::*}
+							add 48 terracotta to {_list.objet.random::*}
+			chance of 100%:
+				add 1 shulker box to {_list.objet.random::*}
+			launch ball firework colored red at {coffre} timed 1 # Un feu d'artifice apparait à l'endroit du coffre
+			# pour l'historique
+			set {_player} to "%executor%"
+			if {coffressuprises.count} is not set:
+				set {coffressuprises.count} to 0
+			if {coffressuprises.count} < 53:
+				add 1 to {coffressuprises.count} # INCREMENT ID DE COFFRE
+			else:
+				set {coffressuprises.count} to 1
+			clear {coffressuprises.count.%{coffressuprises.count}%::*}
+			clear {coffressuprises.count.objets.%{coffressuprises.count}%::*}
+			wait 1 tick
+			add {coffressuprises.count} to {coffressuprises.count.%{coffressuprises.count}%::*} # ID DE COFFRE
+			add {_player} to {coffressuprises.count.%{coffressuprises.count}%::*} # JOUEUR AYANT EXECUTE LA COMMANDE
+			add {coffressuprises.cooldown} to {coffressuprises.count.%{coffressuprises.count}%::*} # DATE DU COFFRE
+			add {_x} to {coffressuprises.count.%{coffressuprises.count}%::*} # LOCALISATION X
+			add {_y} to {coffressuprises.count.%{coffressuprises.count}%::*} # LOCALISATION Y
+			add {_z} to {coffressuprises.count.%{coffressuprises.count}%::*} # LOCALISATION Z
+			add {_list.objet.random::*}  to {coffressuprises.count.objets.%{coffressuprises.count}%::*} # LISTE DES OBJETS DU COFFRE
+			# On ajoute le contenu dans le coffre
+			add {_list.objet.random::*} to inventory of block at {coffre} # On ajoute la liste des items dans le coffre
+			clear {_list.objet.random::*}
+			broadcast "&4[&6Coffre Surprise&4] &eUn coffre plein de surprises est apparut en &b%{coffre}% !" # Un message annonce les coordonnés du coffre
+			log "[Coffre Surprise] Un coffre plein de surprises est apparut en %{coffre}% ! /tp %{_x}% %{_y}% %{_z}% || Contenu: %{coffressuprises.count.objets.%{coffressuprises.count}%::*}%" to "event/coffressurprises.log"
+			wait 0.4 seconds # On attend 0.4 second entre chaque coffres
+
+command /coffressurprisesforcereset:
+	permission: r0x.admin
+	trigger:
+		delete {coffressuprises.cooldown}
+
+command /testcoffre <number>:
+	permission: r0x.admin
+	trigger:
+		loop {coffressuprises.count.%arg-1%::*}:
+			send "%loop-index% -> %loop-value%"
+
+command /coffressurprisesgui:
+	permission: r0x.animation
+	aliases: /csgui
+	trigger:
+		wait 4 tick
+		open chest with 6 row named "&4Historique coffres surprises" to player
+		wait 1 tick
+		format slot 0 of player with barrier named "&cFermer le menu" to close
+		loop 53 times:
+			add 1 to {_counthistocoffressurprises}
+			add 1 to {_counthistocoffressurprisesobjets}
+			# LOOP STATS DES COFFRES
+			loop {coffressuprises.count.%{_counthistocoffressurprises}%::*}:
+				set {_prelore%loop-index%} to loop-value-2
+			set {_lore} to "%{_prelore1}%" #ID COFFRE
+			set {_lore2} to "%{_prelore2}%" # EXECUTEUR
+			set {_lore3} to "%{_prelore3}%" # DATE COFFRE
+			set {_lore4} to "%{_prelore4}%" # POSITION X
+			set {_lore5} to "%{_prelore5}%" # POSITION Y
+			set {_lore6} to "%{_prelore6}%" # POSITION Z
+			set {id.coffresurprise.%player%} to {_lore}
+			# LOOP CONTENU DES COFFRES
+			set {_s} to size of {coffressuprises.count.objets.%{_counthistocoffressurprisesobjets}%::*}
+			loop {coffressuprises.count.objets.%{_counthistocoffressurprisesobjets}%::*}:
+				set {_preloreobjets%loop-index%} to loop-value-2
+				set {_loreobjet%loop-index%} to "%{_preloreobjets%loop-index%}%"
+			format slot {_counthistocoffressurprises} of player with chest named "&dCoffre n°%{_counthistocoffressurprises}%" with lore "&eID: &a%{_lore}%" and "&ePart: &a%{_lore2}%" and "&eDate: &a%{_lore3}%" and "&ePosition: &a%{_lore4}%, &a%{_lore5}%, &a%{_lore6}%" to be unstealable# then run [make player execute command "/coffressurprisesinv %{id.coffresurprise.%player%}%"]
+
+command /coffressurprisesinv <text>:
+	permission: r0x.animation
+	aliases: /csinv
+	trigger:
+		loop {coffressuprises.count.objets.%arg-1%::*}:
+			set {_prename%loop-index%} to loop-value
+		set {_s} to size of {coffressuprises.count.objets.%arg-1%::*}
+		wait 4 tick
+		open chest with 6 row named "&4Coffre n°%arg-1%" to player
+		wait 1 tick
+		loop {_s} times:
+			add 1 to {_count}
+			format slot {_count} of player with paper named "&f%{_prename%{_count}%}%" to be unstealable
+			format slot 0 of player with barrier named "&fRetour" to close then run [make player execute command "/coffressurprisesgui"]
+
+command /testcoffrecount:
+	permission: r0x.admin
+	aliases: /csinv
+	trigger:
+		send "%{coffressuprises.count}%" to player

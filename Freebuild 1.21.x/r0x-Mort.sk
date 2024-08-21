@@ -1,0 +1,12 @@
+#DeathCoordinates + Head Drop and "Jeux" world cancel event
+on death:
+	# World Jeux Cancel Event + Clear
+	if victim is in world "Jeux":
+		cancel event
+		make victim execute command "/clear"
+	else:
+		# HeadDrop
+		drop skull of victim named "&eTête de %victim's name%" at location of victim
+        # Death Coord Part
+		if victim has permission "r0x.deathcoordinates":
+			send "&4[&6r0x.fr&4] &2Vous êtes mort ici : &ax: %x-coord of victim%, y: %y-coord of victim%, z: %z-coord of victim%" to victim

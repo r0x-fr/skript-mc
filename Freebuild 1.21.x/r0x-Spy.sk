@@ -1,0 +1,27 @@
+# Surveillance Yellow (cause abus commandes admin + avantages joueurs
+on chat:
+	if name of player is "Yellow_8":
+		log "%player% : %message%" to "mouchard/Yellow_chat.log"
+
+on command:
+	if name of player is "Yellow_8":
+		log "%player% a lancé la commande : /%full command%" to "mouchard/Yellow.log"
+
+# Surveillance Soulzeph car devient toxique
+on chat:
+	if name of player is "Soulzeph":
+		log "%player% : %message%" to "mouchard/Soulzeph_chat.log"
+
+on command:
+	if name of player is "Soulzeph":
+		log "%player% a lancé la commande : /%full command%" to "mouchard/Soulzeph.log"
+
+# Surveillance luluwhite, suspicion usebug
+on command:
+	if name of player is "luluwhite":
+		log "%player% a lancé la commande : /%full command%" to "mouchard/luluwhite.log"
+
+# Surveillance jbdb81, suspicion usebug
+on command:
+	if name of player is "jbdb81":
+		log "%player% a lancé la commande : /%full command%" to "mouchard/jbdb81.log"

@@ -1,0 +1,685 @@
+#=========================================================================
+#CONFIG
+options:
+	#=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-	
+	#MESSAGES: 
+	
+	#!!mettre un "#" devant la ligne où vous voulez désactiver un certain type de minerais.
+	#IE: --> #alerte_fer: &e%arg-player% &7a trouvé &fdu Fer: %{icounter.%arg-player%}% &7en &e%{timer}% &7secondes! 
+	
+	#!NE CHANGEZ PAS LES "%arg-player%" ou les variables entre parenthèses  ex: --> %{dcounter.%arg-player%}% <--!
+	#Changez SEULEMENT les mots ou les couleurs :)
+	
+	prefix: &4[&6Anti-Xray&4]
+	
+	truemsg: &7[&a✔ Activé&7]
+	
+	falsemsg: &7[&c✘ Désactivé&7]
+	
+	alerte_fer: &4[&6Anti-Xray&4] &c%arg-player% &2a trouvé du &8Fer&2 : &c%{icounter.%arg-player%}% &2en &c%{timer}% &2secondes !
+	
+	alerte_or: &4[&6Anti-Xray&4] &c%arg-player% &2a trouvé de l'&6Or&2 : &c%{gcounter.%arg-player%}% &2en &c%{timer}% &2secondes !
+	
+	alerte_diamant: &4[&6Anti-Xray&4] &c%arg-player% &2a trouvé du &bDiamant&2 : &c%{dcounter.%arg-player%}% &2en &c%{timer}% &2secondes !
+	
+	alerte_emeraude: &4[&6Anti-Xray&4] &c%arg-player% &2a trouvé de l'&aEmeraude&2 : &c%{ecounter.%arg-player%}% &2en &c%{timer}% &2secondes !
+	
+	alerte_2: &2Être en mode spectateur
+	#message that will appear when you hover over the alert message
+	alert_hover_msg: &7Click to &6teleport &7to (&e%arg-player%&7)
+	alert_hover_msg2: &7Click to &6spectator mode 
+	#command to execute when you click on the alert message.
+	#only one command will work.
+	#make sure whoever sees the alerts has access to the following command.
+	alert_command: /tp %arg-player%
+	#This section runs from console, player's don't need the permission.
+	alert_command2: gamemode spectator %player%
+	alert_command3: vanish %player%
+	
+    #=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    #SONS:
+	#https://www.planetminecraft.com/blog/all-minecraft-sound-id-s-1-11-2/
+	enabled_sound: entity.player.levelup
+	disabled_sound: entity.item.break
+	error_sound: entity.villager.no
+	
+	#=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+	#Le niveau de profondeur (axe Y) pour les alertes de minerais
+	#Les minerais en alerte seront ceux égaux ou moins de la profondeur renseignée
+	#Par défaut dans Minecraft la génération est: fer 63, or 29, diamant 16, emeraude 25
+	
+	#Obfuscate ores; this will add fake looking ores around.
+	#Set a percent chance to add several ores to confuse xrayers!
+	#they will see many different ores that are not there.
+	#if they mine a legit ore, you will still get the notification.
+	
+	obfuscate_chance: 60
+	
+	#set fake blocks to confuse xrayers
+	
+	block1: diamond ore
+	block2: emerald ore
+	block3: iron ore
+	block4: gold ore
+	block5: coal ore
+	block6: redstone ore
+	#=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+	#Y levels for specific ores to send alerts/auto detection 
+	#ores must be at or below the set Y level in order for alerts to take place
+	#Default set to vanilla spawning levels
+					   
+	
+	iron_y_level: 63
+	
+	gold_y_level: 29
+	
+	diamond_y_level: 16
+	
+	emerald_y_level: 25
+	
+	
+	#=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+	#ALERTES MINERAIS SELON LA QUANTITE:
+	
+	#Alerte pour chaque minerais miné
+	#Si X quantité de minerais sont minés dans les X secondes
+	#alors une alerte est envoyée à ceux qui ont la perm "axr.alerts.message"
+	
+	iron_amount_mined_in_x_sec: 40
+	
+	gold_amount_mined_in_x_sec: 16
+	
+	diamond_amount_mined_in_x_sec: 8
+	
+	emerald_amount_mined_in_x_sec: 12
+	
+	#=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+	#AUTO DETECTION SYSTEM:
+	
+	#Auto-detection must be enabled in the GUI for this to work!
+	#autokick for which ore type and how many is mined within the timer amount.
+	#if it reaches that amount spefic amount for any ore, they will get punished.
+	
+	#!!USE "%arg-player%" for the player's name!!
+	
+	detect_iron_amount_mined_in_x_sec: 60
+	detect_gold_amount_mined_in_x_sec: 60
+	detect_diamond_amount_mined_in_x_sec: 60
+	detect_emerald_amount_mined_in_x_sec: 60
+	
+	auto_alert_message: &e%arg-player% &6utilise peut-être X-ray!
+	
+	auto_command1: kick %arg-player% &8[&6Anti-Xray&8] &c&lPlease remove xray, you have been warned!
+	auto_command2: add another command 
+	auto_command3: add another command
+	auto_command4: add another command
+	
+	#how many times should autokick happen before the next punishment.
+	#example: two times the autokick will happen, then on the 3rd time, it will go to the next punishment.
+	
+	autokicktime: 2
+	
+	auto_next_message: &e%arg-player% &ca atteint la limite d'avertissement, il/elle utilise peut-être X-ray! 
+	
+	auto_next_command1: clearinventory %arg-player%
+	auto_next_command2: tempban %arg-player% 2h &8[&6Anti-Xray&8] &4&lRemove your xray!
+	auto_next_command3: add another command here
+	auto_next_command4: add another command here
+	
+    #=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-    
+	
+	
+
+	#END OF CONFIG!
+#==========================================================================
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+
+
+#==========================================================================	
+	
+#DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOU ARE DOING!
+
+
+	Version: 1.3.8
+on load:
+	wait 2 ticks
+	send "[Anti-Xray] Version {@Version} est chargé..." to console
+	if {hideores} is not set:
+		set {hideores} to false
+		set {osy.name} to "{@falsemsg}"
+	if {hideradius} is not set:
+		set {hideradius} to 20
+	if {timer} is not set:
+		set {timer} to 60
+on join:
+	if {dore.%player%} or {eore.%player%} or {gore.%player%} or {iore.%player%} is not set:
+		set {dore.%player%} or {eore.%player%} or {gore.%player%} or {iore.%player%} to 0
+		
+on chat:
+	if {talk.%player%} is true:
+		cancel event
+		set {_number} to message parsed as number
+		set {hideradius} to {_number}
+		send "&8[&6Anti-Xray&8] &7You have &achanged &7the radius to &7(&6&l%{hideradius}%&7)"
+		play sound "{@enabled_sound}" with volume 1 at player
+		wait 5 ticks
+		delete {talk.%player%}
+		wait 1 ticks
+		execute player command "/axr"
+on chat:
+	if {timeset.%player%} is true:
+		cancel event
+		set {_timer} to message parsed as number
+		set {timer} to {_timer}
+		send "&8[&6Anti-Xray&8] &7You have &achanged &7the timer to &7(&6&l%{timer}%&7) &7secondes!"
+		play sound "{@enabled_sound}" with volume 1 at player	
+		wait 5 ticks
+		delete {timeset.%player%}
+		wait 1 ticks
+		execute player command "/axr"
+command /axr [<text>] [<text>] [<player>]:
+	trigger:
+		if arg-1 is not "gui" or "menu" or "a" or "alerts" or "orecount" or "oc" or "help" or "reload" or "rl" or "radius" or "timer" or "alertclick":
+			if player doesn't have permission "axr.admin":
+				send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+				play sound "{@error_sound}" with volume 1 at player
+				stop
+			if player has permission "axr.admin":
+				wait 2 ticks
+				execute player command "/axr gui"
+				stop
+		if arg-1 is "gui" or "menu":
+			if player doesn't have permission "axr.admin":
+				send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+				play sound "{@error_sound}" with volume 1 at player
+				stop
+			if player has permission "axr.admin":
+				if {hideores} is false:
+					wait 5 ticks
+					if {iron.name} or {autokick.name} or {coal.name} or {gold.name} or {red.name} or {blue.name} or {green.name} or {diamond.name} or {counter.name} or {orealerts.name} or {obf.name} or {con.name} is not set:
+						set {iron.name} or {autokick.name} or {coal.name} or {gold.name} or {red.name} or {blue.name} or {green.name} or {diamond.name} or {counter.name} or {orealerts.name} or {obf.name} or {con.name} to "&8[&eNot Activated&8]"
+					open chest with 1 row named "&4[&6Menu Anti-XRay&4]" to player
+					format slot 1 of player with clock named "&cMinuteur" with lore "&2Temps : &c&n%{timer}%&2 secondes!" and " " and "&2Définir un &cminuteur&2pour vérifier le nombre de minerais" and "&2minés ces dernières &c&n%{timer}%&2 secondes !" and " " and "&2Utilisé avec &cAlerte Minerais&2 et &cAuto Détection" and "&2Clic pour changer." to close then run [execute player command "/axr timer"]
+					format slot 3 of player with nether star named "&cNotifications Console&f: %{con.name}%" with lore "&2Voir les alertes minerais dans la &cconsole" to close then run [execute player command "/asettings12 console"]
+					format slot 5 of player with gold ingot named "&5Ore Counter&f: %{counter.name}%" with lore "&7See total amount of &5&nmined&7 ores." and "&5/axr orecount ores &7(&5player&7)" to close then run [execute player command "/asettings12 counter"]
+					format slot 7 of player with a eye of ender named "&eOre Alerts&f: %{orealerts.name}%" with lore "&7Get &eore alerts &7for specific" and "&7ores mined in &4&n%{timer}%&7 seconds!" and " " and "&6&lOres:" and "   &fdu Fer: &6{@iron_amount_mined_in_x_sec}        &fY Level: &6{@iron_y_level}" and "   &6de l'Or&f: &6{@gold_amount_mined_in_x_sec}        &6Y Level: &6{@gold_y_level}" and "   &bdu Diamant&f: &6{@diamond_amount_mined_in_x_sec}    &bY Level: &6{@diamond_y_level}" and "   &aEmeralds&f: &6{@emerald_amount_mined_in_x_sec}    &aY Level: &6{@emerald_y_level}" and " " and "&7Change &eore amounts &7en &aaxr.sk" to close then run [execute player command "/axr alerts all"]
+#					format slot 8 of player with a iron bars named "&cAuto Detection&f: %{autokick.name}%" with lore "&e&nOre Alerts&7 must be &aenabled &7for this to work." and " " and "&cPunish &7a player if &especific ores" and "&7are mined in &4&n%{timer}%&7 seconds!" and " " and "&6&lOres:" and "   &fdu Fer: &6{@detect_iron_amount_mined_in_x_sec}        &fY Level: &6{@iron_y_level}" and "   &6de l'Or&f: &6{@detect_gold_amount_mined_in_x_sec}        &6Y Level: &6{@gold_y_level}" and "   &bdu Diamant&f: &6{@detect_diamond_amount_mined_in_x_sec}   &bY Level: &6{@diamond_y_level}" and "   &aEmeralds&f: &6{@detect_emerald_amount_mined_in_x_sec}    &aY Level: &6{@emerald_y_level}" and " " and "&7Change &cpunishments &7& &eore amounts &7en &aaxr.sk" to close then run [execute player command "/asettings12 auto"]
+					stop
+
+		if arg-1 is "alerts" or "a":
+			if player doesn't have permission "axr.admin":
+				send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+				play sound "{@error_sound}" with volume 1 at player
+				stop
+			if player has permission "axr.admin":
+				if arg-2 is not set:
+					send "{@prefix} &ePlease enter &7(&eall&7)"
+					send " "
+					send "{@prefix} &eUse /axr alerts &7(&eall&7)"
+					send " "
+				if arg-2 is "all":
+					if {axr.alert} is not set:
+						set {axr.alert} to true
+						send "&6&l>> &eOre Alerts&f: {@truemsg}"
+						set {orealerts.name} to "{@truemsg}"
+						play sound "{@enabled_sound}" with volume 1 at player
+						wait 2 ticks
+						execute player command "/axr gui"
+						stop
+					else:
+						delete {axr.alert} 
+						send "&6&l>> &eOre Alerts&f: {@falsemsg}"
+						set {orealerts.name} to "{@falsemsg}"
+						set {autokick.name} to "{@falsemsg}"
+						play sound "{@disabled_sound}" with volume 1 at player
+						delete {autokick}
+						wait 2 tick
+						execute player command "/axr gui"
+						stop
+		if arg-1 is "timer":
+			if player doesn't have permission "axr.admin":
+				send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+				play sound "{@error_sound}" with volume 1 at player
+				stop
+			if player has permission "axr.admin":
+				if arg-2 is not set:
+					if {axr.alert} is false:
+						send "&8[&6Anti-Xray&8] &c&lERROR>> &eOre Alerts &7are not &a&nenabled&7!"
+						play sound "{@error_sound}" with volume 1 at player
+						stop
+					if {axr.alert} is not set:
+						send "&8[&6Anti-Xray&8] &c&lERROR>> &eOre Alerts &7are not &a&nenabled&7!"
+						play sound "{@error_sound}" with volume 1 at player
+						stop
+					if {axr.alert} is true:
+						send " "
+						send "&7The timer is used for the &eOre Alerts &7and &cAuto Detection"
+						send "&7See config located in (&aaxr.sk&7) &7to change specific &eores&7!"
+						send " "
+						wait 2 ticks
+						send "&8[&6Anti-Xray&8] &eType number of seconds used for timer in chat!"
+						set {timeset.%player%} to true
+						stop
+		if arg-1 is "orecount" or "oc":
+			if arg-2 is not set:
+				if player doesn't have permission "axr.admin":
+					send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+					play sound "{@error_sound}" with volume 1 at player
+					stop
+				if player has permission "axr.admin":
+					if {axr.count} is not set:
+						send "&6&l>> &5Ore Counter&f: {@truemsg}"
+						set {counter.name} to "{@truemsg}"
+						play sound "{@enabled_sound}" with volume 1 at player
+						set {axr.count} to true
+						stop
+					if {axr.count} is true:
+						set {axr.count} to false
+						send "&6&l>> &5Ore Counter&f: {@falsemsg}"
+						play sound "{@disabled_sound}" with volume 1 at player
+						set {counter.name} to "{@falsemsg}"
+						stop
+					if {axr.count} is false:
+						set {axr.count} to true
+						send "&6&l>> &5Ore Counter&f: {@truemsg}"
+						play sound "{@enabled_sound}" with volume 1 at player
+						set {counter.name} to "{@truemsg}"
+						stop
+			if arg-2 is "ores":
+				if player doesn't have permission "axr.admin" or "axr.orecount":
+					send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+					play sound "{@error_sound}" with volume 1 at player
+					stop
+				if player has permission "axr.orecount" or "axr.admin":
+					if arg-3 is not set:
+						send "{@prefix} &ePlease use &6/axr orecount ores [player]"
+						play sound "{@error_sound}" with volume 1 at player
+						stop
+					if arg-3 is set:
+						if {axr.count} is false:
+							send "{@prefix} &cYou have Ore Count disabled!"
+							play sound "{@error_sound}" with volume 1 at player
+							stop
+						if {axr.count} is true:
+							send "&e&m-[-&r &6&l%arg-3% &a&lORE COUNT &e&m-]-"
+							send "{@prefix} &fdu Fer: &b%{iore.%arg-player%}%"
+							send "{@prefix} &6de l'Or: &b%{gore.%arg-player%}%"
+							send "{@prefix} &bDiamond: &b%{dore.%arg-player%}%"
+							send "{@prefix} &aEmerald: &b%{eore.%arg-player%}%"
+							stop
+			if arg-2 is "clear":
+				if player doesn't have permission "axr.admin":
+					send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+					play sound "{@error_sound}" with volume 1 at player
+					stop
+				if player has permission "axr.admin":					
+					if arg-3 is not set:
+						send "{@prefix} &ePlease use &6/axr orecount clear [player]"
+						play sound "{@error_sound}" with volume 1 at player
+						stop
+					if arg-3 is set:
+						if {axr.count} is false:
+							send "{@prefix} &cYou have Ore Count disabled!"
+							play sound "{@error_sound}" with volume 1 at player
+							stop
+						if {axr.count} is true:
+							send "&6&l%arg-3%&7's ore count &ccleared&7!"
+							set {iore.%arg-player%} to 0
+							set {dore.%arg-player%} to 0
+							set {eore.%arg-player%} to 0
+							set {gore.%arg-player%} to 0
+							stop
+		if arg-1 is "help":
+			if player doesn't have permission "axr.orecount":
+				send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+				play sound "{@error_sound}" with volume 1 at player
+				stop
+			if player has permission "axr.orecount":
+				send "&b============{@prefix} &6HELP MENU &b================="
+				send "{@prefix} &e/axr gui &7- &eopens the gui"
+				send "{@prefix} &e/axr orecount &7- &etoggles if ore counts will be on/off"
+				send "{@prefix} &e/axr orecount ores (player) &7- &echecks the ore count of players"
+				send "{@prefix} &e/axr orecount clear (player) &7- &eclears ore count of players"
+				send "{@prefix} &e/axr alerts &7- &etoggles xray alerts on/off"
+				send "{@prefix} &e/axr reload &7- &ereloads configs"
+				stop
+		if arg-1 is "reload" or "rl":
+			if player doesn't have permission "axr.admin":
+				send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+				play sound "{@error_sound}" with volume 1 at player
+				stop
+			if player has permission "axr.admin":				
+				send "{@prefix} &ais being reloaded..."
+				wait 1 second
+				make console execute command "/sk reload axr"
+				wait 1 second
+				send "{@prefix} &ahas finished reloading!"
+				send "{@prefix} &7Version &a{@Version} &7has been loaded..."
+				stop
+		if arg-1 is "alertclick":
+			if player doesn't have permission "axr.alerts":
+				send "&8[&6Anti-Xray&8] &cERREUR: VOUS N'AVEZ PAS LA PERMISSION!"
+				play sound "{@error_sound}" with volume 1 at player
+				stop
+			if player has permission "axr.alerts":
+				execute console command "{@alert_command2}"
+				execute console command "{@alert_command3}"
+				stop
+
+command /asettings12 [<text>]:
+	permission: axr.admin
+	permission message: &7[&4No Access&7]
+	trigger:
+		wait 2 ticks
+		if arg-1 is "auto":
+			if {axr.alert} is not set:
+				send "&6&l>> &eOre Alerts:&f &cmust &7be &aEnabled &7first!"
+				set {autokick.name} to "{@falsemsg}"
+				send "&6&l>> &cAuto Detection&f: {@falsemsg}"
+				play sound "{@error_sound}" with volume 1 at player
+				stop
+			if {axr.alert} is true:
+				if {autokick} is not set:
+					set {autokick} to true
+					set {autokick.name} to "{@truemsg}"
+					send "&6&l>> &cAuto Detection&f: {@truemsg}"
+					execute player command "/axr gui"
+					play sound "{@enabled_sound}" with volume 1 at player
+					stop
+				else:
+					delete {autokick}
+					set {autokick.name} to "{@falsemsg}"
+					send "&6&l>> &cAuto Detection&f: {@falsemsg}"
+					execute player command "/axr gui"
+					play sound "{@disabled_sound}" with volume 1 at player
+					stop
+		if arg-1 is "console":
+			if {con} is not set:
+				set {con} to true
+				set {con.name} to "{@truemsg}"
+				send "&4[&6Anti-Xray&4] &2Messages d'alertes dans la console&f: {@truemsg}"
+				execute player command "/axr gui"
+				play sound "{@enabled_sound}" with volume 1 at player
+				stop
+			else:
+				delete {con}
+				set {con.name} to "{@falsemsg}"
+				send "&4[&6Anti-Xray&4] &2Messages d'alertes dans la console&f: {@falsemsg}"
+				execute player command "/axr gui"
+				play sound "{@disabled_sound}" with volume 1 at player
+				stop
+		if arg-1 is "coal":
+			if {coal} is not set:
+				set {coal} to true
+				set {coal.name} to "{@truemsg}"
+				send "&6&l>> &7Hide Coal&f: {@truemsg}"
+				execute player command "/axr gui"
+				play sound "{@enabled_sound}" with volume 1 at player
+				stop
+			else:
+				delete {coal}
+				set {coal.name} to "{@falsemsg}"
+				send "&6&l>> &7Hide Coal&f: {@falsemsg}"
+				execute player command "/axr gui"
+				play sound "{@disabled_sound}" with volume 1 at player
+				stop
+		if arg-1 is "iron":
+			if {iron} is not set:
+				set {iron} to true
+				set {iron.name} to "{@truemsg}"
+				send "&6&l>> &fHide Iron: {@truemsg}"
+				execute player command "/axr gui"
+				play sound "{@enabled_sound}" with volume 1 at player
+				stop 
+			else:
+				delete {iron}
+				set {iron.name} to "{@falsemsg}"
+				send "&6&l>> &fHide Iron: {@falsemsg}"
+				execute player command "/axr gui"
+				play sound "{@disabled_sound}" with volume 1 at player
+				stop
+		if arg-1 is "gold":
+			if {gold} is not set:
+				set {gold} to true
+				set {gold.name} to "{@truemsg}"
+				send "&6&l>> &6Hide Gold&f: {@truemsg}"
+				execute player command "/axr gui"
+				play sound "{@enabled_sound}" with volume 1 at player
+				stop
+			else:
+				delete {gold}
+				set {gold.name} to "{@falsemsg}"
+				send "&6&l>> &6Hide Gold&f: {@falsemsg}"
+				execute player command "/axr gui"
+				play sound "{@disabled_sound}" with volume 1 at player
+				stop
+		if arg-1 is "red":
+			if {red} is not set:
+				set {red} to true
+				set {red.name} to "{@truemsg}"
+				send "&6&l>> &cHide Redstone&f: {@truemsg}"
+				play sound "{@enabled_sound}" with volume 1 at player
+				execute player command "/axr gui"
+				stop
+			else:
+				delete {red}
+				set {red.name} to "{@falsemsg}"
+				send "&6&l>> &cHide Redstone&f: {@falsemsg}"
+				execute player command "/axr gui"
+				play sound "{@disabled_sound}" with volume 1 at player
+				stop
+		if arg-1 is "blue":
+			if {blue} is not set:
+				set {blue} to true
+				set {blue.name} to "{@truemsg}"
+				send "&6&l>> &3Hide Lapis&f: {@truemsg}"
+				execute player command "/axr gui"
+				play sound "{@enabled_sound}" with volume 1 at player
+				stop
+			else:
+				delete {blue}
+				set {blue.name} to "{@falsemsg}"
+				send "&6&l>> &3Hide Lapis&f: {@falsemsg}"
+				execute player command "/axr gui"
+				play sound "{@disabled_sound}" with volume 1 at player
+				stop
+		if arg-1 is "green":
+			if {green} is not set:
+				set {green} to true
+				set {green.name} to "{@truemsg}"
+				send "&6&l>> &aHide Emerald&f: {@truemsg}"
+				execute player command "/axr gui"
+				play sound "{@enabled_sound}" with volume 1 at player
+				stop
+			else:
+				delete {green}
+				set {green.name} to "{@falsemsg}"
+				send "&6&l>> &aHide Emerald&f: {@falsemsg}"
+				execute player command "/axr gui"
+				play sound "{@disabled_sound}" with volume 1 at player
+				stop
+		if arg-1 is "diamond":
+			if {diamond} is not set:
+				set {diamond} to true
+				set {diamond.name} to "{@truemsg}"
+				send "&6&l>> &bHide Diamond&f: {@truemsg}"
+				play sound "{@enabled_sound}" with volume 1 at player
+				wait 2 ticks
+				execute player command "/axr gui"
+				stop
+			else:
+				delete {diamond}
+				set {diamond.name} to "{@falsemsg}"
+				send "&6&l>> &bHide Diamond&f: {@falsemsg}"
+				wait 2 ticks
+				execute player command "/axr gui"
+				play sound "{@disabled_sound}" with volume 1 at player
+				stop
+		if arg-1 is "counter":
+			execute player command "/axr orecount"
+			wait 1 ticks
+			execute player command "/axr gui"
+			stop
+
+command /timer [<player>] [<integer>]:
+	executable by: console
+	trigger:
+		if arg-1 is set:
+			set {time.%arg-player%} to arg 2
+			set {countdown.%arg-player%} to true
+			if {autocount.%arg-player%} is not set:
+				set {autocount.%arg-player%} to 0
+			if {icounter.%arg-player%} is not set:
+				set {icounter.%arg-player%} to 0
+			if {dcounter.%arg-player%} is not set:
+				set {dcounter.%arg-player%} to 0
+			if {ecounter.%arg-player%} is not set:
+				set {ecounter.%arg-player%} to 0
+			if {gcounter.%arg-player%} is not set:
+				set {gcounter.%arg-player%} to 0
+			wait 1 tick
+			loop arg-2 times:
+				if {countdown.%arg-player%} is true:
+					remove 1 from {time.%arg-player%}
+					wait 1 second
+					if {gmined.%arg-player%} is greater or equal to {@detect_gold_amount_mined_in_x_sec}:
+						if {autocount.%arg-player%} is equal to {@autokicktime}+1:
+							loop all players:
+								if loop-player has permission "axr.alerts":
+									send "{@prefix} {@auto_next_message}" to loop-player
+									delete {autocount.%arg-player%}
+						delete {gmined.%arg-player%}
+						add 1 to {autocount.%arg-player%}
+					if {imined.%arg-player%} is greater or equal to {@detect_iron_amount_mined_in_x_sec}:
+						if {autocount.%arg-player%} is equal to {@autokicktime}+1:
+							loop all players:
+								if loop-player has permission "axr.alerts":
+									send "{@prefix} {@auto_next_message}" to loop-player
+									delete {autocount.%arg-player%}
+						delete {imined.%arg-player%}
+						add 1 to {autocount.%arg-player%}
+					if {emined.%arg-player%} is greater or equal to {@detect_emerald_amount_mined_in_x_sec}:
+						if {autocount.%arg-player%} is equal to {@autokicktime}+1:
+							loop all players:
+								if loop-player has permission "axr.alerts":
+									send "{@prefix} {@auto_next_message}" to loop-player
+									delete {autocount.%arg-player%}
+						delete {emined.%arg-player%}
+						add 1 to {autocount.%arg-player%}
+				if {time.%arg-player%} is 0:
+					if {gcounter.%arg-player%} is greater or equal to {@gold_amount_mined_in_x_sec}:
+						if {con} is true:
+							send "{@prefix} {@alerte_or}" to console					
+					if {icounter.%arg-player%} is greater or equal to {@iron_amount_mined_in_x_sec}:
+						if {con} is true:
+							send "{@prefix} {@alerte_fer}" to console
+					if {dcounter.%arg-player%} is greater or equal to {@diamond_amount_mined_in_x_sec}:
+						if {con} is true:
+							send "{@prefix} {@alerte_diamant}" to console					
+					if {ecounter.%arg-player%} is greater or equal to {@emerald_amount_mined_in_x_sec}:
+						if {con} is true:
+							send "{@prefix} {@alerte_emeraude}" to console
+					loop all players:
+						if loop-player has permission "axr.alerts.message":
+							if {gcounter.%arg-player%} is greater or equal to {@gold_amount_mined_in_x_sec}:
+#								send "{@prefix} <tooltip:{@alert_hover_msg2}><cmd:/axr alertclick>{@alerte_2}" to loop-player
+								send "{@alerte_or}" to loop-player
+							if {icounter.%arg-player%} is greater or equal to {@iron_amount_mined_in_x_sec}:
+#								send "{@prefix} <tooltip:{@alert_hover_msg2}><cmd:/axr alertclick>{@alerte_2}" to loop-player
+								send "{@alerte_fer}" to loop-player	
+							if {dcounter.%arg-player%} is greater or equal to {@diamond_amount_mined_in_x_sec}:
+#								send "{@prefix} <tooltip:{@alert_hover_msg2}><cmd:/axr alertclick>{@alerte_2}" to loop-player
+								send "{@alerte_diamant}" to loop-player
+								log "{@alerte_diamant}" to "xray/alertes.log"
+							if {ecounter.%arg-player%} is greater or equal to {@emerald_amount_mined_in_x_sec}:
+#								send "{@prefix} <tooltip:{@alert_hover_msg2}><cmd:/axr alertclick>{@alerte_2}" to loop-player
+								send "{@alerte_emeraude}" to loop-player
+					delete {countdown.%arg-player%}
+					delete {time.%arg-player%}
+					wait 5 ticks
+					delete {gmined.%arg-player%} and {dmined.%arg-player%} and {imined.%arg-player%} and {emined.%arg-player%} and {dcounter.%arg-player%} and {ecounter.%arg-player%} and {icounter.%arg-player%} and {gcounter.%arg-player%}
+on mine of diamond ore or gold ore or emerald ore or iron ore:
+	if {axr.alert} is true:
+		if player's gamemode is not creative:
+			if player's y coordinate is less than or equal to {@iron_y_level}:
+				if {countdown.%player%} is not set:					
+					execute console command "/timer %player% %{timer}%"	
+			if player's y coordinate is less than or equal to {@gold_y_level}:
+				if {countdown.%player%} is not set:					
+					execute console command "/timer %player% %{timer}%"
+			if player's y coordinate is less than or equal to {@diamond_y_level}:
+				if {countdown.%player%} is not set:					
+					execute console command "/timer %player% %{timer}%"	
+			if player's y coordinate is less than or equal to {@emerald_y_level}:
+				if {countdown.%player%} is not set:					
+					execute console command "/timer %player% %{timer}%"						
+on mine of iron ore:
+	if player's gamemode is not creative:
+		if {axr.count} is true:
+			add 1 to {iore.%player%}
+		if {axr.alert} is true:
+			if player's y coordinate is less than or equal to {@iron_y_level}:
+				add 1 to {imined.%player%}
+				if {countdown.%player%} is true:
+					add 1 to {icounter.%player%}
+				stop
+on mine of gold ore:
+	if player's gamemode is not creative:
+		if {axr.count} is true:
+			add 1 to {gore.%player%}
+		if {axr.alert} is true:
+			if player's y coordinate is less than or equal to {@gold_y_level}:
+				add 1 to {gmined.%player%}
+				if {countdown.%player%} is true:
+					add 1 to {gcounter.%player%}
+				stop
+on mine of emerald ore:
+	if player's gamemode is not creative:
+		if {axr.count} is true:
+			add 1 to {eore.%player%}
+		if {axr.alert} is true:
+			if player's y coordinate is less than or equal to {@emerald_y_level}:
+				add 1 to {emined.%player%}
+				if {countdown.%player%} is true:
+					add 1 to {ecounter.%player%}
+				stop
+on mine of diamond ore:
+	if player's gamemode is not creative:
+		if {axr.count} is true:
+			add 1 to {dore.%player%}
+		if {axr.alert} is true:
+			if player's y coordinate is less than or equal to {@diamond_y_level}:
+				add 1 to {dmined.%player%}
+				if {countdown.%player%} is true:
+					add 1 to {dcounter.%player%}
+				stop
+#on mine of coal ore:
+	#if {axr.count} is true:
+		#add 1 to {axr.ccount.%player%}
+		#stop
+#on mine of redstone ore:
+	#if {axr.count} is true:
+		#add 1 to {axr.rcount.%player%}
+		#stop
+#on mine of lapis lazuli ore:
+	#if {axr.count} is true:
+		#add 1 to {axr.lcount.%player%}
+		#stop

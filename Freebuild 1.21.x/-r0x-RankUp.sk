@@ -1,0 +1,428 @@
+options:
+	levelmetiers10: jobs.niveaumetier.bucheron.10, jobs.niveaumetier.mineur.10, jobs.niveaumetier.agriculteur.10, jobs.niveaumetier.pecheur.10, jobs.niveaumetier.paysagiste.10, jobs.niveaumetier.chasseur.10
+	levelmetiers20: jobs.niveaumetier.bucheron.20, jobs.niveaumetier.mineur.20, jobs.niveaumetier.agriculteur.20, jobs.niveaumetier.pecheur.20, jobs.niveaumetier.paysagiste.20, jobs.niveaumetier.chasseur.20
+	levelmetiers30: jobs.niveaumetier.bucheron.30, jobs.niveaumetier.mineur.30, jobs.niveaumetier.agriculteur.30, jobs.niveaumetier.pecheur.30, jobs.niveaumetier.paysagiste.30, jobs.niveaumetier.chasseur.30
+	levelmetiers35: jobs.niveaumetier.bucheron.35, jobs.niveaumetier.mineur.35, jobs.niveaumetier.agriculteur.35, jobs.niveaumetier.pecheur.35, jobs.niveaumetier.paysagiste.35, jobs.niveaumetier.chasseur.35
+	levelmetiers50: jobs.niveaumetier.bucheron.50, jobs.niveaumetier.mineur.50, jobs.niveaumetier.agriculteur.50, jobs.niveaumetier.pecheur.50, jobs.niveaumetier.paysagiste.50, jobs.niveaumetier.chasseur.50
+	levelmetiers60: jobs.niveaumetier.bucheron.60, jobs.niveaumetier.mineur.60, jobs.niveaumetier.agriculteur.60, jobs.niveaumetier.pecheur.60, jobs.niveaumetier.paysagiste.60, jobs.niveaumetier.chasseur.60
+	levelmetiers100: jobs.niveaumetier.bucheron.100, jobs.niveaumetier.mineur.100, jobs.niveaumetier.agriculteur.100, jobs.niveaumetier.pecheur.100, jobs.niveaumetier.paysagiste.100, jobs.niveaumetier.chasseur.100
+
+command /rankup <text>:
+	permission: r0x.rankup
+	trigger:
+		if arg-1 is "Explorateur":
+			if player has permission "r0x.ranks.Vagabonds":
+				create a gui with virtual chest inventory with 3 rows named "&lDevenir &8&lExplorateur &l!":
+					make gui slot 0 with chest named "&2>> Avantages du rang"
+					set {_itemexplo1} to paper named "&7====="
+					set line 1 of lore of {_itemexplo1} to "&c/tpahere"
+					set line 2 of lore of {_itemexplo1} to "&23 homes"
+					set line 3 of lore of {_itemexplo1} to "&c/warp"
+					set line 4 of lore of {_itemexplo1} to "&c/clearinventory"
+					make gui slot 3 with {_itemexplo1}
+					set {_itemexplo2} to paper named "&7====="
+					set line 1 of lore of {_itemexplo2} to "&c/near"
+					set line 2 of lore of {_itemexplo2} to "&c/hat"
+					set line 3 of lore of {_itemexplo2} to "&2Système de Redstone Wi-Fi"
+					set line 3 of lore of {_itemexplo2} to "&2Seau d'eau inépuisable dans le Nether"
+					make gui slot 4 with {_itemexplo2}
+					set {_itemexplo3} to paper named "&7====="
+					set line 1 of lore of {_itemexplo3} to "&2Vendre 8 items sur l'Hôtel des Ventes"
+					set line 2 of lore of {_itemexplo3} to "&229 chunks supplémentaires"
+					set line 3 of lore of {_itemexplo3} to "&22 lignes de sac à dos"
+					set line 4 of lore of {_itemexplo3} to "&2Coordonnées à la mort"
+					set line 5 of lore of {_itemexplo3} to "&21 création de marchand supplémentaire"
+					make gui slot 5 with {_itemexplo3}
+					make gui slot 8 with chest named "&2<< Avantages du rang"
+					make gui slot 23 with red wool named "&4Annuler":
+						make player execute command "/menu profil"
+					make gui slot 21 with green wool named "&2Acheter le rang" with lore "&4&lAttention : achat définitif !":
+						close player's inventory
+						make player execute command "/rankbuy Explorateur"
+				open the last gui to the player
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Villageois":
+			if player has permission "r0x.ranks.Explorateurs":
+				create a gui with virtual chest inventory with 3 rows named "&lDevenir &a&lVillageois &l!":
+					make gui slot 0 with chest named "&2>> Avantages du rang"
+					set {_itemvillageois1} to paper named "&7====="
+					set line 1 of lore of {_itemvillageois1} to "&c/back"
+					set line 2 of lore of {_itemvillageois1} to "&c/tptoggle"
+					set line 3 of lore of {_itemvillageois1} to "&c/seen"
+					make gui slot 3 with {_itemvillageois1}
+					set {_itemvillageois2} to paper named "&7====="
+					set line 1 of lore of {_itemvillageois2} to "&2Stocker son XP en bouteilles"
+					set line 2 of lore of {_itemvillageois2} to "&2S'asseoir sur une chaise"
+					set line 3 of lore of {_itemvillageois2} to "&25 homes"
+					set line 4 of lore of {_itemvillageois2} to "&21 création de marchand supplémentaire"
+					make gui slot 4 with {_itemvillageois2}
+					set {_itemvillageois3} to paper named "&7====="
+					set line 1 of lore of {_itemvillageois3} to "&23 métiers simultanés"
+					set line 2 of lore of {_itemvillageois3} to "&210 items sur l'Hôtel des Ventes"
+					set line 3 of lore of {_itemvillageois3} to "&295 chunks supplémentaires"
+					set line 4 of lore of {_itemvillageois3} to "&23 lignes de sac à dos"
+					make gui slot 5 with {_itemvillageois3}
+					make gui slot 8 with chest named "&2<< Avantages du rang"
+					make gui slot 23 with red wool named "&4Annuler":
+						make player execute command "/menu profil"
+					make gui slot 21 with green wool named "&2Acheter le rang" with lore "&4&lAttention : achat définitif !":
+						close player's inventory
+						make player execute command "/rankbuy Villageois"
+				open the last gui to the player
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Citadin":
+			if player has permission "r0x.ranks.Villageois":
+				create a gui with virtual chest inventory with 3 rows named "&lDevenir &e&lCitadin &l!":
+					make gui slot 0 with chest named "&2>> Avantages du rang"
+					set {_itemcitadin1} to paper named "&7====="
+					set line 1 of lore of {_itemcitadin1} to "&c/back &2lors d'une mort"
+					set line 2 of lore of {_itemcitadin1} to "&c/craft"
+					set line 3 of lore of {_itemcitadin1} to "&2Outil de changement de peinture"
+					make gui slot 3 with {_itemcitadin1}
+					set {_itemcitadin2} to paper named "&7====="
+					set line 1 of lore of {_itemcitadin2} to "&27 homes"
+					set line 2 of lore of {_itemcitadin2} to "&24 métiers simultanés"
+					set line 3 of lore of {_itemcitadin2} to "&212 items sur l'Hôtel des Ventes"
+					make gui slot 4 with {_itemcitadin2}
+					set {_itemcitadin3} to paper named "&7====="
+					set line 1 of lore of {_itemcitadin3} to "&2112 chunks supplémentaires"
+					set line 2 of lore of {_itemcitadin3} to "&24 lignes de sac à dos"
+					set line 3 of lore of {_itemcitadin3} to "&21 création de marchand supplémentaire"
+					make gui slot 5 with {_itemcitadin3}
+					make gui slot 8 with chest named "&2<< Avantages du rang"
+					make gui slot 23 with red wool named "&4Annuler":
+						make player execute command "/menu profil"
+					make gui slot 21 with green wool named "&2Acheter le rang" with lore "&4&lAttention : achat définitif !":
+						close player's inventory
+						make player execute command "/rankbuy Citadin"
+				open the last gui to the player
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Bourgeois":
+			if player has permission "r0x.ranks.Citadins":
+				create a gui with virtual chest inventory with 3 rows named "&lDevenir &3&lBourgeois &l!":
+					make gui slot 0 with chest named "&2>> Avantages du rang"
+					set {_itembourgeois1} to paper named "&7====="
+					set line 1 of lore of {_itembourgeois1} to "&c/enderchest"
+					set line 2 of lore of {_itembourgeois1} to "&2Outil de copie et d'édition de panneaux"
+					make gui slot 3 with {_itembourgeois1}
+					set {_itembourgeois2} to paper named "&7====="
+					set line 1 of lore of {_itembourgeois2} to "&210 homes"
+					set line 2 of lore of {_itembourgeois2} to "&25 métiers simultanés"
+					set line 3 of lore of {_itembourgeois2} to "&21 création de marchand supplémentaire"
+					make gui slot 4 with {_itembourgeois2}
+					set {_itembourgeois3} to paper named "&7====="
+					set line 1 of lore of {_itembourgeois3} to "&2473 chunks supplémentaires"
+					set line 2 of lore of {_itembourgeois3} to "&25 lignes de sac à dos"
+					set line 3 of lore of {_itembourgeois3} to "&215 items sur l'Hôtel des Ventes"
+					make gui slot 5 with {_itembourgeois3}
+					make gui slot 8 with chest named "&2<< Avantages du rang"
+					make gui slot 23 with red wool named "&4Annuler":
+						make player execute command "/menu profil"
+					make gui slot 21 with green wool named "&2Acheter le rang" with lore "&4&lAttention : achat définitif !":
+						close player's inventory
+						make player execute command "/rankbuy Bourgeois"
+				open the last gui to the player
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Comte":
+			if player has permission "r0x.ranks.Bourgeois":
+				create a gui with virtual chest inventory with 3 rows named "&lDevenir &6&lComte &l!":
+					make gui slot 0 with chest named "&2>> Avantages du rang"
+					set {_item1} to paper named "&7====="
+					set line 1 of lore of {_item1} to "&c/loom"
+					set line 2 of lore of {_item1} to "&c/cartographytable"
+					set line 3 of lore of {_item1} to "&2Système de panneaux téléporteurs"
+					make gui slot 3 with {_item1}
+					set {_item2} to paper named "&7====="
+					set line 1 of lore of {_item2} to "&212 homes"
+					set line 2 of lore of {_item2} to "&2Accès à un monde créatif exclusif"
+					set line 3 of lore of {_item2} to "&2295 chunks supplémentaires"
+					set line 4 of lore of {_item2} to "&21 création de marchand supplémentaire"
+					make gui slot 5 with {_item2}
+					make gui slot 8 with chest named "&2<< Avantages du rang"
+					make gui slot 23 with red wool named "&4Annuler":
+						make player execute command "/menu profil"
+					make gui slot 21 with green wool named "&2Acheter le rang" with lore "&4&lAttention : achat définitif !":
+						close player's inventory
+						make player execute command "/rankbuy Comte"
+				open the last gui to the player
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Marquis":
+			if player has permission "r0x.ranks.Comtes":
+				create a gui with virtual chest inventory with 3 rows named "&lDevenir &d&lMarquis &l!":
+					make gui slot 0 with chest named "&2>> Avantages du rang"
+					set {_item1} to paper named "&7====="
+					set line 1 of lore of {_item1} to "&c/repair"
+					set line 2 of lore of {_item1} to "&c/feed"
+					set line 3 of lore of {_item1} to "&c/stonecutter"
+					make gui slot 3 with {_item1}
+					set {_item2} to paper named "&7====="
+					set line 1 of lore of {_item2} to "&214 homes"
+					set line 2 of lore of {_item2} to "&26 lignes de sac à dos"
+					set line 3 of lore of {_item2} to "&21 création de marchand supplémentaire"
+					make gui slot 5 with {_item2}
+					make gui slot 8 with chest named "&2<< Avantages du rang"
+					make gui slot 23 with red wool named "&4Annuler":
+						make player execute command "/menu profil"
+					make gui slot 21 with green wool named "&2Acheter le rang" with lore "&4&lAttention : achat définitif !":
+						close player's inventory
+						make player execute command "/rankbuy Marquis"
+				open the last gui to the player
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Duc":
+			if player has permission "r0x.ranks.Marquis":
+				create a gui with virtual chest inventory with 3 rows named "&lDevenir &5&lDuc &l!":
+					make gui slot 0 with chest named "&2>> Avantages du rang"
+					set {_item1} to paper named "&7====="
+					set line 1 of lore of {_item1} to "&c/heal"
+					set line 2 of lore of {_item1} to "&c/smithingtable"
+					set line 3 of lore of {_item1} to "&c/grindstone"
+					make gui slot 3 with {_item1}
+					set {_item2} to paper named "&7====="
+					set line 1 of lore of {_item2} to "&216 homes"
+					set line 2 of lore of {_item2} to "&2Arc de téléportation"
+					set line 3 of lore of {_item2} to "&21 création de marchand supplémentaire"
+					make gui slot 5 with {_item2}
+					make gui slot 8 with chest named "&2<< Avantages du rang"
+					make gui slot 23 with red wool named "&4Annuler":
+						make player execute command "/menu profil"
+					make gui slot 21 with green wool named "&2Acheter le rang" with lore "&4&lAttention : achat définitif !":
+						close player's inventory
+						make player execute command "/rankbuy Duc"
+				open the last gui to the player
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Prince":
+			if player has permission "r0x.ranks.Ducs":
+				create a gui with virtual chest inventory with 3 rows named "&lDevenir &9&lPrince &l!":
+					make gui slot 0 with chest named "&2>> Avantages du rang"
+					set {_item1} to paper named "&7====="
+					set line 1 of lore of {_item1} to "&c/fly &2dans sa zone"
+					set line 2 of lore of {_item1} to "&c/thor"
+					set line 3 of lore of {_item1} to "&c/anvil"
+					make gui slot 3 with {_item1}
+					set {_item2} to paper named "&7====="
+					set line 1 of lore of {_item2} to "&c/disguise"
+					set line 2 of lore of {_item2} to "&218 homes"
+					set line 3 of lore of {_item2} to "&21 création de marchand supplémentaire"
+					make gui slot 5 with {_item2}
+					make gui slot 8 with chest named "&2<< Avantages du rang"
+					make gui slot 23 with red wool named "&4Annuler":
+						make player execute command "/menu profil"
+					make gui slot 21 with green wool named "&2Acheter le rang" with lore "&4&lAttention : achat définitif !":
+						close player's inventory
+						make player execute command "/rankbuy Prince"
+				open the last gui to the player
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Optimus":
+			if player has permission "r0x.ranks.Princes":
+				create a gui with virtual chest inventory with 3 rows named "&lDevenir &c&lOptimus &l!":
+					make gui slot 0 with chest named "&2>> Avantages du rang"
+					set {_item1} to paper named "&7====="
+					set line 1 of lore of {_item1} to "&c/fly &2partout"
+					set line 2 of lore of {_item1} to "&c/region"
+					set line 3 of lore of {_item1} to "&220 homes"
+					set line 4 of lore of {_item1} to "&21 création de marchand supplémentaire"
+					make gui slot 3 with {_item1}
+					set {_item2} to paper named "&7====="
+					set line 1 of lore of {_item2} to "&9UN ROYAUME POUR"
+					set line 2 of lore of {_item2} to "&9LES GOUVERNER TOUS !"
+					make gui slot 5 with {_item2}
+					make gui slot 8 with chest named "&2<< Avantages du rang"
+					make gui slot 23 with red wool named "&4Annuler":
+						make player execute command "/menu profil"
+					make gui slot 21 with green wool named "&2Acheter le rang" with lore "&4&lAttention : achat définitif !":
+						close player's inventory
+						make player execute command "/rankbuy Optimus"
+				open the last gui to the player
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+command /testjob:
+	permission: r0x.rankup
+	trigger:
+		set {_count} to 0
+		set {_listelevelmetiers10::*} to split "{@levelmetiers10}" at ", "
+		loop {_listelevelmetiers10::*}:
+			if player has permission "%loop-value%":
+				add 1 to {_count}
+		message "%{_count}%" to player
+command /rankbuy <text>:
+	permission: r0x.rankup
+	trigger:
+		if arg-1 is "Explorateur":
+			if player has permission "r0x.ranks.Vagabonds":
+				if player's balance is smaller than 5001:
+					send "&4[&6Rangs&4] &2Vous n'avez pas assez d'argent pour acheter ce rang. Le rang coûte 5000 Eur0x et il vous faut au moins 5001 Eur0x sur votre compte pour pouvoir l'acheter."
+				else:
+					set {_count} to 0
+					set {_listelevelmetiers10::*} to split "{@levelmetiers10}" at ", "
+					loop {_listelevelmetiers10::*}:
+						if player has permission "%loop-value%":
+							add 1 to {_count}
+					if {_count} > 0:
+						execute console command "lp user %player% promote r0x.fr-rangs"
+						execute console command "eco take %player% 5000"
+						send "&4[&6Rangs&4] &2Tu es maintenant un &8Explorateur &2 ! Fais &c/rang info Explorateur &2pour voir tes nouveaux avantages !"
+						execute console command "broadcast &c%player% &2est maintenant &8Explorateur &2!"
+						stop
+					send "&4[&6Rangs&4] &2Vous devez avoir au moins 1 métier de niveau 10 pour acheter ce rang !"
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Villageois":
+			if player has permission "r0x.ranks.Explorateurs":
+				if player's balance is smaller than 20001:
+					send "&4[&6Rangs&4] &2Vous n'avez pas assez d'argent pour acheter ce rang. Le rang coûte 20000 Eur0x et il vous faut au moins 20001 Eur0x sur votre compte pour pouvoir l'acheter."
+				else:
+					set {_count} to 0
+					set {_listelevelmetiers20::*} to split "{@levelmetiers20}" at ", "
+					loop {_listelevelmetiers20::*}:
+						if player has permission "%loop-value%":
+							add 1 to {_count}
+					if {_count} > 1:
+						execute console command "lp user %player% promote r0x.fr-rangs"
+						execute console command "eco take %player% 20000"
+						send "&4[&6Rangs&4] &2Tu es maintenant un &aVillageois &2 ! Fais &c/rang info Villageois &2pour voir tes nouveaux avantages !"
+						execute console command "broadcast &c%player% &2est maintenant &aVillageois &2!"
+						stop
+					send "&4[&6Rangs&4] &2Vous devez avoir au moins 2 métiers de niveau 20 pour acheter ce rang !"
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Citadin":
+			if player has permission "r0x.ranks.Villageois":
+				if player's balance is smaller than 55001:
+					send "&4[&6Rangs&4] &2Vous n'avez pas assez d'argent pour acheter ce rang. Le rang coûte 55000 Eur0x et il vous faut au moins 55001 Eur0x sur votre compte pour pouvoir l'acheter."
+				else:
+					set {_count} to 0
+					set {_listelevelmetiers35::*} to split "{@levelmetiers35}" at ", "
+					loop {_listelevelmetiers35::*}:
+						if player has permission "%loop-value%":
+							add 1 to {_count}
+					if {_count} > 0:
+						execute console command "lp user %player% promote r0x.fr-rangs"
+						execute console command "eco take %player% 55000"
+						send "&4[&6Rangs&4] &2Tu es maintenant un &eCitadin &2 ! Fais &c/rang info Citadin &2pour voir tes nouveaux avantages !"
+						execute console command "broadcast &c%player% &2est maintenant &eCitadin &2!"
+						stop
+					send "&4[&6Rangs&4] &2Vous devez avoir au moins 1 métier de niveau 35 pour acheter ce rang !"
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Bourgeois":
+			if player has permission "r0x.ranks.Citadins":
+				if player's balance is smaller than 120001:
+					send "&4[&6Rangs&4] &2Vous n'avez pas assez d'argent pour acheter ce rang. Le rang coûte 120000 Eur0x et il vous faut au moins 120001 Eur0x sur votre compte pour pouvoir l'acheter."
+				else:
+					set {_count} to 0
+					set {_listelevelmetiers30::*} to split "{@levelmetiers30}" at ", "
+					loop {_listelevelmetiers30::*}:
+						if player has permission "%loop-value%":
+							add 1 to {_count}
+					if {_count} > 2:
+						execute console command "lp user %player% promote r0x.fr-rangs"
+						execute console command "eco take %player% 120000"
+						send "&4[&6Rangs&4] &2Tu es maintenant un &3Bourgeois &2 ! Fais &c/rang info Bourgeois &2pour voir tes nouveaux avantages !"
+						execute console command "broadcast &c%player% &2est maintenant &3Bourgeois &2!"
+						stop
+					send "&4[&6Rangs&4] &2Vous devez avoir au moins 3 métiers de niveau 30 pour acheter ce rang !"
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Comte":
+			if player has permission "r0x.ranks.Bourgeois":
+				if player's balance is smaller than 180001:
+					send "&4[&6Rangs&4] &2Vous n'avez pas assez d'argent pour acheter ce rang. Le rang coûte 180000 Eur0x et il vous faut au moins 180001 Eur0x sur votre compte pour pouvoir l'acheter."
+				else:
+					set {_count} to 0
+					set {_listelevelmetiers50::*} to split "{@levelmetiers50}" at ", "
+					loop {_listelevelmetiers50::*}:
+						if player has permission "%loop-value%":
+							add 1 to {_count}
+					if {_count} > 0:
+						execute console command "lp user %player% promote r0x.fr-rangs"
+						execute console command "eco take %player% 180000"
+						send "&4[&6Rangs&4] &2Tu es maintenant un &6Comte &2 ! Fais &c/rang info &6Comte &2pour voir tes nouveaux avantages !"
+						execute console command "broadcast &c%player% &2est maintenant &6Comte &2!"
+						stop
+					send "&4[&6Rangs&4] &2Vous devez avoir au moins 1 métier de niveau 50 pour acheter ce rang !"
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Marquis":
+			if player has permission "r0x.ranks.Comtes":
+				if player's balance is smaller than 250001:
+					send "&4[&6Rangs&4] &2Vous n'avez pas assez d'argent pour acheter ce rang. Le rang coûte 250000 Eur0x et il vous faut au moins 250001 Eur0x sur votre compte pour pouvoir l'acheter."
+				else:
+					set {_count} to 0
+					set {_listelevelmetiers50::*} to split "{@levelmetiers50}" at ", "
+					loop {_listelevelmetiers50::*}:
+						if player has permission "%loop-value%":
+							add 1 to {_count}
+					if {_count} > 1:
+						execute console command "lp user %player% promote r0x.fr-rangs"
+						execute console command "eco take %player% 250000"
+						send "&4[&6Rangs&4] &2Tu es maintenant un &dMarquis &2 ! Fais &c/rang info &dMarquis &2pour voir tes nouveaux avantages !"
+						execute console command "broadcast &c%player% &2est maintenant &dMarquis &2!"
+						stop
+					send "&4[&6Rangs&4] &2Vous devez avoir au moins 2 métiers de niveau 50 pour acheter ce rang !"
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Duc":
+			if player has permission "r0x.ranks.Marquis":
+				if player's balance is smaller than 320001:
+					send "&4[&6Rangs&4] &2Vous n'avez pas assez d'argent pour acheter ce rang. Le rang coûte 320000 Eur0x et il vous faut au moins 320001 Eur0x sur votre compte pour pouvoir l'acheter."
+				else:
+					set {_count} to 0
+					set {_listelevelmetiers50::*} to split "{@levelmetiers50}" at ", "
+					loop {_listelevelmetiers50::*}:
+						if player has permission "%loop-value%":
+							add 1 to {_count}
+					if {_count} > 2:
+						execute console command "lp user %player% promote r0x.fr-rangs"
+						execute console command "eco take %player% 320000"
+						send "&4[&6Rangs&4] &2Tu es maintenant un &5Duc &2 ! Fais &c/rang info &5Duc &2pour voir tes nouveaux avantages !"
+						execute console command "broadcast &c%player% &2est maintenant &5Duc &2!"
+						stop
+					send "&4[&6Rangs&4] &2Vous devez avoir au moins 3 métiers de niveau 50 pour acheter ce rang !"
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Prince":
+			if player has permission "r0x.ranks.Ducs":
+				if player's balance is smaller than 400001:
+					send "&4[&6Rangs&4] &2Vous n'avez pas assez d'argent pour acheter ce rang. Le rang coûte 400000 Eur0x et il vous faut au moins 400001 Eur0x sur votre compte pour pouvoir l'acheter."
+				else:
+					set {_count} to 0
+					set {_listelevelmetiers60::*} to split "{@levelmetiers60}" at ", "
+					loop {_listelevelmetiers60::*}:
+						if player has permission "%loop-value%":
+							add 1 to {_count}
+					if {_count} > 0:
+						execute console command "lp user %player% promote r0x.fr-rangs"
+						execute console command "eco take %player% 400000"
+						send "&4[&6Rangs&4] &2Tu es maintenant un &9Prince &2 ! Fais &c/rang info &9Prince &2pour voir tes nouveaux avantages !"
+						execute console command "broadcast &c%player% &2est maintenant &9Prince &2!"
+						stop
+					send "&4[&6Rangs&4] &2Vous devez avoir au moins 1 métier de niveau 60 pour acheter ce rang !"
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"
+		if arg-1 is "Optimus":
+			if player has permission "r0x.ranks.Princes":
+				if player's balance is smaller than 500001:
+					send "&4[&6Rangs&4] &2Vous n'avez pas assez d'argent pour acheter ce rang. Le rang coûte 500000 Eur0x et il vous faut au moins 500001 Eur0x sur votre compte pour pouvoir l'acheter."
+				else:
+					set {_count} to 0
+					set {_listelevelmetiers100::*} to split "{@levelmetiers100}" at ", "
+					loop {_listelevelmetiers100::*}:
+						if player has permission "%loop-value%":
+							add 1 to {_count}
+					if {_count} > 0:
+						execute console command "lp user %player% promote r0x.fr-rangs"
+						execute console command "eco take %player% 500000"
+						send "&4[&6Rangs&4] &2Tu es maintenant un &cOptimus &2 ! Fais &c/rang info &cOptimus &2pour voir tes nouveaux avantages !"
+						execute console command "broadcast &c%player% &2est maintenant &cOptimus &2!"
+						stop
+					send "&4[&6Rangs&4] &2Vous devez avoir au moins 1 métier de niveau 100 pour acheter ce rang !"
+			else:
+				send "&4[&6Rangs&4] &2Vous ne pouvez pas acheter ce rang !"

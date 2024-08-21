@@ -1,0 +1,142 @@
+# # # # # # # # # # # # # # # # # # # # # #
+#    _____   _____   __  ______ _____     #
+#   |  __ \ / _ \ \ / / |  ____|  __ \    #
+#   | |__) | | | \ V /  | |__  | |__) |   #
+#   |  _  /| | | |> <   |  __| |  _  /    #
+#   | | \ \| |_| / . \ _| |    | | \ \    #
+#   |_|  \_\\___/_/ \_(_|_|    |_|  \_\   #
+#                                         #
+#             VOTEDAY SKRIPT             #
+# # # # # # # # # # # # # # # # # # # # # #
+# OPTIONS SECTION - SKRIPT CUSTOMIZATION  #
+# # # # # # # # # # # # # # # # # # # # # #
+options:
+	SkriptVersion: 1.2
+	VoteDayDuration: 30 # in seconds
+# MESSAGES
+	Prefix: &4[&6VoteDay&4]
+	LoadingMessage: &2VoteDay chargé - Version
+	VoteDayInProgress: &2Un vote est déjà en cours !
+	StillDay: &2Mais, il fait déjà jour !
+	DelayNotExpired: &2Le délai n'est pas écoulé !
+	BroadcastVoteDay: &c%player% &2propose de faire passer la nuit !
+	BroadcastVoteDayYes: &7>> &2Faites &c/votedayyes&2 (ou /vdy) pour voter en faveur de passer la nuit
+	BroadcastVoteDayNo: &7>> &2Faites &c/votedayno&2 (ou /vdn) pour voter contre passer la nuit
+	BroadcastVoteDayTime: &4Vous avez &c%{voteday.duration}% secondes&4 pour voter !
+	EndVoteDay: &2Vote terminé. Nombre de voix en faveur : &c%{voteday.yes}% &7| &2Nombre de voix contre : &c%{voteday.no}%&2.
+	NightCanceled: &2La nuit a été passée !
+	VoteDayRefused: &2La nuit n'a pas été passée.
+	LogVoteDayAccepted: VOTEDAY ACCEPTE : %player% a lancé un vote pour passer la nuit. Pour : %{voteday.yes}%, Contre : %{voteday.no}%. Votants : %{voteday::voted::*}%
+	LogVoteDayRefused: VOTEDAY REFUSE : %player% a lancé un vote pour passer la nuit. Pour : %{voteday.yes}%, Contre : %{voteday.no}%. Votants : %{voteday::voted::*}%
+	LogVoteDayEquality: KICK REFUSE [Egalité] : %player% a lancé un vote pour passer la nuit. Pour : %{voteday.yes}%, Contre : %{voteday.no}%. Votants : %{voteday::voted::*}%
+	NoVoteDay: &2Aucun vote n'est en cours.
+	StillVotedDayYes: &2Vous avez déjà voté &cen faveur &2et ne pouvez pas voter deux fois ! Pour changer votre vote : &c/votedayno
+	VoteDayChangedYes: &2Votre vote a été changé. Vous votez maintenant &cen faveur de&2 passer la nuit.
+	VoteDayChangedNo: &2Vous avez déjà voté &ccontre &2et ne pouvez pas voter deux fois ! Pour changer votre vote : &c/votedayyes
+	StillVotedDayNo: &2Votre vote a été changé. Vous votez maintenant &ccontre&2 passer la nuit.
+	VoteDayYes: &2Vous avez voté &cen faveur &2de passer la nuit.
+	VoteDayNo: &2Vous avez voté &ccontre&2 passer la nuit.
+command /voteday:
+	permission: r0x.voteday.start
+	usage: {@Prefix} &c/voteday
+	trigger:
+		if {voteday.started} or {votekick.started} is true:
+			message "{@Prefix} {@VoteDayInProgress}"
+			stop
+		else if time in world "Freebuild" is day:
+			message "{@Prefix} {@StillDay}"
+			stop
+		else:
+			set {voteday.started} to true
+			set {voteday.stopped} to false
+			set {voteday.yes} to 0
+			set {voteday.no} to 0
+			set {voteday.duration} to {@VoteDayDuration}
+			broadcast "{@Prefix} {@BroadcastVoteDay}"
+			broadcast "{@BroadcastVoteDayYes}"
+			broadcast "{@BroadcastVoteDayNo}"
+			broadcast "{@BroadcastVoteDayTime}"
+			loop all players:
+				set {voteday.%loop-player%.voted} to false
+			wait {@VoteDayDuration} seconds
+			set {voteday.lastused} to now
+			if {voteday.yes} is greater than {voteday.no}:
+				wait 1 second
+				broadcast "{@Prefix} {@EndVoteDay}"
+				wait 1 second
+				make console execute command "/minecraft:time set 0"
+				make console execute command "/weather Freebuild sun"
+				log "{@LogVoteDayAccepted}" to "votes/votesday.log"
+				broadcast "{@NightCanceled}"
+			if {voteday.no} is greater than {voteday.yes}:
+				broadcast "{@Prefix} {@EndVoteDay}"
+				broadcast "{@VoteDayRefused}"
+				log "{@LogVoteDayRefused}" to "votes/voteskick.log"
+			if {voteday.no} is equal to {voteday.yes}:
+				broadcast "{@Prefix} {@EndVoteDay}"
+				broadcast "{@VoteDayRefused}"
+				log "{@LogVoteDayEquality}" to "votes/voteskick.log"
+			delete {voteday.yes}
+			delete {voteday.no}
+			delete {voteday.started}
+			delete {voteday.stopped}
+			delete {voteday::voted::*}
+			delete {voteday::votedyes::*}
+			delete {voteday::votedno::*}
+			delete {voteday.duration}
+command /votedayyes:
+	permission: r0x.voteday.vote
+	aliases: vdy
+	trigger:
+		if {voteday.started} is not set:
+			message "{@Prefix} {@NoVoteDay}"
+		if {voteday.started} is false:
+			message "{@Prefix} {@NoVoteDay}"
+		if {voteday.started} is true:
+			if "%{voteday::votedyes::*}%" contains "%player%":
+				message "{@Prefix} {@StillVotedDayYes}"
+			else if "%{voteday::votedno::*}%" contains "%player%":
+				remove player from {voteday::votedno::*}
+				remove 1 from {voteday.no}
+				message "{@Prefix} {@VoteDayChangedYes}"
+				add player to {voteday::votedyes::*}
+				add 1 to {voteday.yes}
+			else:
+				add player to {voteday::votedyes::*}
+				add 1 to {voteday.yes}
+				message "{@Prefix} {@VoteDayYes}"
+				add player to {voteday::voted::*}
+command /votedayno:
+	aliases: vdn
+	permission: r0x.voteday.vote
+	trigger:
+		if {voteday.started} is not set:
+			message "{@Prefix} {@NoVoteDay}"
+		if {voteday.started} is false:
+			message "{@Prefix} {@NoVoteDay}"
+		if {voteday.started} is true:
+			if "%{voteday::votedno::*}%" contains "%player%":
+				message "{@Prefix} {@StillVotedDayNo}"
+			else if "%{voteday::votedyes::*}%" contains "%player%":
+				remove player from {voteday::votedyes::*}
+				remove 1 from {voteday.yes}
+				message "{@Prefix} {@VoteDayChangedNo}"
+				add player to {voteday::votedno::*}
+				add 1 to {voteday.no}
+			else:
+				add player to {voteday::votedno::*}
+				add 1 to {voteday.no}
+				message "{@Prefix} {@VoteDayNo}"
+				add player to {voteday::voted::*}
+on skript load:
+	wait 2 ticks
+	send "{@Prefix} {@LoadingMessage} {@SkriptVersion}" to console
+on skript unload:
+	delete {voteday.yes}
+	delete {voteday.no}
+	delete {voteday.started}
+	delete {voteday.stopped}
+	delete {voteday::voted::*}
+	delete {voteday::votedyes::*}
+	delete {voteday::votedno::*}
+	delete {voteday.duration}

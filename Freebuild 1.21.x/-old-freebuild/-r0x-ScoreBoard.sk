@@ -1,0 +1,104 @@
+every 1 seconds:
+	loop all players:
+		if {scoreboard.%loop-player's UUID%} is not set:
+			if loop-player is not in world "Events" or "Jeux":
+				wipe loop-player's sidebar
+				set name of sidebar of loop-player to "&4[&6Infos&4]"
+				if loop-player has permission "r0x.ranks.Visiteurs":
+					set score "&2Rang : &7--" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Vagabonds":
+					set score "&2Rang : &fVagabond" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Explorateurs":
+					set score "&2Rang : &8Explorateur" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Villageois":
+					set score "&2Rang : &aVillageois" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Citadins":
+					set score "&2Rang : &eCitadin" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Bourgeois":
+					set score "&2Rang : &3Bourgeois" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Comtes":
+					set score "&2Rang : &6Comte" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Marquis":
+					set score "&2Rang : &dMarquis" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Ducs":
+					set score "&2Rang : &5Duc" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Princes":
+					set score "&2Rang : &9Prince" in sidebar of loop-player to 10
+				else if loop-player has permission "r0x.ranks.Optimus":
+					set score "&2Rang : &cOptimus" in sidebar of loop-player to 10
+				else:
+					set score "&2Rang : &7--" in sidebar of loop-player to 10
+				if loop-player has permission "r0x.grades.Visiteurs":
+					set score "&2Grade : &fVisiteurs" in sidebar of loop-player to 9
+				else if loop-player has permission "r0x.grades.Aventuriers":
+					set score "&2Grade : &7Aventurier" in sidebar of loop-player to 9
+				else if loop-player has permission "r0x.grades.Residents":
+					set score "&2Grade : &2Résident" in sidebar of loop-player to 9
+				else if loop-player has permission "r0x.grades.Veterans":
+					set score "&2Grade : &2Vétéran" in sidebar of loop-player to 9
+				else if loop-player has permission "r0x.grades.Staffs":
+					set score "&2Grade : &bStaff" in sidebar of loop-player to 9
+				else if loop-player has permission "r0x.grades.Ambassadeurs":
+					set score "&2Grade : &5Ambassadeur" in sidebar of loop-player to 9
+				else if loop-player has permission "r0x.grades.Gouverneurs":
+					set score "&2Grade : &9Gouverneur" in sidebar of loop-player to 9
+				else if loop-player has permission "r0x.grades.Senateurs":
+					set score "&2Grade : &6Sénateur" in sidebar of loop-player to 9
+				else if loop-player has permission "r0x.grades.Dieux":
+					set score "&2Grade : &cDieu" in sidebar of loop-player to 9
+				set score "&2Compte : &c%loop-player's balance%" in sidebar of loop-player to 8
+				set score "&2Métier(s) :" in sidebar of loop-player to 7
+				if loop-player is in job Bûcheron:
+					set score "- &aBûcheron &2(n.&c%level of job Bûcheron of loop-player%&2)" in sidebar of loop-player to 6
+				if loop-player is in job Mineur:
+					set score "- &8Mineur &2(n.&c%level of job Mineur of loop-player%&2)" in sidebar of loop-player to 6
+				if loop-player is in job Agriculteur:
+					set score "- &2Agriculteur &2(n.&c%level of job Agriculteur of loop-player%&2)" in sidebar of loop-player to 6
+				if loop-player is in job Chasseur:
+					set score "- &4Chasseur &2(n.&c%level of job Chasseur of loop-player%&2)" in sidebar of loop-player to 6
+				if loop-player is in job Pêcheur:
+					set score "- &9Pêcheur &2(n.&c%level of job Pêcheur of loop-player%&2)" in sidebar of loop-player to 6
+				if loop-player is in job Paysagiste:
+					set score "- &ePaysagiste &2(n.&c%level of job Paysagiste of loop-player%&2)" in sidebar of loop-player to 6
+				set score "&2Heure : &c%loop-player's world's time%" in sidebar of loop-player to 5
+				if loop-player's facing is south:
+					set score "&2Orientation : &c&lS ↓" in sidebar of loop-player to 4
+				if loop-player's facing is north:
+					set score "&2Orientation : &c&lN ↑" in sidebar of loop-player to 4
+				if loop-player's facing is east:
+					set score "&2Orientation : &c&lE →" in sidebar of loop-player to 4
+				if loop-player's facing is west:
+					set score "&2Orientation : &c&lO ←" in sidebar of loop-player to 4
+				if {scoreboard-xyz.%loop-player's UUID%} is not set:
+					set score "&c%loop-player's x-coordinate% &2; &c%loop-player's y-coordinate% &2; &c%loop-player's z-coordinate%" in sidebar of loop-player to 3
+				else if {scoreboard-xyz.%loop-player's UUID%} is false:
+					set score "" in sidebar of loop-player to 3
+			else:
+				wipe loop-player's sidebar
+		else:
+			wipe loop-player's sidebar
+
+command /scboard <text>:
+	usage: &4[&6r0x.fr&4] &2Faites &c/scboard <on/off/xyz> &2pour activer ou désactiver le scoreboard !
+	trigger:
+		if arg-1 is "off":
+			if {scoreboard.%player's UUID%} is not set:
+				set {scoreboard.%player's UUID%} to false
+				message "&4[&6r0x.fr&4] &2Scoreboard désactivé. Faites &c/scboard on&2 pour le réactiver."
+			else if {scoreboard.%player's UUID%} is false:
+				message "&4[&6r0x.fr&4] &2Votre scoreboard est déjà désactivé !"
+		else if arg-1 is "on":
+			if {scoreboard.%player's UUID%} is false:
+				clear {scoreboard.%player's UUID%}
+				message "&4[&6r0x.fr&4] &2Scoreboard activé. Faites &c/scboard off&2 pour le désactiver."
+				wait 1 tick
+			else if {scoreboard.%player's UUID%} is not set:
+				message "&4[&6r0x.fr&4] &2Votre scoreboard est déjà activé !"
+		else if arg-1 is "xyz":
+			if {scoreboard-xyz.%player's UUID%} is not set:
+				set {scoreboard-xyz.%player's UUID%} to false
+				message "&4[&6r0x.fr&4] &2Coordonnées sur le Scoreboard désactivées. Faites  &c/scboard xyz&2 pour les réactiver."
+			else if {scoreboard-xyz.%player's UUID%} is false:
+				clear {scoreboard-xyz.%player's UUID%}
+				message "&4[&6r0x.fr&4] &2Coordonnées sur le Scoreboard activées."
+				message "&2Faites &c/scboard xyz&2 pour les réactiver."
