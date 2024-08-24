@@ -38,6 +38,7 @@ options:
 # options section and fill the message you want ! #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 command /ambossbar:
+	permission: r0x.admin
 	trigger:
 		# Message 1
 		create bossbar title "{@Message1}" and id "%player%" for player with value 100 with colors {@ColorMessage1}
