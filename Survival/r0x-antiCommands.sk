@@ -1,38 +1,43 @@
 # Basic plugins list command
-on command "/bukkit:plugins" or "/bukkit:pl":
-	stop if sender is console
+on command "/plugins" or "/pl":
+	stop if command sender is console
 	cancel event if player is not an op
 	if player is not op:
-		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+		send "&4[&6r0x.fr&4] &2Tu ne peux pas voir cela !"
+on command "/bukkit:plugins" or "/bukkit:pl":
+	stop if command sender is console
+	cancel event if player is not an op
+	if player is not op:
+		send "&4[&6r0x.fr&4] &2Tu ne peux pas voir cela !"
 # Help commands (could also show plugins list)
 on command "/bukkit:help":
-	stop if sender is console
+	stop if command sender is console
 	cancel event if player is not an op
 	if player is not op:
 		send "&4[&6r0x.fr&4] &2Pourquoi aurais tu besoin d'aide ?%nl%Il y a le &e/dc&2 pour le nombre de morts%nl%Et &e/pi&2 pour quelques info sur les joueurs"
 on command "/help":
-	stop if sender is console
+	stop if command sender is console
 	cancel event if player is not an op
 	if player is not op:
 		send "&4[&6r0x.fr&4] &2Pourquoi aurais tu besoin d'aide ?%nl%Il y a le &e/dc&2 pour le nombre de morts%nl%Et &e/pi&2 pour quelques info sur les joueurs"
 # Other commands that show plugins
 on command "/about":
-	stop if sender is console
+	stop if command sender is console
 	cancel event if player is not an op
 	if player is not op:
-		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+		send "&4[&6r0x.fr&4] &2Tu ne peux pas voir cela !"
 on command "/icanhasbukkit":
-	stop if sender is console
+	stop if command sender is console
 	cancel event if player is not an op
 	if player is not op:
-		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+		send "&4[&6r0x.fr&4] &2Tu ne peux pas voir cela !"
 on command "/version":
-	stop if sender is console
+	stop if command sender is console
 	cancel event if player is not an op
 	if player is not op:
-		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+		send "&4[&6r0x.fr&4] &2Tu ne peux pas voir cela !"
 on command "/ver":
-	stop if sender is console
+	stop if command sender is console
 	cancel event if player is not an op
 	if player is not op:
-		send "&4[&6r0x.fr&4] &2Tu ne peut pas voir cela !"
+		send "&4[&6r0x.fr&4] &2Tu ne peux pas voir cela !"
