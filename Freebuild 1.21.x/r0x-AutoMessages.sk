@@ -19,6 +19,7 @@ options:
 	SoundPitch: 1.0 # Sound speed. 1.0 is default. Pitch must be included between 0.0 and 2.0.
 	ChatBroadcast: 60 # Time between vote broadcast
 # The messages content. Do not use quotation marks but you can use Minecraft color codes "&".
+	MessageCount: 17 # Number of all messages
 	Message0: &cr0x.fr recrute &aalors si vous voulez nous rejoindre rendez-vous sur notre forum pour candidater
 	Message1: &aFaites &c/land create&a pour protéger votre &cterrain &aet &c/land menu&a pour le gérer !
 	Message2: &aChoisissez votre &cprofession &a: &c/jobs browse
@@ -77,22 +78,22 @@ options:
 command /ambossbar:
 	permission: r0x.ambossbar
 	trigger:
-		loop 17 times:
-			set {_Message} to "Message" + "%loop-value%"
-			set {_ColorMessage} to "ColorMessage" + "%loop-value%"
-			create bossbar title {Message%loop-value%} and id "%player%" for player with value 100 with colors {ColorMessage%loop-value%}
+		loop {@MessageCount} times:
+			set {_Message} to {Messages::%loop-value%}
+			set {_ColorMessage} to {Colors::%loop-value%}
+			create bossbar title {_Message} and id "%player%" for player with value 100 with colors {_ColorMessage}
 			loop all players:
-				play sound "{_@SoundPlayed}" with volume {_@SoundVolume} and pitch {_@SoundPitch} for loop-player
+				play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
 				add bossbar "%player%" for loop-player
-			wait 5 seconds
-			set bossbar "%player%" value to 70
-			wait 5 seconds
-			set bossbar "%player%" value to 40
-			wait 4 seconds
-			set bossbar "%player%" value to 10
-			wait 2 seconds
-			hide bossbar "%player%"
-			# wait {_@TimeBetweenMessage} minutes
+				wait 5 seconds
+				set bossbar "%player%" value to 70
+				wait 5 seconds
+				set bossbar "%player%" value to 40
+				wait 4 seconds
+				set bossbar "%player%" value to 10
+				wait 2 seconds
+				hide bossbar "%player%"
+				# wait {@TimeBetweenMessage} minutes
 		# Event Message
 		if {eventbossbar.text} is set:
 			create bossbar title "%{eventbossbar.text}%" and id "%player%" for player with value 100 with colors {@ColorEvent}
@@ -114,9 +115,13 @@ command /ambossbar:
 # Starting displaying messages at skript loading
 on skript load:
 	wait 2 ticks
-	send "{_@Prefix} {_@LoadingMessage} {_@SkriptVersion}" to console
+	send "{@Prefix} {@LoadingMessage} {@SkriptVersion}" to console
 	make console execute command "/ambossbar"
 	make console execute command "/chatbroadcast"
+	loop 17 times:
+		set {Messages::%loop-value%} to {@%"Message%loop-value%"%}
+		set {Colors::%loop-value%} to {"@ColorMessage%loop-value%"}
+
 # Replay messages after X seconds defined in config
 every {@TotalMinutes} minutes:
 	make console execute command "/ambossbar"
@@ -140,7 +145,7 @@ command /eventbossbar <text> [<text>]:
 			if arg 2 is not set:
 				send "{@Prefix} {@WrongUse}"
 			else:
-				set {eventbossbar.text} to arg-2
+				set {eventbossbar.text} to "arg-2"
 				send "{@Prefix} {@ConfirmEventMessage}"
 		else if arg 1 is "remove":
 			delete {eventbossbar.text}
