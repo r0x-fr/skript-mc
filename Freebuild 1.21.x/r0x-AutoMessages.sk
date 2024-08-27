@@ -27,18 +27,18 @@ options:
 	Message5: &aVenez discuter à l'écrit ou à l'oral sur &cDiscord &a: &c/discord
 	Message6: &aPensez à utiliser vos &ckits &arégulièrement disponibles : &c/kits
 	Message7: &aLe &cmarché du Port &avous propose de nombreux objets : &c/warp Marché
-	Message8: &aVous pouvez aider r0x.fr avec un &cdon &a: &9https://r0x.fr/forum/dons
+	Message8: &aVous pouvez aider r0x.fr avec un &cdon &a:&9 https://r0x.fr/forum/dons
 	Message9: &aParlez uniquement avec les joueurs proches de vous : &c/ch l &a(~150 blocs)
 	Message10: &aListe de vos &chomes &a: &c/homes&a. Retournez à votre lit : &c/home bed
 	Message11: &aPour faire une pause, rendez-vous sur nos jeux automatiques : &c/warp Events
 	Message12: &aDécouvrez de nombreux cosmétiques dans le &cRubik's Cube&a de votre inventaire.
-	Message13: &aNotre site : &9https://r0x.fr&a. Venez vous présenter sur notre &cforum &a!
+	Message13: &aNotre site :&9 https://r0x.fr&a. Venez vous présenter sur notre &cforum &a!
 	Message14: &aDécouvrez des &cmécaniques &aexclusives à l'Académie : &c/warp Academie
-	Message15: &aVotez pour r0x.fr pour faire venir de nouveaux joueurs : &9http://votes.r0x.fr
-	Message16: &aPensez à vous repérer avec notre carte interactive : &9https://maps.r0x.fr
-	Message17: &aCe serveur est hébergé par notre partenaire &cMineStrator&a !
-	VoteBroadcast: &4[&6Rappel&4] &2N'oubliez pas de voter pour r0x.fr afin de récupérer des récompenses ! &9https://votes.r0x.fr
-	PartnerBroadcast: &4[&6Rappel&4] &2Ce serveur est hébergé par notre partenaire &cMineStrator&2 ! Profitez d'offres abordables et de qualité : &9https://minestrator.r0x.fr&2.
+	Message15: &aVotez pour r0x.fr pour faire venir de nouveaux joueurs :&9 http://votes.r0x.fr
+	Message16: &aPensez à vous repérer avec notre carte interactive :&9 https://maps.r0x.fr
+	Message17: &aCe serveur est hébergé par notre partenaire &cMineStrator &a!
+	VoteBroadcast: &4[&6Rappel&4] &2N'oubliez pas de voter pour r0x.fr afin de récupérer des récompenses !&9 https://votes.r0x.fr
+	PartnerBroadcast: &4[&6Rappel&4] &2Ce serveur est hébergé par notre partenaire &cMineStrator&2 ! Profitez d'offres abordables et de qualité :&9 https://minestrator.r0x.fr
 # Colors of each bossbar message. Colors available : blue, green, pink, purple, red, white, yellow
 	ColorMessage1: green
 	ColorMessage2: yellow
@@ -75,277 +75,24 @@ options:
 # options section and fill the message you want ! #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 command /ambossbar:
+	permission: r0x.ambossbar
 	trigger:
-		# Message 0
-		create bossbar title "{@Message0}" and id "%player%" for player with value 100 with colors {@ColorMessage1}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		
-		# Message 1
-		create bossbar title "{@Message1}" and id "%player%" for player with value 100 with colors {@ColorMessage1}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 1
-		# Message 2
-		create bossbar title "{@Message2}" and id "%player%" for player with value 100 with colors {@ColorMessage2}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 2
-		# Message 3
-		create bossbar title "{@Message3}" and id "%player%" for player with value 100 with colors {@ColorMessage3}
-		loop all players:
-			play sound "block.note_block.bell" with volume 10 and pitch 1 for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 3
-		# Message 4
-		create bossbar title "{@Message4}" and id "%player%" for player with value 100 with colors {@ColorMessage4}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 4
-		# Message 5
-		create bossbar title "{@Message5}" and id "%player%" for player with value 100 with colors {@ColorMessage5}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 5
-		# Message 6
-		create bossbar title "{@Message6}" and id "%player%" for player with value 100 with colors {@ColorMessage6}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 6
-		# Message 7
-		create bossbar title "{@Message7}" and id "%player%" for player with value 100 with colors {@ColorMessage7}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 7
-		# Message 8
-		create bossbar title "{@Message8}" and id "%player%" for player with value 100 with colors {@ColorMessage8}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 8
-		# Message 6
-		create bossbar title "{@Message9}" and id "%player%" for player with value 100 with colors {@ColorMessage9}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 9
-		# Message 10
-		create bossbar title "{@Message10}" and id "%player%" for player with value 100 with colors {@ColorMessage10}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 10
-		# Message 11
-		create bossbar title "{@Message11}" and id "%player%" for player with value 100 with colors {@ColorMessage11}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 11
-		# Message 12
-		create bossbar title "{@Message12}" and id "%player%" for player with value 100 with colors {@ColorMessage12}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 12
-		# Message 13
-		create bossbar title "{@Message13}" and id "%player%" for player with value 100 with colors {@ColorMessage13}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 13
-		# Message 14
-		create bossbar title "{@Message14}" and id "%player%" for player with value 100 with colors {@ColorMessage14}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 14
-		# Message 15
-		create bossbar title "{@Message15}" and id "%player%" for player with value 100 with colors {@ColorMessage15}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 15
-		# Message 16
-		create bossbar title "{@Message16}" and id "%player%" for player with value 100 with colors {@ColorMessage16}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 16
-		# Message 17
-		create bossbar title "{@Message17}" and id "%player%" for player with value 100 with colors {@ColorMessage17}
-		loop all players:
-			play sound "{@SoundPlayed}" with volume {@SoundVolume} and pitch {@SoundPitch} for loop-player
-			add bossbar "%player%" for loop-player
-		wait 5 seconds
-		set bossbar "%player%" value to 70
-		wait 5 seconds
-		set bossbar "%player%" value to 40
-		wait 4 seconds
-		set bossbar "%player%" value to 10
-		wait 2 seconds
-		hide bossbar "%player%"
-		wait {@TimeBetweenMessage} minutes
-		# End of Message 16
+		loop 17 times:
+			set {_Message} to "Message" + "%loop-value%"
+			set {_ColorMessage} to "ColorMessage" + "%loop-value%"
+			create bossbar title {Message%loop-value%} and id "%player%" for player with value 100 with colors {ColorMessage%loop-value%}
+			loop all players:
+				play sound "{_@SoundPlayed}" with volume {_@SoundVolume} and pitch {_@SoundPitch} for loop-player
+				add bossbar "%player%" for loop-player
+			wait 5 seconds
+			set bossbar "%player%" value to 70
+			wait 5 seconds
+			set bossbar "%player%" value to 40
+			wait 4 seconds
+			set bossbar "%player%" value to 10
+			wait 2 seconds
+			hide bossbar "%player%"
+			# wait {_@TimeBetweenMessage} minutes
 		# Event Message
 		if {eventbossbar.text} is set:
 			create bossbar title "%{eventbossbar.text}%" and id "%player%" for player with value 100 with colors {@ColorEvent}
@@ -367,7 +114,7 @@ command /ambossbar:
 # Starting displaying messages at skript loading
 on skript load:
 	wait 2 ticks
-	send "{@Prefix} {@LoadingMessage} {@SkriptVersion}" to console
+	send "{_@Prefix} {_@LoadingMessage} {_@SkriptVersion}" to console
 	make console execute command "/ambossbar"
 	make console execute command "/chatbroadcast"
 # Replay messages after X seconds defined in config
@@ -377,10 +124,11 @@ every {@TotalMinutes} minutes:
 every {@ChatBroadcast} minutes:
 	make console execute command "/chatbroadcast"
 command /chatbroadcast:
+	permission: r0x.broadcast
 	trigger:
-		broadcast "{@VoteBroadcast}"
+		broadcast "{_@VoteBroadcast}"
 		wait 30 minutes
-		broadcast "{@PartnerBroadcast}"
+		broadcast "{_@PartnerBroadcast}"
 # Add one custom message directly in game that will be displayed at the end of the list
 command /eventbossbar <text> [<text>]:
 	usage: {@Prefix} {@WrongUse}
